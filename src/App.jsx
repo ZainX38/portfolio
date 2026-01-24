@@ -1,6 +1,8 @@
+import './input.css'
+
 function App() {
   return (
-    <div>
+    <div className="bg-red-500">
       hello world
     </div>
   )
