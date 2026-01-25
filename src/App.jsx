@@ -1,10 +1,13 @@
 import './input.css'
+import Hero from './components/sections/Hero.jsx'
 
 function App() {
   return (
-    <div className="bg-red-500">
-      hello world
-    </div>
+    <main className="bg-linear-to-b from-black via-sky-700 to-gray-800 
+    min-h-screen text-white px-60 py-20 font-sans">
+      <Hero />
+    </main>
+    
   )
 }
 
