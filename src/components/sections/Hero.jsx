@@ -12,7 +12,7 @@ function Hero() {
         }];
 
     return (
-        <section>
+        <section id="hero">
             <div className="flex flex-row items-center gap-10 mb-4">
                 <img src={heroImage} alt="Hero Image" className="
                 w-20 h-20 object-cover rounded-full
@@ -32,13 +32,16 @@ function Hero() {
             <div className='flex flex-row gap-4'>
                 {buttonData.map(button => {
                     return (
-                        <a key={button.name} href={button.link} 
+                        <a 
+                        key={button.name} 
+                        href={button.link} 
                         className="
                         text-md px-2 py-1 border rounded-full cursor-pointer bg-sky-900
                         hover:bg-white hover:text-black hover:scale-110
                         transition-transform flex flex-row items-center gap-2">
-                            <svg className="w-4 h-4">
-                                <use href={button.icon} />
+                            <svg aria-hidden="true" 
+                            className={button.name === 'GitHub' ? "w-4 h-4" : "w-6 h-6 pt-1"}>
+                                <use href={button.icon}/>
                             </svg>
                             {button.name}
                         </a>
