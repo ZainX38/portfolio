@@ -25,6 +25,25 @@ function Icon({ className, iconRef }) {
     )
 }
 
+function CreateButton({ name, link, icon }) {
+    return (
+        <a 
+            key={name} 
+            href={link} 
+            target='_blank'
+            rel="noopener noreferrer"
+            className="
+            text-sm md:text-md px-2 py-1 border rounded-full cursor-pointer bg-sky-900
+            hover:bg-white hover:text-black hover:scale-110
+            transition-transform flex flex-row items-center gap-2">
+                <Icon 
+                className={name === 'GitHub' ? "w-4 h-4" : "w-6 h-6 pt-1"} 
+                iconRef={icon} />
+                {name}
+        </a>
+)
+}
+
 function Hero() {
     const buttonData = [{
             name: 'GitHub', 
@@ -57,20 +76,11 @@ function Hero() {
             <div className='flex flex-row gap-4'>
                 {buttonData.map(button => {
                     return (
-                        <a 
-                            key={button.name} 
-                            href={button.link} 
-                            target='_blank'
-                            rel="noopener noreferrer"
-                            className="
-                            text-sm md:text-md px-2 py-1 border rounded-full cursor-pointer bg-sky-900
-                            hover:bg-white hover:text-black hover:scale-110
-                            transition-transform flex flex-row items-center gap-2">
-                                <Icon 
-                                className={button.name === 'GitHub' ? "w-4 h-4" : "w-6 h-6 pt-1"} 
-                                iconRef={button.icon} />
-                                {button.name}
-                        </a>
+                        <CreateButton 
+                        key={button.name} 
+                        name={button.name}
+                        link={button.link}
+                        icon={button.icon} />
                     )})
                 }
             </div>
