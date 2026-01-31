@@ -1,5 +1,6 @@
 import './input.css'
 import Hero from './components/sections/Hero.jsx'
+import Projects from './components/sections/Projects.jsx'
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
     max-w-screen min-w-xl min-h-dvh
     ">
       <Hero/>
+      <Projects />
     </main>
     
   )

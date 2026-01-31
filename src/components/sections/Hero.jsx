@@ -1,4 +1,5 @@
 import heroImage from '../../assets/images/zain.webp';
+import Icon from '../Icon.jsx';
 
 function GlowingBadge({ children }) {
     return (
@@ -14,14 +15,6 @@ function GlowingBadge({ children }) {
                 {children}
             </span>
         </div>
-    )
-}
-
-function Icon({ className, iconRef }) {
-    return (
-        <svg aria-hidden="true" className={className}>
-            <use href={iconRef}/>
-        </svg>
     )
 }
 
