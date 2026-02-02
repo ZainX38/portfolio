@@ -3,7 +3,12 @@
         "id": 1,
         "title": "AI Document QA System",
         "description": "Built an end-to-end RAG pipeline for querying PDF documents, optimising vector retrieval and reducing hallucinations through evaluation-driven iteration.",
-        "tech": ["Python", "LangChain", "Pinecone", "OpenAI"],
+        "tech": ["Python", "Pinecone", "OpenAI"],
+        "colours": {
+            "Python": "bg-cyan-700/50", 
+            "Pinecone": "bg-purple-900/60", 
+            "OpenAI": "bg-black/50"
+        },
         "image": "/images/project1.png",
         "links": {
             "github": "https://github.com/ZainX38/portfolio",
@@ -16,6 +21,13 @@
         "title": "AI Enhanced Recipe Platform",
         "description": "A full-stack recipe platform built with performance and scalability in mind, combining server-side rendering, AI-generated images, and intelligent recipe enhancements to deliver a fast and visually rich user experience.",
         "tech": ["Python", "Node.js", "TailwindCSS", "MongoDB", "AWS S3"],
+        "colours": {
+            "Python": "bg-cyan-700/50",
+            "Node.js": "bg-emerald-600/70", 
+            "TailwindCSS": "bg-[#003159]", 
+            "MongoDB": "bg-amber-600/70", 
+            "AWS S3": "bg-purple-900/60"
+        },
         "image": "/images/project1.png",
         "links": {
             "github": "https://github.com/ZainX38/portfolio",
@@ -28,6 +40,11 @@
         "title": "DevFlow - Developer Collaboration Platform",
         "description": "A real-time collaboration platform for developers with integrated code editor, video calls, and project management. Built from scratch with modern technologies and used by 5,000+ developers worldwide.",
         "tech": ["Next.js", "React", "TailwindCSS"],
+        "colours": {
+            "Next.js": "bg-black/50", 
+            "React": "bg-[#04cafc]/50", 
+            "TailwindCSS": "bg-[#003159]"
+        },
         "image": "/images/project1.png",
         "links": {
             "github": "https://github.com/ZainX38/portfolio",

@@ -2,9 +2,30 @@ import Icon from '../layout/Icon.jsx';
 import projectsData from '../../data/projects.json';
 import CreateButton from '../layout/createButton.jsx';
 
+function DisplayTech({ project }) {
+    const hasLogo = ["Python", "Node.js", "Next.js", "React", "TailwindCSS"]
+
+    return (
+        <>
+            {project.tech.map((tech, index) => (
+                                <span key={index} className={
+                                    `border-none rounded-full px-2 py-1 flex flex-row items-center gap-2 
+                                    ${project.colours[tech]}`}>
+                                        {(hasLogo.includes(tech)) && (
+                                            <Icon 
+                                            iconRef={`/sprites.svg#${tech.toLowerCase()}`} 
+                                            className="w-4 h-4 text-red-500" />
+                                        )}
+                                    {tech}
+                                </span>
+                            ))}
+        </>
+    )
+}
+
 function Projects() {
     return (
-        <section id="projects" className='mt-30 min-w-4xl'>
+        <section id="projects" className='mt-40 min-w-4xl'>
             <div className="flex flex-row items-center gap-4">
                 <Icon className="w-9 h-9" iconRef="/sprites.svg#projects" />
                 <h1 className='text-3xl font-bold'>Projects</h1>
@@ -12,7 +33,7 @@ function Projects() {
 
             {projectsData.map(project => {
                 return (
-                <div className="grid grid-cols-2 gap-10 mt-6 mb-16 group">
+                <div key={project.id} className="grid grid-cols-2 place-items-center gap-10 mt-6 mb-16 group">
                     <div className='border border-gray-500
                     inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.8))] 
                     rounded-xl w-fit h-56 sm:h-64 overflow-hidden pl-10 pt-4'>
@@ -27,8 +48,8 @@ function Projects() {
                     <div className='flex flex-col gap-4'>
                         <h2 className='font-semibold text-2xl'>{project.title}</h2>
 
-                        <div>
-                            <span>{project.tech}</span>
+                        <div className='text-xs flex flex-row gap-2'>
+                            <DisplayTech project={project} />
                         </div>
 
                         <p className='text-gray-200'>
