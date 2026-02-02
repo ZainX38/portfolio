@@ -1,5 +1,6 @@
-import Icon from '../Icon.jsx';
+import Icon from '../layout/Icon.jsx';
 import projectsData from '../../data/projects.json';
+import CreateButton from '../layout/createButton.jsx';
 
 function Projects() {
     return (
@@ -15,22 +16,35 @@ function Projects() {
                     <div className='border border-gray-500
                     inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.8))] 
                     rounded-xl w-fit h-56 sm:h-64 overflow-hidden pl-10 pt-4'>
-                        <img src={project.image} alt="Project Image" className='
+                        <img 
+                        src={project.image} 
+                        alt={project.title} 
+                        className='
                         w-full h-full object-cover scale-105 rounded-tl-lg shadow-2xl shadow-black/40
                         group-hover:scale-110 transition-transform ease-in-out duration-700'/>
                     </div>
-                    <div>
-                        <h2 className='text-2xl font-semibold mt-4'>{project.title}</h2>
-                        <span>{project.tech}</span>
-                        <p className='text-md mt-2'>
+
+                    <div className='flex flex-col gap-4'>
+                        <h2 className='font-semibold text-2xl'>{project.title}</h2>
+
+                        <div>
+                            <span>{project.tech}</span>
+                        </div>
+
+                        <p className='text-gray-200'>
                             {project.description}
                         </p>
-                        <button className="">
-                            <a href={project.links.github} target="_blank" rel="noopener noreferrer">Code</a>
-                        </button>
-                        <button className="">
-                            <a href={project.links.preview} target="_blank" rel="noopener noreferrer">Preview</a>
-                        </button>
+
+                        <div className='flex flex-row mt-4'>
+                            <CreateButton name="Code" link={project.links.github} icon="/sprites.svg#github" className='
+                            w-28 rounded-xl bg-sky-900 px-4 py-2 mr-4 cursor-pointer
+                            border border-gray-300
+                            flex flex-row items-center justify-center gap-2'/>
+                            <CreateButton name="Preview" link={project.links.preview} icon="/sprites.svg#preview" className='
+                            w-28 rounded-xl bg-sky-900 px-4 py-2 mr-4 cursor-pointer
+                            border border-gray-300
+                            flex flex-row items-center justify-center gap-2' />
+                        </div>
                     </div>
                 </div>
                 )

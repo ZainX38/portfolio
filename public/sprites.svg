@@ -7,15 +7,12 @@
 
     <!-- LinkedIn -->
     <symbol id="linkedin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path stroke="none" d="M0 0h24v24H0z" />
         <path d="M4 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z" />
         <path d="M8 11v5" />
         <path d="M8 8v.01" />
         <path d="M12 16v-5" />
         <path d="M16 16v-3a2 2 0 0 0-4 0" />
     </symbol>
-
-
 
     <!-- Projects Icon -->
     <symbol id="projects" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -33,9 +30,9 @@
     </symbol>
 
     <!-- Preview Icon -->
-    <symbol id="preview" class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data--h-bstatus="0OBSERVED">
-        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" data--h-bstatus="0OBSERVED"></path>
-        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" data--h-bstatus="0OBSERVED"></path>
+    <symbol id="preview" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
     </symbol>
 
     <!-- Python -->

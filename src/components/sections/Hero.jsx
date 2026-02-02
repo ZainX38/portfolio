@@ -1,5 +1,5 @@
 import heroImage from '/images/zain.webp';
-import Icon from '../Icon.jsx';
+import CreateButton from '../layout/createButton.jsx';
 
 function GlowingBadge({ children }) {
     return (
@@ -16,25 +16,6 @@ function GlowingBadge({ children }) {
             </span>
         </div>
     )
-}
-
-function CreateButton({ name, link, icon }) {
-    return (
-        <a 
-            key={name} 
-            href={link} 
-            target='_blank'
-            rel="noopener noreferrer"
-            className="
-            text-sm md:text-md px-2 py-1 border rounded-full cursor-pointer bg-sky-900
-            hover:bg-white hover:text-black hover:scale-110
-            transition-transform flex flex-row items-center gap-2">
-                <Icon 
-                className={name === 'GitHub' ? "w-4 h-4" : "w-6 h-6 pt-1"} 
-                iconRef={icon} />
-                {name}
-        </a>
-)
 }
 
 function Hero() {
@@ -73,7 +54,10 @@ function Hero() {
                         key={button.name} 
                         name={button.name}
                         link={button.link}
-                        icon={button.icon} />
+                        icon={button.icon}
+                        className='text-sm md:text-md px-2 py-1 border rounded-full cursor-pointer bg-sky-900
+                        hover:bg-white hover:text-black hover:scale-110
+                        transition-transform flex flex-row items-center gap-2'/>
                     )})
                 }
             </div>
