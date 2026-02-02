@@ -1,4 +1,4 @@
-import heroImage from '../../assets/images/zain.webp';
+import heroImage from '/images/zain.webp';
 import Icon from '../Icon.jsx';
 
 function GlowingBadge({ children }) {
