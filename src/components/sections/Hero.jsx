@@ -1,5 +1,8 @@
 import heroImage from '/images/zain.webp';
 import CreateButton from '../layout/createButton.jsx';
+import socialLinks from '../../data/socials.js';
+
+const buttonData = socialLinks;
 
 function GlowingBadge({ children }) {
     return (
@@ -19,16 +22,6 @@ function GlowingBadge({ children }) {
 }
 
 function Hero() {
-    const buttonData = [{
-            name: 'GitHub', 
-            link: 'https://github.com/ZainX38',
-            icon: '/sprites.svg#github'
-        }, {
-            name: 'LinkedIn',
-            link: 'https://www.linkedin.com/in/zain-mohammad-283774227/',
-            icon: '/sprites.svg#linkedin'
-        }];
-
     return (
         <section id="hero" className='max-w-5xl mx-auto px-4'>
             <div className="flex flex-row items-center gap-10 mb-4">

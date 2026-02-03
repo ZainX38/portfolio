@@ -1,6 +1,9 @@
 import Icon from '../layout/Icon.jsx';
 import projectsData from '../../data/projects.json';
 import CreateButton from '../layout/createButton.jsx';
+import projectsButton from '../../data/projectsButton.js';
+
+const projectsButtonData = projectsButton
 
 function DisplayTech({ project }) {
     const hasLogo = ["Python", "Node.js", "Next.js", "React", "TailwindCSS"]
@@ -24,16 +27,6 @@ function DisplayTech({ project }) {
 }
 
 function Projects() {
-    const projectsButtonData = [{
-        name: "Code",
-        link: "github",
-        icon: "/sprites.svg#github"
-    }, {
-        name: "Preview",
-        link: "project.links.preview",
-        icon: "/sprites.svg#preview"
-    }]
-
     return (
         <section id="projects" className='mt-40 min-w-4xl'>
             <div className="flex flex-row items-center gap-4">
