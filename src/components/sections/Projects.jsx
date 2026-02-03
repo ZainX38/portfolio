@@ -4,24 +4,27 @@ import CreateButton from '../layout/createButton.jsx';
 import projectsButton from '../../data/projectsButton.js';
 
 const projectsButtonData = projectsButton
+const hasLogo = ["Python", "Node.js", "Next.js", "React", "TailwindCSS"]
+const defaultColor = "bg-gray-700/60"
 
 function DisplayTech({ project }) {
-    const hasLogo = ["Python", "Node.js", "Next.js", "React", "TailwindCSS"]
-
     return (
         <>
-            {project.tech.map((tech, index) => (
-                                <span key={index} className={
-                                    `border-none rounded-full px-2 py-1 flex flex-row items-center gap-2 
-                                    ${project.colours[tech]}`}>
-                                        {(hasLogo.includes(tech)) && (
-                                            <Icon 
-                                            iconRef={`/sprites.svg#${tech.toLowerCase()}`} 
-                                            className="w-4 h-4 text-red-500" />
-                                        )}
-                                    {tech}
-                                </span>
-                            ))}
+            {project.tech.map((tech, index) => {
+                const colorClass = project.colours[tech] || defaultColor;
+
+                return (
+                    <span key={index} 
+                    className={`border-none rounded-full px-2 py-1 flex flex-row items-center gap-2 ${colorClass}`}>
+                            {(hasLogo.includes(tech)) && (
+                                <Icon 
+                                iconRef={`/sprites.svg#${tech.toLowerCase()}`} 
+                                className="w-4 h-4" />
+                            )}
+                        {tech}
+                    </span>
+                )
+            })}
         </>
     )
 }
