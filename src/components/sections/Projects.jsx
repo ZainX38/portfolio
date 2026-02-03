@@ -24,6 +24,16 @@ function DisplayTech({ project }) {
 }
 
 function Projects() {
+    const projectsButtonData = [{
+        name: "Code",
+        link: "github",
+        icon: "/sprites.svg#github"
+    }, {
+        name: "Preview",
+        link: "project.links.preview",
+        icon: "/sprites.svg#preview"
+    }]
+
     return (
         <section id="projects" className='mt-40 min-w-4xl'>
             <div className="flex flex-row items-center gap-4">
@@ -57,14 +67,12 @@ function Projects() {
                         </p>
 
                         <div className='flex flex-row mt-4'>
-                            <CreateButton name="Code" link={project.links.github} icon="/sprites.svg#github" className='
-                            w-28 rounded-xl bg-sky-900 px-4 py-2 mr-4 cursor-pointer
-                            border border-gray-300
-                            flex flex-row items-center justify-center gap-2'/>
-                            <CreateButton name="Preview" link={project.links.preview} icon="/sprites.svg#preview" className='
-                            w-28 rounded-xl bg-sky-900 px-4 py-2 mr-4 cursor-pointer
-                            border border-gray-300
-                            flex flex-row items-center justify-center gap-2' />
+                            {projectsButtonData.map(button => {
+                                return <CreateButton key={button.name} name={button.name} link={project.links[button.link]} icon={button.icon} className="
+                                w-28 rounded-xl bg-sky-900 px-4 py-2 mr-4 cursor-pointer
+                                border border-gray-300
+                                flex flex-row items-center justify-center gap-2" />
+                            })}                            
                         </div>
                     </div>
                 </div>
