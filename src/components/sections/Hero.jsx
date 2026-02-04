@@ -33,7 +33,7 @@ function Hero() {
                 </GlowingBadge>
             </div>
 
-            <h1 className="text-xl sm:text-3xl font-bold leading-tight mb-4">Hey, I'm Zain</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold leading-tight mb-4">Hey, I'm Zain</h1>
 
             <p className="text-sm md:text-lg min-w-44 mb-4 text-balance">
                 I’m a first-year Computer Science student building <span className='font-bold text-amber-300'> full-stack web applications and exploring AI-powered solutions </span>to solve real problems.
