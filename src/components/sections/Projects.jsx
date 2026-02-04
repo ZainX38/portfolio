@@ -31,7 +31,7 @@ function DisplayTech({ project }) {
 
 function Projects() {
     return (
-        <section id="projects" className='mt-40 max-w-5xl'>
+        <section id="projects" className='mt-20 max-w-5xl'>
             <div className="flex flex-row items-center gap-4">
                 <Icon className="w-9 h-9" iconRef="/sprites.svg#projects" />
                 <h1 className='text-3xl font-bold'>Projects</h1>
@@ -58,7 +58,7 @@ function Projects() {
                             <DisplayTech project={project} />
                         </div>
 
-                        <p className='text-gray-200 text-balance text-mdA md:text-lg'>
+                        <p className='text-gray-200 text-balance text-md md:text-lg'>
                             {project.description}
                         </p>
 
