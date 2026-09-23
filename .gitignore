@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Standalone Codebase demo: generated artifacts, local settings and Python cache
+codebase-demo/data/
+codebase-demo/backend/.env
+codebase-demo/backend/.venv/
+__pycache__/
+.playwright-mcp/
