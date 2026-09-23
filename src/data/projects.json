@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "title": "AI Document QA System",
+        "title": "Codebase AI",
         "description": "Built an end-to-end RAG pipeline for querying PDF documents, optimising vector retrieval and reducing hallucinations through evaluation-driven iteration.",
         "tech": ["Python", "Pinecone", "OpenAI"],
         "colours": {
@@ -11,8 +11,8 @@
         },
         "image": "/images/project1.png",
         "links": {
-            "github": "https://github.com/ZainX38/portfolio",
-            "preview": "https://github.com/ZainX38/portfolio"
+            "github": "https://github.com/ZainX38/AI-Codebase",
+            "preview": "/codebase-demo/"
         }
     },
 

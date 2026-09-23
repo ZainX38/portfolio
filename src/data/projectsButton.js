@@ -4,7 +4,7 @@ const projectsButton = [{
         icon: "/sprites.svg#github"
     }, {
         name: "Preview",
-        link: "project.links.preview",
+        link: "preview",
         icon: "/sprites.svg#preview"
     }]
 

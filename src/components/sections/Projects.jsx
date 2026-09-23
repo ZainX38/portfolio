@@ -1,6 +1,6 @@
 import Icon from '../layout/Icon.jsx';
 import projectsData from '../../data/projects.json';
-import CreateButton from '../layout/createButton.jsx';
+import CreateButton from '../layout/CreateButton.jsx';
 import projectsButton from '../../data/projectsButton.js';
 
 const projectsButtonData = projectsButton
