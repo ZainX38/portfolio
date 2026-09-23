@@ -1,0 +1,27 @@
+# This allowlist applies when building with codebase-demo/Dockerfile.
+**
+!package.json
+!package-lock.json
+!index.html
+!vite.config.js
+!src/
+!src/**
+!public/
+!public/**
+!codebase-demo/
+!codebase-demo/index.html
+!codebase-demo/frontend/
+!codebase-demo/frontend/**
+!codebase-demo/backend/
+!codebase-demo/backend/*.py
+!codebase-demo/backend/pyproject.toml
+!codebase-demo/backend/uv.lock
+!codebase-demo/data/
+!codebase-demo/data/bundle.json
+!codebase-demo/data/bundle-indexed.json
+!codebase-demo/data/bundle-*.json
+!codebase-demo/data/*/
+!codebase-demo/data/*/*/
+!codebase-demo/data/*/*/bundle.json
+!codebase-demo/data/*/*/bundle-indexed.json
+!codebase-demo/data/*/*/bundle-*.json
