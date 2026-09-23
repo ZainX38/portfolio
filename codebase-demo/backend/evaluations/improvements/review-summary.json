@@ -1,0 +1,237 @@
+{
+  "01-retrieval": {
+    "deepseek-coder-v2:16b": {
+      "recorded": 18,
+      "reviewed": 18,
+      "strict_successes": 3,
+      "grades": {
+        "C": 3,
+        "E": 1,
+        "I": 11,
+        "P": 2,
+        "U": 1
+      },
+      "unreviewed_ids": []
+    },
+    "qwen3.5:4b": {
+      "recorded": 18,
+      "reviewed": 18,
+      "strict_successes": 3,
+      "grades": {
+        "A": 4,
+        "C": 3,
+        "I": 7,
+        "P": 3,
+        "U": 1
+      },
+      "unreviewed_ids": []
+    }
+  },
+  "02-context": {
+    "deepseek-coder-v2:16b": {
+      "recorded": 18,
+      "reviewed": 18,
+      "strict_successes": 4,
+      "grades": {
+        "C": 4,
+        "I": 8,
+        "P": 6
+      },
+      "unreviewed_ids": [],
+      "changes_from_previous_stage": {
+        "2": {
+          "before": "U",
+          "after": "C"
+        },
+        "4": {
+          "before": "E",
+          "after": "P"
+        },
+        "5": {
+          "before": "P",
+          "after": "I"
+        },
+        "6": {
+          "before": "I",
+          "after": "P"
+        },
+        "8": {
+          "before": "I",
+          "after": "P"
+        },
+        "9": {
+          "before": "I",
+          "after": "P"
+        },
+        "16": {
+          "before": "I",
+          "after": "P"
+        }
+      }
+    },
+    "qwen3.5:4b": {
+      "recorded": 18,
+      "reviewed": 18,
+      "strict_successes": 7,
+      "grades": {
+        "C": 7,
+        "I": 4,
+        "P": 6,
+        "U": 1
+      },
+      "unreviewed_ids": [],
+      "changes_from_previous_stage": {
+        "4": {
+          "before": "A",
+          "after": "C"
+        },
+        "5": {
+          "before": "I",
+          "after": "P"
+        },
+        "7": {
+          "before": "P",
+          "after": "I"
+        },
+        "9": {
+          "before": "A",
+          "after": "P"
+        },
+        "10": {
+          "before": "I",
+          "after": "C"
+        },
+        "11": {
+          "before": "I",
+          "after": "C"
+        },
+        "13": {
+          "before": "A",
+          "after": "I"
+        },
+        "14": {
+          "before": "I",
+          "after": "P"
+        },
+        "15": {
+          "before": "A",
+          "after": "C"
+        },
+        "16": {
+          "before": "I",
+          "after": "P"
+        }
+      }
+    }
+  },
+  "03-grounding": {
+    "deepseek-coder-v2:16b": {
+      "recorded": 18,
+      "reviewed": 18,
+      "strict_successes": 3,
+      "grades": {
+        "C": 3,
+        "E": 1,
+        "I": 10,
+        "P": 3,
+        "U": 1
+      },
+      "unreviewed_ids": [],
+      "changes_from_previous_stage": {
+        "6": {
+          "before": "P",
+          "after": "I"
+        },
+        "7": {
+          "before": "P",
+          "after": "E"
+        },
+        "9": {
+          "before": "P",
+          "after": "I"
+        },
+        "17": {
+          "before": "C",
+          "after": "U"
+        }
+      }
+    },
+    "qwen3.5:4b": {
+      "recorded": 18,
+      "reviewed": 18,
+      "strict_successes": 1,
+      "grades": {
+        "C": 1,
+        "E": 15,
+        "I": 2
+      },
+      "unreviewed_ids": [],
+      "changes_from_previous_stage": {
+        "1": {
+          "before": "C",
+          "after": "E"
+        },
+        "2": {
+          "before": "C",
+          "after": "E"
+        },
+        "3": {
+          "before": "C",
+          "after": "E"
+        },
+        "4": {
+          "before": "C",
+          "after": "E"
+        },
+        "5": {
+          "before": "P",
+          "after": "E"
+        },
+        "6": {
+          "before": "P",
+          "after": "E"
+        },
+        "8": {
+          "before": "P",
+          "after": "E"
+        },
+        "9": {
+          "before": "P",
+          "after": "E"
+        },
+        "11": {
+          "before": "C",
+          "after": "I"
+        },
+        "12": {
+          "before": "I",
+          "after": "E"
+        },
+        "13": {
+          "before": "I",
+          "after": "E"
+        },
+        "14": {
+          "before": "P",
+          "after": "E"
+        },
+        "15": {
+          "before": "C",
+          "after": "E"
+        },
+        "16": {
+          "before": "P",
+          "after": "E"
+        },
+        "17": {
+          "before": "U",
+          "after": "E"
+        },
+        "18": {
+          "before": "I",
+          "after": "E"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "all_backend_source_matches_stage_2": {
+    "chunking.py": true,
+    "config.py": true,
+    "coverage.py": true,
+    "embed_repository.py": true,
+    "evaluate_rag.py": true,
+    "index_repository.py": true,
+    "limits.py": true,
+    "llm.py": true,
+    "main.py": true,
+    "rag.py": true,
+    "repository.py": true,
+    "source_context.py": true,
+    "symbol_retrieval.py": true,
+    "verify_ollama.py": true
+  },
+  "environment_matches_frozen_evaluation": true,
+  "stage_3_format_checks": {
+    "deepseek-coder-v2:16b": {
+      "bracketed_citation_rejections": [
+        7
+      ],
+      "invalid_json": [],
+      "length_stops": [],
+      "http_200": 18
+    },
+    "qwen3.5:4b": {
+      "bracketed_citation_rejections": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "invalid_json": [],
+      "length_stops": [],
+      "http_200": 18
+    }
+  }
+}

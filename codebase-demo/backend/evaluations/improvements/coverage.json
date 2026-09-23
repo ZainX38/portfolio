@@ -1,0 +1,4234 @@
+{
+  "baseline": {
+    "deepseek-coder-v2:16b": {
+      "n": 18,
+      "errors": 1,
+      "mean_seconds": 45.75469052777609,
+      "median_seconds": 45.15650204999838,
+      "fully_visible_target_cases": {
+        "retrieved": 6,
+        "excerpts": 2
+      },
+      "target_line_coverage": {
+        "retrieved": [
+          154,
+          458
+        ],
+        "excerpts": [
+          29,
+          458
+        ]
+      },
+      "cases": {
+        "1": {
+          "retrieved": {
+            "covered": 1,
+            "total": 1,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 1,
+            "total": 1,
+            "missing": []
+          }
+        },
+        "2": {
+          "retrieved": {
+            "covered": 3,
+            "total": 3,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 3,
+            "total": 3,
+            "missing": []
+          }
+        },
+        "4": {
+          "retrieved": {
+            "covered": 9,
+            "total": 9,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 0,
+            "total": 9,
+            "missing": [
+              "src/requests/auth.py:65",
+              "src/requests/auth.py:66",
+              "src/requests/auth.py:67",
+              "src/requests/auth.py:68",
+              "src/requests/auth.py:69",
+              "src/requests/auth.py:70",
+              "src/requests/auth.py:71",
+              "src/requests/auth.py:72",
+              "src/requests/auth.py:73"
+            ]
+          }
+        },
+        "5": {
+          "retrieved": {
+            "covered": 27,
+            "total": 27,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 0,
+            "total": 27,
+            "missing": [
+              "src/requests/auth.py:293",
+              "src/requests/auth.py:294",
+              "src/requests/auth.py:295",
+              "src/requests/auth.py:296",
+              "src/requests/auth.py:297",
+              "src/requests/auth.py:298",
+              "src/requests/auth.py:299",
+              "src/requests/auth.py:300",
+              "src/requests/auth.py:301",
+              "src/requests/auth.py:302",
+              "src/requests/auth.py:303",
+              "src/requests/auth.py:304",
+              "src/requests/auth.py:305",
+              "src/requests/auth.py:306",
+              "src/requests/auth.py:307",
+              "src/requests/auth.py:308",
+              "src/requests/auth.py:309",
+              "src/requests/auth.py:310",
+              "src/requests/auth.py:311",
+              "src/requests/auth.py:312",
+              "src/requests/auth.py:313",
+              "src/requests/auth.py:314",
+              "src/requests/auth.py:315",
+              "src/requests/auth.py:316",
+              "src/requests/auth.py:317",
+              "src/requests/auth.py:318",
+              "src/requests/auth.py:319"
+            ]
+          }
+        },
+        "6": {
+          "retrieved": {
+            "covered": 3,
+            "total": 35,
+            "missing": [
+              "src/requests/sessions.py:622",
+              "src/requests/sessions.py:623",
+              "src/requests/sessions.py:624",
+              "src/requests/sessions.py:625",
+              "src/requests/sessions.py:626",
+              "src/requests/sessions.py:627",
+              "src/requests/sessions.py:628",
+              "src/requests/sessions.py:629",
+              "src/requests/sessions.py:630",
+              "src/requests/sessions.py:631",
+              "src/requests/sessions.py:632",
+              "src/requests/sessions.py:633",
+              "src/requests/sessions.py:634",
+              "src/requests/sessions.py:635",
+              "src/requests/sessions.py:636",
+              "src/requests/sessions.py:637",
+              "src/requests/sessions.py:638",
+              "src/requests/sessions.py:639",
+              "src/requests/sessions.py:640",
+              "src/requests/sessions.py:641",
+              "src/requests/sessions.py:642",
+              "src/requests/sessions.py:643",
+              "src/requests/sessions.py:644",
+              "src/requests/sessions.py:645",
+              "src/requests/sessions.py:646",
+              "src/requests/sessions.py:647",
+              "src/requests/sessions.py:648",
+              "src/requests/sessions.py:649",
+              "src/requests/sessions.py:650",
+              "src/requests/sessions.py:651",
+              "src/requests/sessions.py:652",
+              "src/requests/sessions.py:653"
+            ]
+          },
+          "excerpts": {
+            "covered": 3,
+            "total": 35,
+            "missing": [
+              "src/requests/sessions.py:622",
+              "src/requests/sessions.py:623",
+              "src/requests/sessions.py:624",
+              "src/requests/sessions.py:625",
+              "src/requests/sessions.py:626",
+              "src/requests/sessions.py:627",
+              "src/requests/sessions.py:628",
+              "src/requests/sessions.py:629",
+              "src/requests/sessions.py:630",
+              "src/requests/sessions.py:631",
+              "src/requests/sessions.py:632",
+              "src/requests/sessions.py:633",
+              "src/requests/sessions.py:634",
+              "src/requests/sessions.py:635",
+              "src/requests/sessions.py:636",
+              "src/requests/sessions.py:637",
+              "src/requests/sessions.py:638",
+              "src/requests/sessions.py:639",
+              "src/requests/sessions.py:640",
+              "src/requests/sessions.py:641",
+              "src/requests/sessions.py:642",
+              "src/requests/sessions.py:643",
+              "src/requests/sessions.py:644",
+              "src/requests/sessions.py:645",
+              "src/requests/sessions.py:646",
+              "src/requests/sessions.py:647",
+              "src/requests/sessions.py:648",
+              "src/requests/sessions.py:649",
+              "src/requests/sessions.py:650",
+              "src/requests/sessions.py:651",
+              "src/requests/sessions.py:652",
+              "src/requests/sessions.py:653"
+            ]
+          }
+        },
+        "7": {
+          "retrieved": {
+            "covered": 0,
+            "total": 52,
+            "missing": [
+              "src/requests/sessions.py:84",
+              "src/requests/sessions.py:85",
+              "src/requests/sessions.py:86",
+              "src/requests/sessions.py:87",
+              "src/requests/sessions.py:88",
+              "src/requests/sessions.py:89",
+              "src/requests/sessions.py:90",
+              "src/requests/sessions.py:91",
+              "src/requests/sessions.py:92",
+              "src/requests/sessions.py:93",
+              "src/requests/sessions.py:94",
+              "src/requests/sessions.py:95",
+              "src/requests/sessions.py:96",
+              "src/requests/sessions.py:97",
+              "src/requests/sessions.py:98",
+              "src/requests/sessions.py:99",
+              "src/requests/sessions.py:100",
+              "src/requests/sessions.py:101",
+              "src/requests/sessions.py:102",
+              "src/requests/sessions.py:103",
+              "src/requests/sessions.py:104",
+              "src/requests/sessions.py:105",
+              "src/requests/sessions.py:524",
+              "src/requests/sessions.py:525",
+              "src/requests/sessions.py:526",
+              "src/requests/sessions.py:527",
+              "src/requests/sessions.py:528",
+              "src/requests/sessions.py:529",
+              "src/requests/sessions.py:530",
+              "src/requests/sessions.py:531",
+              "src/requests/sessions.py:532",
+              "src/requests/sessions.py:533",
+              "src/requests/sessions.py:534",
+              "src/requests/sessions.py:535",
+              "src/requests/sessions.py:536",
+              "src/requests/sessions.py:537",
+              "src/requests/sessions.py:538",
+              "src/requests/sessions.py:539",
+              "src/requests/sessions.py:540",
+              "src/requests/sessions.py:541",
+              "src/requests/sessions.py:542",
+              "src/requests/sessions.py:543",
+              "src/requests/sessions.py:544",
+              "src/requests/sessions.py:545",
+              "src/requests/sessions.py:546",
+              "src/requests/sessions.py:547",
+              "src/requests/sessions.py:548",
+              "src/requests/sessions.py:549",
+              "src/requests/sessions.py:550",
+              "src/requests/sessions.py:551",
+              "src/requests/sessions.py:552",
+              "src/requests/sessions.py:553"
+            ]
+          },
+          "excerpts": {
+            "covered": 0,
+            "total": 52,
+            "missing": [
+              "src/requests/sessions.py:84",
+              "src/requests/sessions.py:85",
+              "src/requests/sessions.py:86",
+              "src/requests/sessions.py:87",
+              "src/requests/sessions.py:88",
+              "src/requests/sessions.py:89",
+              "src/requests/sessions.py:90",
+              "src/requests/sessions.py:91",
+              "src/requests/sessions.py:92",
+              "src/requests/sessions.py:93",
+              "src/requests/sessions.py:94",
+              "src/requests/sessions.py:95",
+              "src/requests/sessions.py:96",
+              "src/requests/sessions.py:97",
+              "src/requests/sessions.py:98",
+              "src/requests/sessions.py:99",
+              "src/requests/sessions.py:100",
+              "src/requests/sessions.py:101",
+              "src/requests/sessions.py:102",
+              "src/requests/sessions.py:103",
+              "src/requests/sessions.py:104",
+              "src/requests/sessions.py:105",
+              "src/requests/sessions.py:524",
+              "src/requests/sessions.py:525",
+              "src/requests/sessions.py:526",
+              "src/requests/sessions.py:527",
+              "src/requests/sessions.py:528",
+              "src/requests/sessions.py:529",
+              "src/requests/sessions.py:530",
+              "src/requests/sessions.py:531",
+              "src/requests/sessions.py:532",
+              "src/requests/sessions.py:533",
+              "src/requests/sessions.py:534",
+              "src/requests/sessions.py:535",
+              "src/requests/sessions.py:536",
+              "src/requests/sessions.py:537",
+              "src/requests/sessions.py:538",
+              "src/requests/sessions.py:539",
+              "src/requests/sessions.py:540",
+              "src/requests/sessions.py:541",
+              "src/requests/sessions.py:542",
+              "src/requests/sessions.py:543",
+              "src/requests/sessions.py:544",
+              "src/requests/sessions.py:545",
+              "src/requests/sessions.py:546",
+              "src/requests/sessions.py:547",
+              "src/requests/sessions.py:548",
+              "src/requests/sessions.py:549",
+              "src/requests/sessions.py:550",
+              "src/requests/sessions.py:551",
+              "src/requests/sessions.py:552",
+              "src/requests/sessions.py:553"
+            ]
+          }
+        },
+        "8": {
+          "retrieved": {
+            "covered": 0,
+            "total": 35,
+            "missing": [
+              "src/requests/sessions.py:641",
+              "src/requests/sessions.py:642",
+              "src/requests/sessions.py:643",
+              "src/requests/sessions.py:644",
+              "src/requests/sessions.py:645",
+              "src/requests/sessions.py:646",
+              "src/requests/sessions.py:647",
+              "src/requests/sessions.py:648",
+              "src/requests/sessions.py:649",
+              "src/requests/sessions.py:650",
+              "src/requests/sessions.py:651",
+              "src/requests/sessions.py:845",
+              "src/requests/sessions.py:846",
+              "src/requests/sessions.py:847",
+              "src/requests/sessions.py:848",
+              "src/requests/sessions.py:849",
+              "src/requests/sessions.py:850",
+              "src/requests/sessions.py:851",
+              "src/requests/sessions.py:852",
+              "src/requests/sessions.py:853",
+              "src/requests/sessions.py:854",
+              "src/requests/sessions.py:855",
+              "src/requests/sessions.py:856",
+              "src/requests/sessions.py:857",
+              "src/requests/sessions.py:858",
+              "src/requests/sessions.py:859",
+              "src/requests/sessions.py:860",
+              "src/requests/sessions.py:861",
+              "src/requests/sessions.py:862",
+              "src/requests/sessions.py:863",
+              "src/requests/sessions.py:864",
+              "src/requests/sessions.py:865",
+              "src/requests/sessions.py:866",
+              "src/requests/sessions.py:867",
+              "src/requests/sessions.py:868"
+            ]
+          },
+          "excerpts": {
+            "covered": 0,
+            "total": 35,
+            "missing": [
+              "src/requests/sessions.py:641",
+              "src/requests/sessions.py:642",
+              "src/requests/sessions.py:643",
+              "src/requests/sessions.py:644",
+              "src/requests/sessions.py:645",
+              "src/requests/sessions.py:646",
+              "src/requests/sessions.py:647",
+              "src/requests/sessions.py:648",
+              "src/requests/sessions.py:649",
+              "src/requests/sessions.py:650",
+              "src/requests/sessions.py:651",
+              "src/requests/sessions.py:845",
+              "src/requests/sessions.py:846",
+              "src/requests/sessions.py:847",
+              "src/requests/sessions.py:848",
+              "src/requests/sessions.py:849",
+              "src/requests/sessions.py:850",
+              "src/requests/sessions.py:851",
+              "src/requests/sessions.py:852",
+              "src/requests/sessions.py:853",
+              "src/requests/sessions.py:854",
+              "src/requests/sessions.py:855",
+              "src/requests/sessions.py:856",
+              "src/requests/sessions.py:857",
+              "src/requests/sessions.py:858",
+              "src/requests/sessions.py:859",
+              "src/requests/sessions.py:860",
+              "src/requests/sessions.py:861",
+              "src/requests/sessions.py:862",
+              "src/requests/sessions.py:863",
+              "src/requests/sessions.py:864",
+              "src/requests/sessions.py:865",
+              "src/requests/sessions.py:866",
+              "src/requests/sessions.py:867",
+              "src/requests/sessions.py:868"
+            ]
+          }
+        },
+        "9": {
+          "retrieved": {
+            "covered": 15,
+            "total": 53,
+            "missing": [
+              "src/requests/sessions.py:777",
+              "src/requests/sessions.py:778",
+              "src/requests/sessions.py:779",
+              "src/requests/sessions.py:780",
+              "src/requests/sessions.py:781",
+              "src/requests/sessions.py:782",
+              "src/requests/sessions.py:783",
+              "src/requests/sessions.py:784",
+              "src/requests/sessions.py:785",
+              "src/requests/sessions.py:786",
+              "src/requests/sessions.py:787",
+              "src/requests/sessions.py:788",
+              "src/requests/sessions.py:789",
+              "src/requests/sessions.py:790",
+              "src/requests/sessions.py:791",
+              "src/requests/sessions.py:792",
+              "src/requests/sessions.py:793",
+              "src/requests/sessions.py:794",
+              "src/requests/sessions.py:795",
+              "src/requests/sessions.py:796",
+              "src/requests/sessions.py:797",
+              "src/requests/sessions.py:798",
+              "src/requests/sessions.py:799",
+              "src/requests/sessions.py:800",
+              "src/requests/sessions.py:801",
+              "src/requests/sessions.py:802",
+              "src/requests/sessions.py:803",
+              "src/requests/sessions.py:804",
+              "src/requests/sessions.py:805",
+              "src/requests/sessions.py:806",
+              "src/requests/sessions.py:807",
+              "src/requests/sessions.py:808",
+              "src/requests/sessions.py:809",
+              "src/requests/sessions.py:810",
+              "src/requests/sessions.py:811",
+              "src/requests/sessions.py:812",
+              "src/requests/sessions.py:813",
+              "src/requests/sessions.py:814"
+            ]
+          },
+          "excerpts": {
+            "covered": 0,
+            "total": 53,
+            "missing": [
+              "src/requests/sessions.py:777",
+              "src/requests/sessions.py:778",
+              "src/requests/sessions.py:779",
+              "src/requests/sessions.py:780",
+              "src/requests/sessions.py:781",
+              "src/requests/sessions.py:782",
+              "src/requests/sessions.py:783",
+              "src/requests/sessions.py:784",
+              "src/requests/sessions.py:785",
+              "src/requests/sessions.py:786",
+              "src/requests/sessions.py:787",
+              "src/requests/sessions.py:788",
+              "src/requests/sessions.py:789",
+              "src/requests/sessions.py:790",
+              "src/requests/sessions.py:791",
+              "src/requests/sessions.py:792",
+              "src/requests/sessions.py:793",
+              "src/requests/sessions.py:794",
+              "src/requests/sessions.py:795",
+              "src/requests/sessions.py:796",
+              "src/requests/sessions.py:797",
+              "src/requests/sessions.py:798",
+              "src/requests/sessions.py:799",
+              "src/requests/sessions.py:800",
+              "src/requests/sessions.py:801",
+              "src/requests/sessions.py:802",
+              "src/requests/sessions.py:803",
+              "src/requests/sessions.py:804",
+              "src/requests/sessions.py:805",
+              "src/requests/sessions.py:806",
+              "src/requests/sessions.py:807",
+              "src/requests/sessions.py:808",
+              "src/requests/sessions.py:809",
+              "src/requests/sessions.py:810",
+              "src/requests/sessions.py:811",
+              "src/requests/sessions.py:812",
+              "src/requests/sessions.py:813",
+              "src/requests/sessions.py:814",
+              "src/requests/sessions.py:815",
+              "src/requests/sessions.py:816",
+              "src/requests/sessions.py:817",
+              "src/requests/sessions.py:818",
+              "src/requests/sessions.py:819",
+              "src/requests/sessions.py:820",
+              "src/requests/sessions.py:821",
+              "src/requests/sessions.py:822",
+              "src/requests/sessions.py:823",
+              "src/requests/sessions.py:824",
+              "src/requests/sessions.py:825",
+              "src/requests/sessions.py:826",
+              "src/requests/sessions.py:827",
+              "src/requests/sessions.py:828",
+              "src/requests/sessions.py:829"
+            ]
+          }
+        },
+        "10": {
+          "retrieved": {
+            "covered": 27,
+            "total": 27,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 0,
+            "total": 27,
+            "missing": [
+              "src/requests/sessions.py:158",
+              "src/requests/sessions.py:159",
+              "src/requests/sessions.py:160",
+              "src/requests/sessions.py:161",
+              "src/requests/sessions.py:162",
+              "src/requests/sessions.py:163",
+              "src/requests/sessions.py:164",
+              "src/requests/sessions.py:165",
+              "src/requests/sessions.py:166",
+              "src/requests/sessions.py:167",
+              "src/requests/sessions.py:168",
+              "src/requests/sessions.py:169",
+              "src/requests/sessions.py:170",
+              "src/requests/sessions.py:171",
+              "src/requests/sessions.py:172",
+              "src/requests/sessions.py:173",
+              "src/requests/sessions.py:174",
+              "src/requests/sessions.py:175",
+              "src/requests/sessions.py:176",
+              "src/requests/sessions.py:177",
+              "src/requests/sessions.py:178",
+              "src/requests/sessions.py:179",
+              "src/requests/sessions.py:180",
+              "src/requests/sessions.py:181",
+              "src/requests/sessions.py:182",
+              "src/requests/sessions.py:183",
+              "src/requests/sessions.py:184"
+            ]
+          }
+        },
+        "11": {
+          "retrieved": {
+            "covered": 5,
+            "total": 15,
+            "missing": [
+              "src/requests/sessions.py:383",
+              "src/requests/sessions.py:384",
+              "src/requests/sessions.py:385",
+              "src/requests/sessions.py:386",
+              "src/requests/sessions.py:387",
+              "src/requests/sessions.py:388",
+              "src/requests/sessions.py:389",
+              "src/requests/sessions.py:390",
+              "src/requests/sessions.py:391",
+              "src/requests/sessions.py:392"
+            ]
+          },
+          "excerpts": {
+            "covered": 0,
+            "total": 15,
+            "missing": [
+              "src/requests/sessions.py:378",
+              "src/requests/sessions.py:379",
+              "src/requests/sessions.py:380",
+              "src/requests/sessions.py:381",
+              "src/requests/sessions.py:382",
+              "src/requests/sessions.py:383",
+              "src/requests/sessions.py:384",
+              "src/requests/sessions.py:385",
+              "src/requests/sessions.py:386",
+              "src/requests/sessions.py:387",
+              "src/requests/sessions.py:388",
+              "src/requests/sessions.py:389",
+              "src/requests/sessions.py:390",
+              "src/requests/sessions.py:391",
+              "src/requests/sessions.py:392"
+            ]
+          }
+        },
+        "12": {
+          "retrieved": {
+            "covered": 0,
+            "total": 36,
+            "missing": [
+              "src/requests/sessions.py:249",
+              "src/requests/sessions.py:250",
+              "src/requests/sessions.py:251",
+              "src/requests/sessions.py:252",
+              "src/requests/sessions.py:253",
+              "src/requests/sessions.py:254",
+              "src/requests/sessions.py:255",
+              "src/requests/sessions.py:256",
+              "src/requests/sessions.py:257",
+              "src/requests/sessions.py:258",
+              "src/requests/sessions.py:259",
+              "src/requests/sessions.py:260",
+              "src/requests/sessions.py:261",
+              "src/requests/sessions.py:262",
+              "src/requests/sessions.py:263",
+              "src/requests/sessions.py:264",
+              "src/requests/sessions.py:265",
+              "src/requests/sessions.py:266",
+              "src/requests/sessions.py:267",
+              "src/requests/sessions.py:268",
+              "src/requests/sessions.py:269",
+              "src/requests/sessions.py:270",
+              "src/requests/sessions.py:271",
+              "src/requests/sessions.py:272",
+              "src/requests/sessions.py:273",
+              "src/requests/sessions.py:274",
+              "src/requests/sessions.py:275",
+              "src/requests/sessions.py:276",
+              "src/requests/sessions.py:277",
+              "src/requests/sessions.py:278",
+              "src/requests/sessions.py:279",
+              "src/requests/sessions.py:280",
+              "src/requests/sessions.py:281",
+              "src/requests/sessions.py:282",
+              "src/requests/sessions.py:283",
+              "src/requests/sessions.py:284"
+            ]
+          },
+          "excerpts": {
+            "covered": 0,
+            "total": 36,
+            "missing": [
+              "src/requests/sessions.py:249",
+              "src/requests/sessions.py:250",
+              "src/requests/sessions.py:251",
+              "src/requests/sessions.py:252",
+              "src/requests/sessions.py:253",
+              "src/requests/sessions.py:254",
+              "src/requests/sessions.py:255",
+              "src/requests/sessions.py:256",
+              "src/requests/sessions.py:257",
+              "src/requests/sessions.py:258",
+              "src/requests/sessions.py:259",
+              "src/requests/sessions.py:260",
+              "src/requests/sessions.py:261",
+              "src/requests/sessions.py:262",
+              "src/requests/sessions.py:263",
+              "src/requests/sessions.py:264",
+              "src/requests/sessions.py:265",
+              "src/requests/sessions.py:266",
+              "src/requests/sessions.py:267",
+              "src/requests/sessions.py:268",
+              "src/requests/sessions.py:269",
+              "src/requests/sessions.py:270",
+              "src/requests/sessions.py:271",
+              "src/requests/sessions.py:272",
+              "src/requests/sessions.py:273",
+              "src/requests/sessions.py:274",
+              "src/requests/sessions.py:275",
+              "src/requests/sessions.py:276",
+              "src/requests/sessions.py:277",
+              "src/requests/sessions.py:278",
+              "src/requests/sessions.py:279",
+              "src/requests/sessions.py:280",
+              "src/requests/sessions.py:281",
+              "src/requests/sessions.py:282",
+              "src/requests/sessions.py:283",
+              "src/requests/sessions.py:284"
+            ]
+          }
+        },
+        "13": {
+          "retrieved": {
+            "covered": 40,
+            "total": 63,
+            "missing": [
+              "src/requests/models.py:588",
+              "src/requests/models.py:589",
+              "src/requests/models.py:590",
+              "src/requests/models.py:591",
+              "src/requests/models.py:592",
+              "src/requests/models.py:593",
+              "src/requests/models.py:594",
+              "src/requests/models.py:595",
+              "src/requests/models.py:596",
+              "src/requests/models.py:597",
+              "src/requests/models.py:598",
+              "src/requests/models.py:599",
+              "src/requests/models.py:600",
+              "src/requests/models.py:601",
+              "src/requests/models.py:602",
+              "src/requests/models.py:603",
+              "src/requests/models.py:604",
+              "src/requests/models.py:605",
+              "src/requests/models.py:606",
+              "src/requests/models.py:607",
+              "src/requests/models.py:608",
+              "src/requests/models.py:609",
+              "src/requests/models.py:610"
+            ]
+          },
+          "excerpts": {
+            "covered": 22,
+            "total": 63,
+            "missing": [
+              "src/requests/models.py:588",
+              "src/requests/models.py:589",
+              "src/requests/models.py:590",
+              "src/requests/models.py:591",
+              "src/requests/models.py:592",
+              "src/requests/models.py:593",
+              "src/requests/models.py:594",
+              "src/requests/models.py:595",
+              "src/requests/models.py:596",
+              "src/requests/models.py:597",
+              "src/requests/models.py:598",
+              "src/requests/models.py:599",
+              "src/requests/models.py:600",
+              "src/requests/models.py:601",
+              "src/requests/models.py:602",
+              "src/requests/models.py:603",
+              "src/requests/models.py:604",
+              "src/requests/models.py:605",
+              "src/requests/models.py:606",
+              "src/requests/models.py:607",
+              "src/requests/models.py:608",
+              "src/requests/models.py:609",
+              "src/requests/models.py:610",
+              "src/requests/models.py:633",
+              "src/requests/models.py:634",
+              "src/requests/models.py:635",
+              "src/requests/models.py:636",
+              "src/requests/models.py:637",
+              "src/requests/models.py:638",
+              "src/requests/models.py:639",
+              "src/requests/models.py:640",
+              "src/requests/models.py:641",
+              "src/requests/models.py:642",
+              "src/requests/models.py:643",
+              "src/requests/models.py:644",
+              "src/requests/models.py:645",
+              "src/requests/models.py:646",
+              "src/requests/models.py:647",
+              "src/requests/models.py:648",
+              "src/requests/models.py:649",
+              "src/requests/models.py:650"
+            ]
+          }
+        },
+        "14": {
+          "retrieved": {
+            "covered": 24,
+            "total": 24,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 0,
+            "total": 24,
+            "missing": [
+              "src/requests/models.py:1101",
+              "src/requests/models.py:1102",
+              "src/requests/models.py:1103",
+              "src/requests/models.py:1104",
+              "src/requests/models.py:1105",
+              "src/requests/models.py:1106",
+              "src/requests/models.py:1107",
+              "src/requests/models.py:1108",
+              "src/requests/models.py:1109",
+              "src/requests/models.py:1110",
+              "src/requests/models.py:1111",
+              "src/requests/models.py:1112",
+              "src/requests/models.py:1113",
+              "src/requests/models.py:1114",
+              "src/requests/models.py:1115",
+              "src/requests/models.py:1116",
+              "src/requests/models.py:1117",
+              "src/requests/models.py:1118",
+              "src/requests/models.py:1119",
+              "src/requests/models.py:1120",
+              "src/requests/models.py:1121",
+              "src/requests/models.py:1122",
+              "src/requests/models.py:1123",
+              "src/requests/models.py:1124"
+            ]
+          }
+        },
+        "15": {
+          "retrieved": {
+            "covered": 0,
+            "total": 12,
+            "missing": [
+              "src/requests/models.py:1160",
+              "src/requests/models.py:1161",
+              "src/requests/models.py:1162",
+              "src/requests/models.py:1163",
+              "src/requests/models.py:1164",
+              "src/requests/models.py:1165",
+              "src/requests/models.py:1166",
+              "src/requests/models.py:1167",
+              "src/requests/models.py:1168",
+              "src/requests/models.py:1169",
+              "src/requests/models.py:1170",
+              "src/requests/models.py:1171"
+            ]
+          },
+          "excerpts": {
+            "covered": 0,
+            "total": 12,
+            "missing": [
+              "src/requests/models.py:1160",
+              "src/requests/models.py:1161",
+              "src/requests/models.py:1162",
+              "src/requests/models.py:1163",
+              "src/requests/models.py:1164",
+              "src/requests/models.py:1165",
+              "src/requests/models.py:1166",
+              "src/requests/models.py:1167",
+              "src/requests/models.py:1168",
+              "src/requests/models.py:1169",
+              "src/requests/models.py:1170",
+              "src/requests/models.py:1171"
+            ]
+          }
+        },
+        "16": {
+          "retrieved": {
+            "covered": 0,
+            "total": 66,
+            "missing": [
+              "src/requests/adapters.py:681",
+              "src/requests/adapters.py:682",
+              "src/requests/adapters.py:683",
+              "src/requests/adapters.py:684",
+              "src/requests/adapters.py:685",
+              "src/requests/adapters.py:686",
+              "src/requests/adapters.py:687",
+              "src/requests/adapters.py:688",
+              "src/requests/adapters.py:689",
+              "src/requests/adapters.py:690",
+              "src/requests/adapters.py:691",
+              "src/requests/adapters.py:692",
+              "src/requests/adapters.py:693",
+              "src/requests/adapters.py:694",
+              "src/requests/adapters.py:695",
+              "src/requests/adapters.py:696",
+              "src/requests/adapters.py:697",
+              "src/requests/adapters.py:698",
+              "src/requests/adapters.py:699",
+              "src/requests/adapters.py:700",
+              "src/requests/adapters.py:701",
+              "src/requests/adapters.py:702",
+              "src/requests/adapters.py:703",
+              "src/requests/adapters.py:704",
+              "src/requests/adapters.py:705",
+              "src/requests/adapters.py:706",
+              "src/requests/adapters.py:707",
+              "src/requests/adapters.py:708",
+              "src/requests/adapters.py:709",
+              "src/requests/adapters.py:710",
+              "src/requests/adapters.py:711",
+              "src/requests/adapters.py:712",
+              "src/requests/adapters.py:713",
+              "src/requests/adapters.py:714",
+              "src/requests/adapters.py:715",
+              "src/requests/adapters.py:716",
+              "src/requests/adapters.py:717",
+              "src/requests/adapters.py:718",
+              "src/requests/adapters.py:719",
+              "src/requests/adapters.py:720",
+              "src/requests/adapters.py:721",
+              "src/requests/adapters.py:722",
+              "src/requests/adapters.py:723",
+              "src/requests/adapters.py:724",
+              "src/requests/adapters.py:725",
+              "src/requests/adapters.py:726",
+              "src/requests/adapters.py:727",
+              "src/requests/adapters.py:728",
+              "src/requests/adapters.py:729",
+              "src/requests/adapters.py:730",
+              "src/requests/adapters.py:731",
+              "src/requests/adapters.py:732",
+              "src/requests/adapters.py:733",
+              "src/requests/adapters.py:734",
+              "src/requests/adapters.py:735",
+              "src/requests/adapters.py:736",
+              "src/requests/adapters.py:737",
+              "src/requests/adapters.py:738",
+              "src/requests/adapters.py:739",
+              "src/requests/adapters.py:740",
+              "src/requests/adapters.py:741",
+              "src/requests/adapters.py:742",
+              "src/requests/adapters.py:743",
+              "src/requests/adapters.py:744",
+              "src/requests/adapters.py:745",
+              "src/requests/adapters.py:746"
+            ]
+          },
+          "excerpts": {
+            "covered": 0,
+            "total": 66,
+            "missing": [
+              "src/requests/adapters.py:681",
+              "src/requests/adapters.py:682",
+              "src/requests/adapters.py:683",
+              "src/requests/adapters.py:684",
+              "src/requests/adapters.py:685",
+              "src/requests/adapters.py:686",
+              "src/requests/adapters.py:687",
+              "src/requests/adapters.py:688",
+              "src/requests/adapters.py:689",
+              "src/requests/adapters.py:690",
+              "src/requests/adapters.py:691",
+              "src/requests/adapters.py:692",
+              "src/requests/adapters.py:693",
+              "src/requests/adapters.py:694",
+              "src/requests/adapters.py:695",
+              "src/requests/adapters.py:696",
+              "src/requests/adapters.py:697",
+              "src/requests/adapters.py:698",
+              "src/requests/adapters.py:699",
+              "src/requests/adapters.py:700",
+              "src/requests/adapters.py:701",
+              "src/requests/adapters.py:702",
+              "src/requests/adapters.py:703",
+              "src/requests/adapters.py:704",
+              "src/requests/adapters.py:705",
+              "src/requests/adapters.py:706",
+              "src/requests/adapters.py:707",
+              "src/requests/adapters.py:708",
+              "src/requests/adapters.py:709",
+              "src/requests/adapters.py:710",
+              "src/requests/adapters.py:711",
+              "src/requests/adapters.py:712",
+              "src/requests/adapters.py:713",
+              "src/requests/adapters.py:714",
+              "src/requests/adapters.py:715",
+              "src/requests/adapters.py:716",
+              "src/requests/adapters.py:717",
+              "src/requests/adapters.py:718",
+              "src/requests/adapters.py:719",
+              "src/requests/adapters.py:720",
+              "src/requests/adapters.py:721",
+              "src/requests/adapters.py:722",
+              "src/requests/adapters.py:723",
+              "src/requests/adapters.py:724",
+              "src/requests/adapters.py:725",
+              "src/requests/adapters.py:726",
+              "src/requests/adapters.py:727",
+              "src/requests/adapters.py:728",
+              "src/requests/adapters.py:729",
+              "src/requests/adapters.py:730",
+              "src/requests/adapters.py:731",
+              "src/requests/adapters.py:732",
+              "src/requests/adapters.py:733",
+              "src/requests/adapters.py:734",
+              "src/requests/adapters.py:735",
+              "src/requests/adapters.py:736",
+              "src/requests/adapters.py:737",
+              "src/requests/adapters.py:738",
+              "src/requests/adapters.py:739",
+              "src/requests/adapters.py:740",
+              "src/requests/adapters.py:741",
+              "src/requests/adapters.py:742",
+              "src/requests/adapters.py:743",
+              "src/requests/adapters.py:744",
+              "src/requests/adapters.py:745",
+              "src/requests/adapters.py:746"
+            ]
+          }
+        }
+      }
+    },
+    "qwen3.5:4b": {
+      "n": 18,
+      "errors": 0,
+      "mean_seconds": 40.9463140111111,
+      "median_seconds": 39.754325800000515,
+      "fully_visible_target_cases": {
+        "retrieved": 6,
+        "excerpts": 2
+      },
+      "target_line_coverage": {
+        "retrieved": [
+          154,
+          458
+        ],
+        "excerpts": [
+          29,
+          458
+        ]
+      },
+      "cases": {
+        "1": {
+          "retrieved": {
+            "covered": 1,
+            "total": 1,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 1,
+            "total": 1,
+            "missing": []
+          }
+        },
+        "2": {
+          "retrieved": {
+            "covered": 3,
+            "total": 3,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 3,
+            "total": 3,
+            "missing": []
+          }
+        },
+        "4": {
+          "retrieved": {
+            "covered": 9,
+            "total": 9,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 0,
+            "total": 9,
+            "missing": [
+              "src/requests/auth.py:65",
+              "src/requests/auth.py:66",
+              "src/requests/auth.py:67",
+              "src/requests/auth.py:68",
+              "src/requests/auth.py:69",
+              "src/requests/auth.py:70",
+              "src/requests/auth.py:71",
+              "src/requests/auth.py:72",
+              "src/requests/auth.py:73"
+            ]
+          }
+        },
+        "5": {
+          "retrieved": {
+            "covered": 27,
+            "total": 27,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 0,
+            "total": 27,
+            "missing": [
+              "src/requests/auth.py:293",
+              "src/requests/auth.py:294",
+              "src/requests/auth.py:295",
+              "src/requests/auth.py:296",
+              "src/requests/auth.py:297",
+              "src/requests/auth.py:298",
+              "src/requests/auth.py:299",
+              "src/requests/auth.py:300",
+              "src/requests/auth.py:301",
+              "src/requests/auth.py:302",
+              "src/requests/auth.py:303",
+              "src/requests/auth.py:304",
+              "src/requests/auth.py:305",
+              "src/requests/auth.py:306",
+              "src/requests/auth.py:307",
+              "src/requests/auth.py:308",
+              "src/requests/auth.py:309",
+              "src/requests/auth.py:310",
+              "src/requests/auth.py:311",
+              "src/requests/auth.py:312",
+              "src/requests/auth.py:313",
+              "src/requests/auth.py:314",
+              "src/requests/auth.py:315",
+              "src/requests/auth.py:316",
+              "src/requests/auth.py:317",
+              "src/requests/auth.py:318",
+              "src/requests/auth.py:319"
+            ]
+          }
+        },
+        "6": {
+          "retrieved": {
+            "covered": 3,
+            "total": 35,
+            "missing": [
+              "src/requests/sessions.py:622",
+              "src/requests/sessions.py:623",
+              "src/requests/sessions.py:624",
+              "src/requests/sessions.py:625",
+              "src/requests/sessions.py:626",
+              "src/requests/sessions.py:627",
+              "src/requests/sessions.py:628",
+              "src/requests/sessions.py:629",
+              "src/requests/sessions.py:630",
+              "src/requests/sessions.py:631",
+              "src/requests/sessions.py:632",
+              "src/requests/sessions.py:633",
+              "src/requests/sessions.py:634",
+              "src/requests/sessions.py:635",
+              "src/requests/sessions.py:636",
+              "src/requests/sessions.py:637",
+              "src/requests/sessions.py:638",
+              "src/requests/sessions.py:639",
+              "src/requests/sessions.py:640",
+              "src/requests/sessions.py:641",
+              "src/requests/sessions.py:642",
+              "src/requests/sessions.py:643",
+              "src/requests/sessions.py:644",
+              "src/requests/sessions.py:645",
+              "src/requests/sessions.py:646",
+              "src/requests/sessions.py:647",
+              "src/requests/sessions.py:648",
+              "src/requests/sessions.py:649",
+              "src/requests/sessions.py:650",
+              "src/requests/sessions.py:651",
+              "src/requests/sessions.py:652",
+              "src/requests/sessions.py:653"
+            ]
+          },
+          "excerpts": {
+            "covered": 3,
+            "total": 35,
+            "missing": [
+              "src/requests/sessions.py:622",
+              "src/requests/sessions.py:623",
+              "src/requests/sessions.py:624",
+              "src/requests/sessions.py:625",
+              "src/requests/sessions.py:626",
+              "src/requests/sessions.py:627",
+              "src/requests/sessions.py:628",
+              "src/requests/sessions.py:629",
+              "src/requests/sessions.py:630",
+              "src/requests/sessions.py:631",
+              "src/requests/sessions.py:632",
+              "src/requests/sessions.py:633",
+              "src/requests/sessions.py:634",
+              "src/requests/sessions.py:635",
+              "src/requests/sessions.py:636",
+              "src/requests/sessions.py:637",
+              "src/requests/sessions.py:638",
+              "src/requests/sessions.py:639",
+              "src/requests/sessions.py:640",
+              "src/requests/sessions.py:641",
+              "src/requests/sessions.py:642",
+              "src/requests/sessions.py:643",
+              "src/requests/sessions.py:644",
+              "src/requests/sessions.py:645",
+              "src/requests/sessions.py:646",
+              "src/requests/sessions.py:647",
+              "src/requests/sessions.py:648",
+              "src/requests/sessions.py:649",
+              "src/requests/sessions.py:650",
+              "src/requests/sessions.py:651",
+              "src/requests/sessions.py:652",
+              "src/requests/sessions.py:653"
+            ]
+          }
+        },
+        "7": {
+          "retrieved": {
+            "covered": 0,
+            "total": 52,
+            "missing": [
+              "src/requests/sessions.py:84",
+              "src/requests/sessions.py:85",
+              "src/requests/sessions.py:86",
+              "src/requests/sessions.py:87",
+              "src/requests/sessions.py:88",
+              "src/requests/sessions.py:89",
+              "src/requests/sessions.py:90",
+              "src/requests/sessions.py:91",
+              "src/requests/sessions.py:92",
+              "src/requests/sessions.py:93",
+              "src/requests/sessions.py:94",
+              "src/requests/sessions.py:95",
+              "src/requests/sessions.py:96",
+              "src/requests/sessions.py:97",
+              "src/requests/sessions.py:98",
+              "src/requests/sessions.py:99",
+              "src/requests/sessions.py:100",
+              "src/requests/sessions.py:101",
+              "src/requests/sessions.py:102",
+              "src/requests/sessions.py:103",
+              "src/requests/sessions.py:104",
+              "src/requests/sessions.py:105",
+              "src/requests/sessions.py:524",
+              "src/requests/sessions.py:525",
+              "src/requests/sessions.py:526",
+              "src/requests/sessions.py:527",
+              "src/requests/sessions.py:528",
+              "src/requests/sessions.py:529",
+              "src/requests/sessions.py:530",
+              "src/requests/sessions.py:531",
+              "src/requests/sessions.py:532",
+              "src/requests/sessions.py:533",
+              "src/requests/sessions.py:534",
+              "src/requests/sessions.py:535",
+              "src/requests/sessions.py:536",
+              "src/requests/sessions.py:537",
+              "src/requests/sessions.py:538",
+              "src/requests/sessions.py:539",
+              "src/requests/sessions.py:540",
+              "src/requests/sessions.py:541",
+              "src/requests/sessions.py:542",
+              "src/requests/sessions.py:543",
+              "src/requests/sessions.py:544",
+              "src/requests/sessions.py:545",
+              "src/requests/sessions.py:546",
+              "src/requests/sessions.py:547",
+              "src/requests/sessions.py:548",
+              "src/requests/sessions.py:549",
+              "src/requests/sessions.py:550",
+              "src/requests/sessions.py:551",
+              "src/requests/sessions.py:552",
+              "src/requests/sessions.py:553"
+            ]
+          },
+          "excerpts": {
+            "covered": 0,
+            "total": 52,
+            "missing": [
+              "src/requests/sessions.py:84",
+              "src/requests/sessions.py:85",
+              "src/requests/sessions.py:86",
+              "src/requests/sessions.py:87",
+              "src/requests/sessions.py:88",
+              "src/requests/sessions.py:89",
+              "src/requests/sessions.py:90",
+              "src/requests/sessions.py:91",
+              "src/requests/sessions.py:92",
+              "src/requests/sessions.py:93",
+              "src/requests/sessions.py:94",
+              "src/requests/sessions.py:95",
+              "src/requests/sessions.py:96",
+              "src/requests/sessions.py:97",
+              "src/requests/sessions.py:98",
+              "src/requests/sessions.py:99",
+              "src/requests/sessions.py:100",
+              "src/requests/sessions.py:101",
+              "src/requests/sessions.py:102",
+              "src/requests/sessions.py:103",
+              "src/requests/sessions.py:104",
+              "src/requests/sessions.py:105",
+              "src/requests/sessions.py:524",
+              "src/requests/sessions.py:525",
+              "src/requests/sessions.py:526",
+              "src/requests/sessions.py:527",
+              "src/requests/sessions.py:528",
+              "src/requests/sessions.py:529",
+              "src/requests/sessions.py:530",
+              "src/requests/sessions.py:531",
+              "src/requests/sessions.py:532",
+              "src/requests/sessions.py:533",
+              "src/requests/sessions.py:534",
+              "src/requests/sessions.py:535",
+              "src/requests/sessions.py:536",
+              "src/requests/sessions.py:537",
+              "src/requests/sessions.py:538",
+              "src/requests/sessions.py:539",
+              "src/requests/sessions.py:540",
+              "src/requests/sessions.py:541",
+              "src/requests/sessions.py:542",
+              "src/requests/sessions.py:543",
+              "src/requests/sessions.py:544",
+              "src/requests/sessions.py:545",
+              "src/requests/sessions.py:546",
+              "src/requests/sessions.py:547",
+              "src/requests/sessions.py:548",
+              "src/requests/sessions.py:549",
+              "src/requests/sessions.py:550",
+              "src/requests/sessions.py:551",
+              "src/requests/sessions.py:552",
+              "src/requests/sessions.py:553"
+            ]
+          }
+        },
+        "8": {
+          "retrieved": {
+            "covered": 0,
+            "total": 35,
+            "missing": [
+              "src/requests/sessions.py:641",
+              "src/requests/sessions.py:642",
+              "src/requests/sessions.py:643",
+              "src/requests/sessions.py:644",
+              "src/requests/sessions.py:645",
+              "src/requests/sessions.py:646",
+              "src/requests/sessions.py:647",
+              "src/requests/sessions.py:648",
+              "src/requests/sessions.py:649",
+              "src/requests/sessions.py:650",
+              "src/requests/sessions.py:651",
+              "src/requests/sessions.py:845",
+              "src/requests/sessions.py:846",
+              "src/requests/sessions.py:847",
+              "src/requests/sessions.py:848",
+              "src/requests/sessions.py:849",
+              "src/requests/sessions.py:850",
+              "src/requests/sessions.py:851",
+              "src/requests/sessions.py:852",
+              "src/requests/sessions.py:853",
+              "src/requests/sessions.py:854",
+              "src/requests/sessions.py:855",
+              "src/requests/sessions.py:856",
+              "src/requests/sessions.py:857",
+              "src/requests/sessions.py:858",
+              "src/requests/sessions.py:859",
+              "src/requests/sessions.py:860",
+              "src/requests/sessions.py:861",
+              "src/requests/sessions.py:862",
+              "src/requests/sessions.py:863",
+              "src/requests/sessions.py:864",
+              "src/requests/sessions.py:865",
+              "src/requests/sessions.py:866",
+              "src/requests/sessions.py:867",
+              "src/requests/sessions.py:868"
+            ]
+          },
+          "excerpts": {
+            "covered": 0,
+            "total": 35,
+            "missing": [
+              "src/requests/sessions.py:641",
+              "src/requests/sessions.py:642",
+              "src/requests/sessions.py:643",
+              "src/requests/sessions.py:644",
+              "src/requests/sessions.py:645",
+              "src/requests/sessions.py:646",
+              "src/requests/sessions.py:647",
+              "src/requests/sessions.py:648",
+              "src/requests/sessions.py:649",
+              "src/requests/sessions.py:650",
+              "src/requests/sessions.py:651",
+              "src/requests/sessions.py:845",
+              "src/requests/sessions.py:846",
+              "src/requests/sessions.py:847",
+              "src/requests/sessions.py:848",
+              "src/requests/sessions.py:849",
+              "src/requests/sessions.py:850",
+              "src/requests/sessions.py:851",
+              "src/requests/sessions.py:852",
+              "src/requests/sessions.py:853",
+              "src/requests/sessions.py:854",
+              "src/requests/sessions.py:855",
+              "src/requests/sessions.py:856",
+              "src/requests/sessions.py:857",
+              "src/requests/sessions.py:858",
+              "src/requests/sessions.py:859",
+              "src/requests/sessions.py:860",
+              "src/requests/sessions.py:861",
+              "src/requests/sessions.py:862",
+              "src/requests/sessions.py:863",
+              "src/requests/sessions.py:864",
+              "src/requests/sessions.py:865",
+              "src/requests/sessions.py:866",
+              "src/requests/sessions.py:867",
+              "src/requests/sessions.py:868"
+            ]
+          }
+        },
+        "9": {
+          "retrieved": {
+            "covered": 15,
+            "total": 53,
+            "missing": [
+              "src/requests/sessions.py:777",
+              "src/requests/sessions.py:778",
+              "src/requests/sessions.py:779",
+              "src/requests/sessions.py:780",
+              "src/requests/sessions.py:781",
+              "src/requests/sessions.py:782",
+              "src/requests/sessions.py:783",
+              "src/requests/sessions.py:784",
+              "src/requests/sessions.py:785",
+              "src/requests/sessions.py:786",
+              "src/requests/sessions.py:787",
+              "src/requests/sessions.py:788",
+              "src/requests/sessions.py:789",
+              "src/requests/sessions.py:790",
+              "src/requests/sessions.py:791",
+              "src/requests/sessions.py:792",
+              "src/requests/sessions.py:793",
+              "src/requests/sessions.py:794",
+              "src/requests/sessions.py:795",
+              "src/requests/sessions.py:796",
+              "src/requests/sessions.py:797",
+              "src/requests/sessions.py:798",
+              "src/requests/sessions.py:799",
+              "src/requests/sessions.py:800",
+              "src/requests/sessions.py:801",
+              "src/requests/sessions.py:802",
+              "src/requests/sessions.py:803",
+              "src/requests/sessions.py:804",
+              "src/requests/sessions.py:805",
+              "src/requests/sessions.py:806",
+              "src/requests/sessions.py:807",
+              "src/requests/sessions.py:808",
+              "src/requests/sessions.py:809",
+              "src/requests/sessions.py:810",
+              "src/requests/sessions.py:811",
+              "src/requests/sessions.py:812",
+              "src/requests/sessions.py:813",
+              "src/requests/sessions.py:814"
+            ]
+          },
+          "excerpts": {
+            "covered": 0,
+            "total": 53,
+            "missing": [
+              "src/requests/sessions.py:777",
+              "src/requests/sessions.py:778",
+              "src/requests/sessions.py:779",
+              "src/requests/sessions.py:780",
+              "src/requests/sessions.py:781",
+              "src/requests/sessions.py:782",
+              "src/requests/sessions.py:783",
+              "src/requests/sessions.py:784",
+              "src/requests/sessions.py:785",
+              "src/requests/sessions.py:786",
+              "src/requests/sessions.py:787",
+              "src/requests/sessions.py:788",
+              "src/requests/sessions.py:789",
+              "src/requests/sessions.py:790",
+              "src/requests/sessions.py:791",
+              "src/requests/sessions.py:792",
+              "src/requests/sessions.py:793",
+              "src/requests/sessions.py:794",
+              "src/requests/sessions.py:795",
+              "src/requests/sessions.py:796",
+              "src/requests/sessions.py:797",
+              "src/requests/sessions.py:798",
+              "src/requests/sessions.py:799",
+              "src/requests/sessions.py:800",
+              "src/requests/sessions.py:801",
+              "src/requests/sessions.py:802",
+              "src/requests/sessions.py:803",
+              "src/requests/sessions.py:804",
+              "src/requests/sessions.py:805",
+              "src/requests/sessions.py:806",
+              "src/requests/sessions.py:807",
+              "src/requests/sessions.py:808",
+              "src/requests/sessions.py:809",
+              "src/requests/sessions.py:810",
+              "src/requests/sessions.py:811",
+              "src/requests/sessions.py:812",
+              "src/requests/sessions.py:813",
+              "src/requests/sessions.py:814",
+              "src/requests/sessions.py:815",
+              "src/requests/sessions.py:816",
+              "src/requests/sessions.py:817",
+              "src/requests/sessions.py:818",
+              "src/requests/sessions.py:819",
+              "src/requests/sessions.py:820",
+              "src/requests/sessions.py:821",
+              "src/requests/sessions.py:822",
+              "src/requests/sessions.py:823",
+              "src/requests/sessions.py:824",
+              "src/requests/sessions.py:825",
+              "src/requests/sessions.py:826",
+              "src/requests/sessions.py:827",
+              "src/requests/sessions.py:828",
+              "src/requests/sessions.py:829"
+            ]
+          }
+        },
+        "10": {
+          "retrieved": {
+            "covered": 27,
+            "total": 27,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 0,
+            "total": 27,
+            "missing": [
+              "src/requests/sessions.py:158",
+              "src/requests/sessions.py:159",
+              "src/requests/sessions.py:160",
+              "src/requests/sessions.py:161",
+              "src/requests/sessions.py:162",
+              "src/requests/sessions.py:163",
+              "src/requests/sessions.py:164",
+              "src/requests/sessions.py:165",
+              "src/requests/sessions.py:166",
+              "src/requests/sessions.py:167",
+              "src/requests/sessions.py:168",
+              "src/requests/sessions.py:169",
+              "src/requests/sessions.py:170",
+              "src/requests/sessions.py:171",
+              "src/requests/sessions.py:172",
+              "src/requests/sessions.py:173",
+              "src/requests/sessions.py:174",
+              "src/requests/sessions.py:175",
+              "src/requests/sessions.py:176",
+              "src/requests/sessions.py:177",
+              "src/requests/sessions.py:178",
+              "src/requests/sessions.py:179",
+              "src/requests/sessions.py:180",
+              "src/requests/sessions.py:181",
+              "src/requests/sessions.py:182",
+              "src/requests/sessions.py:183",
+              "src/requests/sessions.py:184"
+            ]
+          }
+        },
+        "11": {
+          "retrieved": {
+            "covered": 5,
+            "total": 15,
+            "missing": [
+              "src/requests/sessions.py:383",
+              "src/requests/sessions.py:384",
+              "src/requests/sessions.py:385",
+              "src/requests/sessions.py:386",
+              "src/requests/sessions.py:387",
+              "src/requests/sessions.py:388",
+              "src/requests/sessions.py:389",
+              "src/requests/sessions.py:390",
+              "src/requests/sessions.py:391",
+              "src/requests/sessions.py:392"
+            ]
+          },
+          "excerpts": {
+            "covered": 0,
+            "total": 15,
+            "missing": [
+              "src/requests/sessions.py:378",
+              "src/requests/sessions.py:379",
+              "src/requests/sessions.py:380",
+              "src/requests/sessions.py:381",
+              "src/requests/sessions.py:382",
+              "src/requests/sessions.py:383",
+              "src/requests/sessions.py:384",
+              "src/requests/sessions.py:385",
+              "src/requests/sessions.py:386",
+              "src/requests/sessions.py:387",
+              "src/requests/sessions.py:388",
+              "src/requests/sessions.py:389",
+              "src/requests/sessions.py:390",
+              "src/requests/sessions.py:391",
+              "src/requests/sessions.py:392"
+            ]
+          }
+        },
+        "12": {
+          "retrieved": {
+            "covered": 0,
+            "total": 36,
+            "missing": [
+              "src/requests/sessions.py:249",
+              "src/requests/sessions.py:250",
+              "src/requests/sessions.py:251",
+              "src/requests/sessions.py:252",
+              "src/requests/sessions.py:253",
+              "src/requests/sessions.py:254",
+              "src/requests/sessions.py:255",
+              "src/requests/sessions.py:256",
+              "src/requests/sessions.py:257",
+              "src/requests/sessions.py:258",
+              "src/requests/sessions.py:259",
+              "src/requests/sessions.py:260",
+              "src/requests/sessions.py:261",
+              "src/requests/sessions.py:262",
+              "src/requests/sessions.py:263",
+              "src/requests/sessions.py:264",
+              "src/requests/sessions.py:265",
+              "src/requests/sessions.py:266",
+              "src/requests/sessions.py:267",
+              "src/requests/sessions.py:268",
+              "src/requests/sessions.py:269",
+              "src/requests/sessions.py:270",
+              "src/requests/sessions.py:271",
+              "src/requests/sessions.py:272",
+              "src/requests/sessions.py:273",
+              "src/requests/sessions.py:274",
+              "src/requests/sessions.py:275",
+              "src/requests/sessions.py:276",
+              "src/requests/sessions.py:277",
+              "src/requests/sessions.py:278",
+              "src/requests/sessions.py:279",
+              "src/requests/sessions.py:280",
+              "src/requests/sessions.py:281",
+              "src/requests/sessions.py:282",
+              "src/requests/sessions.py:283",
+              "src/requests/sessions.py:284"
+            ]
+          },
+          "excerpts": {
+            "covered": 0,
+            "total": 36,
+            "missing": [
+              "src/requests/sessions.py:249",
+              "src/requests/sessions.py:250",
+              "src/requests/sessions.py:251",
+              "src/requests/sessions.py:252",
+              "src/requests/sessions.py:253",
+              "src/requests/sessions.py:254",
+              "src/requests/sessions.py:255",
+              "src/requests/sessions.py:256",
+              "src/requests/sessions.py:257",
+              "src/requests/sessions.py:258",
+              "src/requests/sessions.py:259",
+              "src/requests/sessions.py:260",
+              "src/requests/sessions.py:261",
+              "src/requests/sessions.py:262",
+              "src/requests/sessions.py:263",
+              "src/requests/sessions.py:264",
+              "src/requests/sessions.py:265",
+              "src/requests/sessions.py:266",
+              "src/requests/sessions.py:267",
+              "src/requests/sessions.py:268",
+              "src/requests/sessions.py:269",
+              "src/requests/sessions.py:270",
+              "src/requests/sessions.py:271",
+              "src/requests/sessions.py:272",
+              "src/requests/sessions.py:273",
+              "src/requests/sessions.py:274",
+              "src/requests/sessions.py:275",
+              "src/requests/sessions.py:276",
+              "src/requests/sessions.py:277",
+              "src/requests/sessions.py:278",
+              "src/requests/sessions.py:279",
+              "src/requests/sessions.py:280",
+              "src/requests/sessions.py:281",
+              "src/requests/sessions.py:282",
+              "src/requests/sessions.py:283",
+              "src/requests/sessions.py:284"
+            ]
+          }
+        },
+        "13": {
+          "retrieved": {
+            "covered": 40,
+            "total": 63,
+            "missing": [
+              "src/requests/models.py:588",
+              "src/requests/models.py:589",
+              "src/requests/models.py:590",
+              "src/requests/models.py:591",
+              "src/requests/models.py:592",
+              "src/requests/models.py:593",
+              "src/requests/models.py:594",
+              "src/requests/models.py:595",
+              "src/requests/models.py:596",
+              "src/requests/models.py:597",
+              "src/requests/models.py:598",
+              "src/requests/models.py:599",
+              "src/requests/models.py:600",
+              "src/requests/models.py:601",
+              "src/requests/models.py:602",
+              "src/requests/models.py:603",
+              "src/requests/models.py:604",
+              "src/requests/models.py:605",
+              "src/requests/models.py:606",
+              "src/requests/models.py:607",
+              "src/requests/models.py:608",
+              "src/requests/models.py:609",
+              "src/requests/models.py:610"
+            ]
+          },
+          "excerpts": {
+            "covered": 22,
+            "total": 63,
+            "missing": [
+              "src/requests/models.py:588",
+              "src/requests/models.py:589",
+              "src/requests/models.py:590",
+              "src/requests/models.py:591",
+              "src/requests/models.py:592",
+              "src/requests/models.py:593",
+              "src/requests/models.py:594",
+              "src/requests/models.py:595",
+              "src/requests/models.py:596",
+              "src/requests/models.py:597",
+              "src/requests/models.py:598",
+              "src/requests/models.py:599",
+              "src/requests/models.py:600",
+              "src/requests/models.py:601",
+              "src/requests/models.py:602",
+              "src/requests/models.py:603",
+              "src/requests/models.py:604",
+              "src/requests/models.py:605",
+              "src/requests/models.py:606",
+              "src/requests/models.py:607",
+              "src/requests/models.py:608",
+              "src/requests/models.py:609",
+              "src/requests/models.py:610",
+              "src/requests/models.py:633",
+              "src/requests/models.py:634",
+              "src/requests/models.py:635",
+              "src/requests/models.py:636",
+              "src/requests/models.py:637",
+              "src/requests/models.py:638",
+              "src/requests/models.py:639",
+              "src/requests/models.py:640",
+              "src/requests/models.py:641",
+              "src/requests/models.py:642",
+              "src/requests/models.py:643",
+              "src/requests/models.py:644",
+              "src/requests/models.py:645",
+              "src/requests/models.py:646",
+              "src/requests/models.py:647",
+              "src/requests/models.py:648",
+              "src/requests/models.py:649",
+              "src/requests/models.py:650"
+            ]
+          }
+        },
+        "14": {
+          "retrieved": {
+            "covered": 24,
+            "total": 24,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 0,
+            "total": 24,
+            "missing": [
+              "src/requests/models.py:1101",
+              "src/requests/models.py:1102",
+              "src/requests/models.py:1103",
+              "src/requests/models.py:1104",
+              "src/requests/models.py:1105",
+              "src/requests/models.py:1106",
+              "src/requests/models.py:1107",
+              "src/requests/models.py:1108",
+              "src/requests/models.py:1109",
+              "src/requests/models.py:1110",
+              "src/requests/models.py:1111",
+              "src/requests/models.py:1112",
+              "src/requests/models.py:1113",
+              "src/requests/models.py:1114",
+              "src/requests/models.py:1115",
+              "src/requests/models.py:1116",
+              "src/requests/models.py:1117",
+              "src/requests/models.py:1118",
+              "src/requests/models.py:1119",
+              "src/requests/models.py:1120",
+              "src/requests/models.py:1121",
+              "src/requests/models.py:1122",
+              "src/requests/models.py:1123",
+              "src/requests/models.py:1124"
+            ]
+          }
+        },
+        "15": {
+          "retrieved": {
+            "covered": 0,
+            "total": 12,
+            "missing": [
+              "src/requests/models.py:1160",
+              "src/requests/models.py:1161",
+              "src/requests/models.py:1162",
+              "src/requests/models.py:1163",
+              "src/requests/models.py:1164",
+              "src/requests/models.py:1165",
+              "src/requests/models.py:1166",
+              "src/requests/models.py:1167",
+              "src/requests/models.py:1168",
+              "src/requests/models.py:1169",
+              "src/requests/models.py:1170",
+              "src/requests/models.py:1171"
+            ]
+          },
+          "excerpts": {
+            "covered": 0,
+            "total": 12,
+            "missing": [
+              "src/requests/models.py:1160",
+              "src/requests/models.py:1161",
+              "src/requests/models.py:1162",
+              "src/requests/models.py:1163",
+              "src/requests/models.py:1164",
+              "src/requests/models.py:1165",
+              "src/requests/models.py:1166",
+              "src/requests/models.py:1167",
+              "src/requests/models.py:1168",
+              "src/requests/models.py:1169",
+              "src/requests/models.py:1170",
+              "src/requests/models.py:1171"
+            ]
+          }
+        },
+        "16": {
+          "retrieved": {
+            "covered": 0,
+            "total": 66,
+            "missing": [
+              "src/requests/adapters.py:681",
+              "src/requests/adapters.py:682",
+              "src/requests/adapters.py:683",
+              "src/requests/adapters.py:684",
+              "src/requests/adapters.py:685",
+              "src/requests/adapters.py:686",
+              "src/requests/adapters.py:687",
+              "src/requests/adapters.py:688",
+              "src/requests/adapters.py:689",
+              "src/requests/adapters.py:690",
+              "src/requests/adapters.py:691",
+              "src/requests/adapters.py:692",
+              "src/requests/adapters.py:693",
+              "src/requests/adapters.py:694",
+              "src/requests/adapters.py:695",
+              "src/requests/adapters.py:696",
+              "src/requests/adapters.py:697",
+              "src/requests/adapters.py:698",
+              "src/requests/adapters.py:699",
+              "src/requests/adapters.py:700",
+              "src/requests/adapters.py:701",
+              "src/requests/adapters.py:702",
+              "src/requests/adapters.py:703",
+              "src/requests/adapters.py:704",
+              "src/requests/adapters.py:705",
+              "src/requests/adapters.py:706",
+              "src/requests/adapters.py:707",
+              "src/requests/adapters.py:708",
+              "src/requests/adapters.py:709",
+              "src/requests/adapters.py:710",
+              "src/requests/adapters.py:711",
+              "src/requests/adapters.py:712",
+              "src/requests/adapters.py:713",
+              "src/requests/adapters.py:714",
+              "src/requests/adapters.py:715",
+              "src/requests/adapters.py:716",
+              "src/requests/adapters.py:717",
+              "src/requests/adapters.py:718",
+              "src/requests/adapters.py:719",
+              "src/requests/adapters.py:720",
+              "src/requests/adapters.py:721",
+              "src/requests/adapters.py:722",
+              "src/requests/adapters.py:723",
+              "src/requests/adapters.py:724",
+              "src/requests/adapters.py:725",
+              "src/requests/adapters.py:726",
+              "src/requests/adapters.py:727",
+              "src/requests/adapters.py:728",
+              "src/requests/adapters.py:729",
+              "src/requests/adapters.py:730",
+              "src/requests/adapters.py:731",
+              "src/requests/adapters.py:732",
+              "src/requests/adapters.py:733",
+              "src/requests/adapters.py:734",
+              "src/requests/adapters.py:735",
+              "src/requests/adapters.py:736",
+              "src/requests/adapters.py:737",
+              "src/requests/adapters.py:738",
+              "src/requests/adapters.py:739",
+              "src/requests/adapters.py:740",
+              "src/requests/adapters.py:741",
+              "src/requests/adapters.py:742",
+              "src/requests/adapters.py:743",
+              "src/requests/adapters.py:744",
+              "src/requests/adapters.py:745",
+              "src/requests/adapters.py:746"
+            ]
+          },
+          "excerpts": {
+            "covered": 0,
+            "total": 66,
+            "missing": [
+              "src/requests/adapters.py:681",
+              "src/requests/adapters.py:682",
+              "src/requests/adapters.py:683",
+              "src/requests/adapters.py:684",
+              "src/requests/adapters.py:685",
+              "src/requests/adapters.py:686",
+              "src/requests/adapters.py:687",
+              "src/requests/adapters.py:688",
+              "src/requests/adapters.py:689",
+              "src/requests/adapters.py:690",
+              "src/requests/adapters.py:691",
+              "src/requests/adapters.py:692",
+              "src/requests/adapters.py:693",
+              "src/requests/adapters.py:694",
+              "src/requests/adapters.py:695",
+              "src/requests/adapters.py:696",
+              "src/requests/adapters.py:697",
+              "src/requests/adapters.py:698",
+              "src/requests/adapters.py:699",
+              "src/requests/adapters.py:700",
+              "src/requests/adapters.py:701",
+              "src/requests/adapters.py:702",
+              "src/requests/adapters.py:703",
+              "src/requests/adapters.py:704",
+              "src/requests/adapters.py:705",
+              "src/requests/adapters.py:706",
+              "src/requests/adapters.py:707",
+              "src/requests/adapters.py:708",
+              "src/requests/adapters.py:709",
+              "src/requests/adapters.py:710",
+              "src/requests/adapters.py:711",
+              "src/requests/adapters.py:712",
+              "src/requests/adapters.py:713",
+              "src/requests/adapters.py:714",
+              "src/requests/adapters.py:715",
+              "src/requests/adapters.py:716",
+              "src/requests/adapters.py:717",
+              "src/requests/adapters.py:718",
+              "src/requests/adapters.py:719",
+              "src/requests/adapters.py:720",
+              "src/requests/adapters.py:721",
+              "src/requests/adapters.py:722",
+              "src/requests/adapters.py:723",
+              "src/requests/adapters.py:724",
+              "src/requests/adapters.py:725",
+              "src/requests/adapters.py:726",
+              "src/requests/adapters.py:727",
+              "src/requests/adapters.py:728",
+              "src/requests/adapters.py:729",
+              "src/requests/adapters.py:730",
+              "src/requests/adapters.py:731",
+              "src/requests/adapters.py:732",
+              "src/requests/adapters.py:733",
+              "src/requests/adapters.py:734",
+              "src/requests/adapters.py:735",
+              "src/requests/adapters.py:736",
+              "src/requests/adapters.py:737",
+              "src/requests/adapters.py:738",
+              "src/requests/adapters.py:739",
+              "src/requests/adapters.py:740",
+              "src/requests/adapters.py:741",
+              "src/requests/adapters.py:742",
+              "src/requests/adapters.py:743",
+              "src/requests/adapters.py:744",
+              "src/requests/adapters.py:745",
+              "src/requests/adapters.py:746"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "01-retrieval": {
+    "deepseek-coder-v2:16b": {
+      "n": 18,
+      "errors": 1,
+      "mean_seconds": 44.36612021666628,
+      "median_seconds": 44.66015455000161,
+      "fully_visible_target_cases": {
+        "retrieved": 14,
+        "excerpts": 3
+      },
+      "target_line_coverage": {
+        "retrieved": [
+          436,
+          458
+        ],
+        "excerpts": [
+          134,
+          458
+        ]
+      },
+      "cases": {
+        "1": {
+          "retrieved": {
+            "covered": 1,
+            "total": 1,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 1,
+            "total": 1,
+            "missing": []
+          }
+        },
+        "2": {
+          "retrieved": {
+            "covered": 3,
+            "total": 3,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 3,
+            "total": 3,
+            "missing": []
+          }
+        },
+        "4": {
+          "retrieved": {
+            "covered": 9,
+            "total": 9,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 0,
+            "total": 9,
+            "missing": [
+              "src/requests/auth.py:65",
+              "src/requests/auth.py:66",
+              "src/requests/auth.py:67",
+              "src/requests/auth.py:68",
+              "src/requests/auth.py:69",
+              "src/requests/auth.py:70",
+              "src/requests/auth.py:71",
+              "src/requests/auth.py:72",
+              "src/requests/auth.py:73"
+            ]
+          }
+        },
+        "5": {
+          "retrieved": {
+            "covered": 27,
+            "total": 27,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 0,
+            "total": 27,
+            "missing": [
+              "src/requests/auth.py:293",
+              "src/requests/auth.py:294",
+              "src/requests/auth.py:295",
+              "src/requests/auth.py:296",
+              "src/requests/auth.py:297",
+              "src/requests/auth.py:298",
+              "src/requests/auth.py:299",
+              "src/requests/auth.py:300",
+              "src/requests/auth.py:301",
+              "src/requests/auth.py:302",
+              "src/requests/auth.py:303",
+              "src/requests/auth.py:304",
+              "src/requests/auth.py:305",
+              "src/requests/auth.py:306",
+              "src/requests/auth.py:307",
+              "src/requests/auth.py:308",
+              "src/requests/auth.py:309",
+              "src/requests/auth.py:310",
+              "src/requests/auth.py:311",
+              "src/requests/auth.py:312",
+              "src/requests/auth.py:313",
+              "src/requests/auth.py:314",
+              "src/requests/auth.py:315",
+              "src/requests/auth.py:316",
+              "src/requests/auth.py:317",
+              "src/requests/auth.py:318",
+              "src/requests/auth.py:319"
+            ]
+          }
+        },
+        "6": {
+          "retrieved": {
+            "covered": 35,
+            "total": 35,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 3,
+            "total": 35,
+            "missing": [
+              "src/requests/sessions.py:622",
+              "src/requests/sessions.py:623",
+              "src/requests/sessions.py:624",
+              "src/requests/sessions.py:625",
+              "src/requests/sessions.py:626",
+              "src/requests/sessions.py:627",
+              "src/requests/sessions.py:628",
+              "src/requests/sessions.py:629",
+              "src/requests/sessions.py:630",
+              "src/requests/sessions.py:631",
+              "src/requests/sessions.py:632",
+              "src/requests/sessions.py:633",
+              "src/requests/sessions.py:634",
+              "src/requests/sessions.py:635",
+              "src/requests/sessions.py:636",
+              "src/requests/sessions.py:637",
+              "src/requests/sessions.py:638",
+              "src/requests/sessions.py:639",
+              "src/requests/sessions.py:640",
+              "src/requests/sessions.py:641",
+              "src/requests/sessions.py:642",
+              "src/requests/sessions.py:643",
+              "src/requests/sessions.py:644",
+              "src/requests/sessions.py:645",
+              "src/requests/sessions.py:646",
+              "src/requests/sessions.py:647",
+              "src/requests/sessions.py:648",
+              "src/requests/sessions.py:649",
+              "src/requests/sessions.py:650",
+              "src/requests/sessions.py:651",
+              "src/requests/sessions.py:652",
+              "src/requests/sessions.py:653"
+            ]
+          }
+        },
+        "7": {
+          "retrieved": {
+            "covered": 30,
+            "total": 52,
+            "missing": [
+              "src/requests/sessions.py:84",
+              "src/requests/sessions.py:85",
+              "src/requests/sessions.py:86",
+              "src/requests/sessions.py:87",
+              "src/requests/sessions.py:88",
+              "src/requests/sessions.py:89",
+              "src/requests/sessions.py:90",
+              "src/requests/sessions.py:91",
+              "src/requests/sessions.py:92",
+              "src/requests/sessions.py:93",
+              "src/requests/sessions.py:94",
+              "src/requests/sessions.py:95",
+              "src/requests/sessions.py:96",
+              "src/requests/sessions.py:97",
+              "src/requests/sessions.py:98",
+              "src/requests/sessions.py:99",
+              "src/requests/sessions.py:100",
+              "src/requests/sessions.py:101",
+              "src/requests/sessions.py:102",
+              "src/requests/sessions.py:103",
+              "src/requests/sessions.py:104",
+              "src/requests/sessions.py:105"
+            ]
+          },
+          "excerpts": {
+            "covered": 17,
+            "total": 52,
+            "missing": [
+              "src/requests/sessions.py:84",
+              "src/requests/sessions.py:85",
+              "src/requests/sessions.py:86",
+              "src/requests/sessions.py:87",
+              "src/requests/sessions.py:88",
+              "src/requests/sessions.py:89",
+              "src/requests/sessions.py:90",
+              "src/requests/sessions.py:91",
+              "src/requests/sessions.py:92",
+              "src/requests/sessions.py:93",
+              "src/requests/sessions.py:94",
+              "src/requests/sessions.py:95",
+              "src/requests/sessions.py:96",
+              "src/requests/sessions.py:97",
+              "src/requests/sessions.py:98",
+              "src/requests/sessions.py:99",
+              "src/requests/sessions.py:100",
+              "src/requests/sessions.py:101",
+              "src/requests/sessions.py:102",
+              "src/requests/sessions.py:103",
+              "src/requests/sessions.py:104",
+              "src/requests/sessions.py:105",
+              "src/requests/sessions.py:524",
+              "src/requests/sessions.py:525",
+              "src/requests/sessions.py:526",
+              "src/requests/sessions.py:527",
+              "src/requests/sessions.py:528",
+              "src/requests/sessions.py:529",
+              "src/requests/sessions.py:530",
+              "src/requests/sessions.py:531",
+              "src/requests/sessions.py:532",
+              "src/requests/sessions.py:533",
+              "src/requests/sessions.py:534",
+              "src/requests/sessions.py:535",
+              "src/requests/sessions.py:536"
+            ]
+          }
+        },
+        "8": {
+          "retrieved": {
+            "covered": 35,
+            "total": 35,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 2,
+            "total": 35,
+            "missing": [
+              "src/requests/sessions.py:641",
+              "src/requests/sessions.py:642",
+              "src/requests/sessions.py:643",
+              "src/requests/sessions.py:644",
+              "src/requests/sessions.py:645",
+              "src/requests/sessions.py:646",
+              "src/requests/sessions.py:647",
+              "src/requests/sessions.py:648",
+              "src/requests/sessions.py:649",
+              "src/requests/sessions.py:650",
+              "src/requests/sessions.py:651",
+              "src/requests/sessions.py:847",
+              "src/requests/sessions.py:848",
+              "src/requests/sessions.py:849",
+              "src/requests/sessions.py:850",
+              "src/requests/sessions.py:851",
+              "src/requests/sessions.py:852",
+              "src/requests/sessions.py:853",
+              "src/requests/sessions.py:854",
+              "src/requests/sessions.py:855",
+              "src/requests/sessions.py:856",
+              "src/requests/sessions.py:857",
+              "src/requests/sessions.py:858",
+              "src/requests/sessions.py:859",
+              "src/requests/sessions.py:860",
+              "src/requests/sessions.py:861",
+              "src/requests/sessions.py:862",
+              "src/requests/sessions.py:863",
+              "src/requests/sessions.py:864",
+              "src/requests/sessions.py:865",
+              "src/requests/sessions.py:866",
+              "src/requests/sessions.py:867",
+              "src/requests/sessions.py:868"
+            ]
+          }
+        },
+        "9": {
+          "retrieved": {
+            "covered": 53,
+            "total": 53,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 15,
+            "total": 53,
+            "missing": [
+              "src/requests/sessions.py:777",
+              "src/requests/sessions.py:778",
+              "src/requests/sessions.py:779",
+              "src/requests/sessions.py:780",
+              "src/requests/sessions.py:781",
+              "src/requests/sessions.py:782",
+              "src/requests/sessions.py:783",
+              "src/requests/sessions.py:784",
+              "src/requests/sessions.py:785",
+              "src/requests/sessions.py:786",
+              "src/requests/sessions.py:787",
+              "src/requests/sessions.py:788",
+              "src/requests/sessions.py:789",
+              "src/requests/sessions.py:790",
+              "src/requests/sessions.py:791",
+              "src/requests/sessions.py:792",
+              "src/requests/sessions.py:793",
+              "src/requests/sessions.py:794",
+              "src/requests/sessions.py:795",
+              "src/requests/sessions.py:796",
+              "src/requests/sessions.py:797",
+              "src/requests/sessions.py:798",
+              "src/requests/sessions.py:799",
+              "src/requests/sessions.py:800",
+              "src/requests/sessions.py:801",
+              "src/requests/sessions.py:802",
+              "src/requests/sessions.py:803",
+              "src/requests/sessions.py:804",
+              "src/requests/sessions.py:805",
+              "src/requests/sessions.py:806",
+              "src/requests/sessions.py:807",
+              "src/requests/sessions.py:808",
+              "src/requests/sessions.py:809",
+              "src/requests/sessions.py:810",
+              "src/requests/sessions.py:811",
+              "src/requests/sessions.py:812",
+              "src/requests/sessions.py:813",
+              "src/requests/sessions.py:814"
+            ]
+          }
+        },
+        "10": {
+          "retrieved": {
+            "covered": 27,
+            "total": 27,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 15,
+            "total": 27,
+            "missing": [
+              "src/requests/sessions.py:158",
+              "src/requests/sessions.py:159",
+              "src/requests/sessions.py:160",
+              "src/requests/sessions.py:161",
+              "src/requests/sessions.py:162",
+              "src/requests/sessions.py:163",
+              "src/requests/sessions.py:164",
+              "src/requests/sessions.py:165",
+              "src/requests/sessions.py:166",
+              "src/requests/sessions.py:167",
+              "src/requests/sessions.py:168",
+              "src/requests/sessions.py:169"
+            ]
+          }
+        },
+        "11": {
+          "retrieved": {
+            "covered": 15,
+            "total": 15,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 15,
+            "total": 15,
+            "missing": []
+          }
+        },
+        "12": {
+          "retrieved": {
+            "covered": 36,
+            "total": 36,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 18,
+            "total": 36,
+            "missing": [
+              "src/requests/sessions.py:267",
+              "src/requests/sessions.py:268",
+              "src/requests/sessions.py:269",
+              "src/requests/sessions.py:270",
+              "src/requests/sessions.py:271",
+              "src/requests/sessions.py:272",
+              "src/requests/sessions.py:273",
+              "src/requests/sessions.py:274",
+              "src/requests/sessions.py:275",
+              "src/requests/sessions.py:276",
+              "src/requests/sessions.py:277",
+              "src/requests/sessions.py:278",
+              "src/requests/sessions.py:279",
+              "src/requests/sessions.py:280",
+              "src/requests/sessions.py:281",
+              "src/requests/sessions.py:282",
+              "src/requests/sessions.py:283",
+              "src/requests/sessions.py:284"
+            ]
+          }
+        },
+        "13": {
+          "retrieved": {
+            "covered": 63,
+            "total": 63,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 22,
+            "total": 63,
+            "missing": [
+              "src/requests/models.py:588",
+              "src/requests/models.py:589",
+              "src/requests/models.py:590",
+              "src/requests/models.py:591",
+              "src/requests/models.py:592",
+              "src/requests/models.py:593",
+              "src/requests/models.py:594",
+              "src/requests/models.py:595",
+              "src/requests/models.py:596",
+              "src/requests/models.py:597",
+              "src/requests/models.py:598",
+              "src/requests/models.py:599",
+              "src/requests/models.py:600",
+              "src/requests/models.py:601",
+              "src/requests/models.py:602",
+              "src/requests/models.py:603",
+              "src/requests/models.py:604",
+              "src/requests/models.py:605",
+              "src/requests/models.py:606",
+              "src/requests/models.py:607",
+              "src/requests/models.py:608",
+              "src/requests/models.py:609",
+              "src/requests/models.py:610",
+              "src/requests/models.py:633",
+              "src/requests/models.py:634",
+              "src/requests/models.py:635",
+              "src/requests/models.py:636",
+              "src/requests/models.py:637",
+              "src/requests/models.py:638",
+              "src/requests/models.py:639",
+              "src/requests/models.py:640",
+              "src/requests/models.py:641",
+              "src/requests/models.py:642",
+              "src/requests/models.py:643",
+              "src/requests/models.py:644",
+              "src/requests/models.py:645",
+              "src/requests/models.py:646",
+              "src/requests/models.py:647",
+              "src/requests/models.py:648",
+              "src/requests/models.py:649",
+              "src/requests/models.py:650"
+            ]
+          }
+        },
+        "14": {
+          "retrieved": {
+            "covered": 24,
+            "total": 24,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 2,
+            "total": 24,
+            "missing": [
+              "src/requests/models.py:1101",
+              "src/requests/models.py:1102",
+              "src/requests/models.py:1103",
+              "src/requests/models.py:1104",
+              "src/requests/models.py:1105",
+              "src/requests/models.py:1106",
+              "src/requests/models.py:1107",
+              "src/requests/models.py:1108",
+              "src/requests/models.py:1109",
+              "src/requests/models.py:1110",
+              "src/requests/models.py:1111",
+              "src/requests/models.py:1112",
+              "src/requests/models.py:1113",
+              "src/requests/models.py:1114",
+              "src/requests/models.py:1115",
+              "src/requests/models.py:1116",
+              "src/requests/models.py:1117",
+              "src/requests/models.py:1118",
+              "src/requests/models.py:1119",
+              "src/requests/models.py:1120",
+              "src/requests/models.py:1121",
+              "src/requests/models.py:1122"
+            ]
+          }
+        },
+        "15": {
+          "retrieved": {
+            "covered": 12,
+            "total": 12,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 0,
+            "total": 12,
+            "missing": [
+              "src/requests/models.py:1160",
+              "src/requests/models.py:1161",
+              "src/requests/models.py:1162",
+              "src/requests/models.py:1163",
+              "src/requests/models.py:1164",
+              "src/requests/models.py:1165",
+              "src/requests/models.py:1166",
+              "src/requests/models.py:1167",
+              "src/requests/models.py:1168",
+              "src/requests/models.py:1169",
+              "src/requests/models.py:1170",
+              "src/requests/models.py:1171"
+            ]
+          }
+        },
+        "16": {
+          "retrieved": {
+            "covered": 66,
+            "total": 66,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 21,
+            "total": 66,
+            "missing": [
+              "src/requests/adapters.py:693",
+              "src/requests/adapters.py:694",
+              "src/requests/adapters.py:695",
+              "src/requests/adapters.py:696",
+              "src/requests/adapters.py:697",
+              "src/requests/adapters.py:698",
+              "src/requests/adapters.py:699",
+              "src/requests/adapters.py:700",
+              "src/requests/adapters.py:701",
+              "src/requests/adapters.py:702",
+              "src/requests/adapters.py:703",
+              "src/requests/adapters.py:704",
+              "src/requests/adapters.py:705",
+              "src/requests/adapters.py:706",
+              "src/requests/adapters.py:707",
+              "src/requests/adapters.py:708",
+              "src/requests/adapters.py:709",
+              "src/requests/adapters.py:710",
+              "src/requests/adapters.py:711",
+              "src/requests/adapters.py:712",
+              "src/requests/adapters.py:713",
+              "src/requests/adapters.py:714",
+              "src/requests/adapters.py:715",
+              "src/requests/adapters.py:716",
+              "src/requests/adapters.py:717",
+              "src/requests/adapters.py:718",
+              "src/requests/adapters.py:719",
+              "src/requests/adapters.py:720",
+              "src/requests/adapters.py:721",
+              "src/requests/adapters.py:722",
+              "src/requests/adapters.py:723",
+              "src/requests/adapters.py:724",
+              "src/requests/adapters.py:725",
+              "src/requests/adapters.py:726",
+              "src/requests/adapters.py:727",
+              "src/requests/adapters.py:728",
+              "src/requests/adapters.py:729",
+              "src/requests/adapters.py:730",
+              "src/requests/adapters.py:731",
+              "src/requests/adapters.py:732",
+              "src/requests/adapters.py:733",
+              "src/requests/adapters.py:734",
+              "src/requests/adapters.py:735",
+              "src/requests/adapters.py:736",
+              "src/requests/adapters.py:737"
+            ]
+          }
+        }
+      }
+    },
+    "qwen3.5:4b": {
+      "n": 18,
+      "errors": 0,
+      "mean_seconds": 39.519480783332256,
+      "median_seconds": 38.92365250000148,
+      "fully_visible_target_cases": {
+        "retrieved": 14,
+        "excerpts": 3
+      },
+      "target_line_coverage": {
+        "retrieved": [
+          436,
+          458
+        ],
+        "excerpts": [
+          134,
+          458
+        ]
+      },
+      "cases": {
+        "1": {
+          "retrieved": {
+            "covered": 1,
+            "total": 1,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 1,
+            "total": 1,
+            "missing": []
+          }
+        },
+        "2": {
+          "retrieved": {
+            "covered": 3,
+            "total": 3,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 3,
+            "total": 3,
+            "missing": []
+          }
+        },
+        "4": {
+          "retrieved": {
+            "covered": 9,
+            "total": 9,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 0,
+            "total": 9,
+            "missing": [
+              "src/requests/auth.py:65",
+              "src/requests/auth.py:66",
+              "src/requests/auth.py:67",
+              "src/requests/auth.py:68",
+              "src/requests/auth.py:69",
+              "src/requests/auth.py:70",
+              "src/requests/auth.py:71",
+              "src/requests/auth.py:72",
+              "src/requests/auth.py:73"
+            ]
+          }
+        },
+        "5": {
+          "retrieved": {
+            "covered": 27,
+            "total": 27,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 0,
+            "total": 27,
+            "missing": [
+              "src/requests/auth.py:293",
+              "src/requests/auth.py:294",
+              "src/requests/auth.py:295",
+              "src/requests/auth.py:296",
+              "src/requests/auth.py:297",
+              "src/requests/auth.py:298",
+              "src/requests/auth.py:299",
+              "src/requests/auth.py:300",
+              "src/requests/auth.py:301",
+              "src/requests/auth.py:302",
+              "src/requests/auth.py:303",
+              "src/requests/auth.py:304",
+              "src/requests/auth.py:305",
+              "src/requests/auth.py:306",
+              "src/requests/auth.py:307",
+              "src/requests/auth.py:308",
+              "src/requests/auth.py:309",
+              "src/requests/auth.py:310",
+              "src/requests/auth.py:311",
+              "src/requests/auth.py:312",
+              "src/requests/auth.py:313",
+              "src/requests/auth.py:314",
+              "src/requests/auth.py:315",
+              "src/requests/auth.py:316",
+              "src/requests/auth.py:317",
+              "src/requests/auth.py:318",
+              "src/requests/auth.py:319"
+            ]
+          }
+        },
+        "6": {
+          "retrieved": {
+            "covered": 35,
+            "total": 35,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 3,
+            "total": 35,
+            "missing": [
+              "src/requests/sessions.py:622",
+              "src/requests/sessions.py:623",
+              "src/requests/sessions.py:624",
+              "src/requests/sessions.py:625",
+              "src/requests/sessions.py:626",
+              "src/requests/sessions.py:627",
+              "src/requests/sessions.py:628",
+              "src/requests/sessions.py:629",
+              "src/requests/sessions.py:630",
+              "src/requests/sessions.py:631",
+              "src/requests/sessions.py:632",
+              "src/requests/sessions.py:633",
+              "src/requests/sessions.py:634",
+              "src/requests/sessions.py:635",
+              "src/requests/sessions.py:636",
+              "src/requests/sessions.py:637",
+              "src/requests/sessions.py:638",
+              "src/requests/sessions.py:639",
+              "src/requests/sessions.py:640",
+              "src/requests/sessions.py:641",
+              "src/requests/sessions.py:642",
+              "src/requests/sessions.py:643",
+              "src/requests/sessions.py:644",
+              "src/requests/sessions.py:645",
+              "src/requests/sessions.py:646",
+              "src/requests/sessions.py:647",
+              "src/requests/sessions.py:648",
+              "src/requests/sessions.py:649",
+              "src/requests/sessions.py:650",
+              "src/requests/sessions.py:651",
+              "src/requests/sessions.py:652",
+              "src/requests/sessions.py:653"
+            ]
+          }
+        },
+        "7": {
+          "retrieved": {
+            "covered": 30,
+            "total": 52,
+            "missing": [
+              "src/requests/sessions.py:84",
+              "src/requests/sessions.py:85",
+              "src/requests/sessions.py:86",
+              "src/requests/sessions.py:87",
+              "src/requests/sessions.py:88",
+              "src/requests/sessions.py:89",
+              "src/requests/sessions.py:90",
+              "src/requests/sessions.py:91",
+              "src/requests/sessions.py:92",
+              "src/requests/sessions.py:93",
+              "src/requests/sessions.py:94",
+              "src/requests/sessions.py:95",
+              "src/requests/sessions.py:96",
+              "src/requests/sessions.py:97",
+              "src/requests/sessions.py:98",
+              "src/requests/sessions.py:99",
+              "src/requests/sessions.py:100",
+              "src/requests/sessions.py:101",
+              "src/requests/sessions.py:102",
+              "src/requests/sessions.py:103",
+              "src/requests/sessions.py:104",
+              "src/requests/sessions.py:105"
+            ]
+          },
+          "excerpts": {
+            "covered": 17,
+            "total": 52,
+            "missing": [
+              "src/requests/sessions.py:84",
+              "src/requests/sessions.py:85",
+              "src/requests/sessions.py:86",
+              "src/requests/sessions.py:87",
+              "src/requests/sessions.py:88",
+              "src/requests/sessions.py:89",
+              "src/requests/sessions.py:90",
+              "src/requests/sessions.py:91",
+              "src/requests/sessions.py:92",
+              "src/requests/sessions.py:93",
+              "src/requests/sessions.py:94",
+              "src/requests/sessions.py:95",
+              "src/requests/sessions.py:96",
+              "src/requests/sessions.py:97",
+              "src/requests/sessions.py:98",
+              "src/requests/sessions.py:99",
+              "src/requests/sessions.py:100",
+              "src/requests/sessions.py:101",
+              "src/requests/sessions.py:102",
+              "src/requests/sessions.py:103",
+              "src/requests/sessions.py:104",
+              "src/requests/sessions.py:105",
+              "src/requests/sessions.py:524",
+              "src/requests/sessions.py:525",
+              "src/requests/sessions.py:526",
+              "src/requests/sessions.py:527",
+              "src/requests/sessions.py:528",
+              "src/requests/sessions.py:529",
+              "src/requests/sessions.py:530",
+              "src/requests/sessions.py:531",
+              "src/requests/sessions.py:532",
+              "src/requests/sessions.py:533",
+              "src/requests/sessions.py:534",
+              "src/requests/sessions.py:535",
+              "src/requests/sessions.py:536"
+            ]
+          }
+        },
+        "8": {
+          "retrieved": {
+            "covered": 35,
+            "total": 35,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 2,
+            "total": 35,
+            "missing": [
+              "src/requests/sessions.py:641",
+              "src/requests/sessions.py:642",
+              "src/requests/sessions.py:643",
+              "src/requests/sessions.py:644",
+              "src/requests/sessions.py:645",
+              "src/requests/sessions.py:646",
+              "src/requests/sessions.py:647",
+              "src/requests/sessions.py:648",
+              "src/requests/sessions.py:649",
+              "src/requests/sessions.py:650",
+              "src/requests/sessions.py:651",
+              "src/requests/sessions.py:847",
+              "src/requests/sessions.py:848",
+              "src/requests/sessions.py:849",
+              "src/requests/sessions.py:850",
+              "src/requests/sessions.py:851",
+              "src/requests/sessions.py:852",
+              "src/requests/sessions.py:853",
+              "src/requests/sessions.py:854",
+              "src/requests/sessions.py:855",
+              "src/requests/sessions.py:856",
+              "src/requests/sessions.py:857",
+              "src/requests/sessions.py:858",
+              "src/requests/sessions.py:859",
+              "src/requests/sessions.py:860",
+              "src/requests/sessions.py:861",
+              "src/requests/sessions.py:862",
+              "src/requests/sessions.py:863",
+              "src/requests/sessions.py:864",
+              "src/requests/sessions.py:865",
+              "src/requests/sessions.py:866",
+              "src/requests/sessions.py:867",
+              "src/requests/sessions.py:868"
+            ]
+          }
+        },
+        "9": {
+          "retrieved": {
+            "covered": 53,
+            "total": 53,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 15,
+            "total": 53,
+            "missing": [
+              "src/requests/sessions.py:777",
+              "src/requests/sessions.py:778",
+              "src/requests/sessions.py:779",
+              "src/requests/sessions.py:780",
+              "src/requests/sessions.py:781",
+              "src/requests/sessions.py:782",
+              "src/requests/sessions.py:783",
+              "src/requests/sessions.py:784",
+              "src/requests/sessions.py:785",
+              "src/requests/sessions.py:786",
+              "src/requests/sessions.py:787",
+              "src/requests/sessions.py:788",
+              "src/requests/sessions.py:789",
+              "src/requests/sessions.py:790",
+              "src/requests/sessions.py:791",
+              "src/requests/sessions.py:792",
+              "src/requests/sessions.py:793",
+              "src/requests/sessions.py:794",
+              "src/requests/sessions.py:795",
+              "src/requests/sessions.py:796",
+              "src/requests/sessions.py:797",
+              "src/requests/sessions.py:798",
+              "src/requests/sessions.py:799",
+              "src/requests/sessions.py:800",
+              "src/requests/sessions.py:801",
+              "src/requests/sessions.py:802",
+              "src/requests/sessions.py:803",
+              "src/requests/sessions.py:804",
+              "src/requests/sessions.py:805",
+              "src/requests/sessions.py:806",
+              "src/requests/sessions.py:807",
+              "src/requests/sessions.py:808",
+              "src/requests/sessions.py:809",
+              "src/requests/sessions.py:810",
+              "src/requests/sessions.py:811",
+              "src/requests/sessions.py:812",
+              "src/requests/sessions.py:813",
+              "src/requests/sessions.py:814"
+            ]
+          }
+        },
+        "10": {
+          "retrieved": {
+            "covered": 27,
+            "total": 27,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 15,
+            "total": 27,
+            "missing": [
+              "src/requests/sessions.py:158",
+              "src/requests/sessions.py:159",
+              "src/requests/sessions.py:160",
+              "src/requests/sessions.py:161",
+              "src/requests/sessions.py:162",
+              "src/requests/sessions.py:163",
+              "src/requests/sessions.py:164",
+              "src/requests/sessions.py:165",
+              "src/requests/sessions.py:166",
+              "src/requests/sessions.py:167",
+              "src/requests/sessions.py:168",
+              "src/requests/sessions.py:169"
+            ]
+          }
+        },
+        "11": {
+          "retrieved": {
+            "covered": 15,
+            "total": 15,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 15,
+            "total": 15,
+            "missing": []
+          }
+        },
+        "12": {
+          "retrieved": {
+            "covered": 36,
+            "total": 36,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 18,
+            "total": 36,
+            "missing": [
+              "src/requests/sessions.py:267",
+              "src/requests/sessions.py:268",
+              "src/requests/sessions.py:269",
+              "src/requests/sessions.py:270",
+              "src/requests/sessions.py:271",
+              "src/requests/sessions.py:272",
+              "src/requests/sessions.py:273",
+              "src/requests/sessions.py:274",
+              "src/requests/sessions.py:275",
+              "src/requests/sessions.py:276",
+              "src/requests/sessions.py:277",
+              "src/requests/sessions.py:278",
+              "src/requests/sessions.py:279",
+              "src/requests/sessions.py:280",
+              "src/requests/sessions.py:281",
+              "src/requests/sessions.py:282",
+              "src/requests/sessions.py:283",
+              "src/requests/sessions.py:284"
+            ]
+          }
+        },
+        "13": {
+          "retrieved": {
+            "covered": 63,
+            "total": 63,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 22,
+            "total": 63,
+            "missing": [
+              "src/requests/models.py:588",
+              "src/requests/models.py:589",
+              "src/requests/models.py:590",
+              "src/requests/models.py:591",
+              "src/requests/models.py:592",
+              "src/requests/models.py:593",
+              "src/requests/models.py:594",
+              "src/requests/models.py:595",
+              "src/requests/models.py:596",
+              "src/requests/models.py:597",
+              "src/requests/models.py:598",
+              "src/requests/models.py:599",
+              "src/requests/models.py:600",
+              "src/requests/models.py:601",
+              "src/requests/models.py:602",
+              "src/requests/models.py:603",
+              "src/requests/models.py:604",
+              "src/requests/models.py:605",
+              "src/requests/models.py:606",
+              "src/requests/models.py:607",
+              "src/requests/models.py:608",
+              "src/requests/models.py:609",
+              "src/requests/models.py:610",
+              "src/requests/models.py:633",
+              "src/requests/models.py:634",
+              "src/requests/models.py:635",
+              "src/requests/models.py:636",
+              "src/requests/models.py:637",
+              "src/requests/models.py:638",
+              "src/requests/models.py:639",
+              "src/requests/models.py:640",
+              "src/requests/models.py:641",
+              "src/requests/models.py:642",
+              "src/requests/models.py:643",
+              "src/requests/models.py:644",
+              "src/requests/models.py:645",
+              "src/requests/models.py:646",
+              "src/requests/models.py:647",
+              "src/requests/models.py:648",
+              "src/requests/models.py:649",
+              "src/requests/models.py:650"
+            ]
+          }
+        },
+        "14": {
+          "retrieved": {
+            "covered": 24,
+            "total": 24,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 2,
+            "total": 24,
+            "missing": [
+              "src/requests/models.py:1101",
+              "src/requests/models.py:1102",
+              "src/requests/models.py:1103",
+              "src/requests/models.py:1104",
+              "src/requests/models.py:1105",
+              "src/requests/models.py:1106",
+              "src/requests/models.py:1107",
+              "src/requests/models.py:1108",
+              "src/requests/models.py:1109",
+              "src/requests/models.py:1110",
+              "src/requests/models.py:1111",
+              "src/requests/models.py:1112",
+              "src/requests/models.py:1113",
+              "src/requests/models.py:1114",
+              "src/requests/models.py:1115",
+              "src/requests/models.py:1116",
+              "src/requests/models.py:1117",
+              "src/requests/models.py:1118",
+              "src/requests/models.py:1119",
+              "src/requests/models.py:1120",
+              "src/requests/models.py:1121",
+              "src/requests/models.py:1122"
+            ]
+          }
+        },
+        "15": {
+          "retrieved": {
+            "covered": 12,
+            "total": 12,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 0,
+            "total": 12,
+            "missing": [
+              "src/requests/models.py:1160",
+              "src/requests/models.py:1161",
+              "src/requests/models.py:1162",
+              "src/requests/models.py:1163",
+              "src/requests/models.py:1164",
+              "src/requests/models.py:1165",
+              "src/requests/models.py:1166",
+              "src/requests/models.py:1167",
+              "src/requests/models.py:1168",
+              "src/requests/models.py:1169",
+              "src/requests/models.py:1170",
+              "src/requests/models.py:1171"
+            ]
+          }
+        },
+        "16": {
+          "retrieved": {
+            "covered": 66,
+            "total": 66,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 21,
+            "total": 66,
+            "missing": [
+              "src/requests/adapters.py:693",
+              "src/requests/adapters.py:694",
+              "src/requests/adapters.py:695",
+              "src/requests/adapters.py:696",
+              "src/requests/adapters.py:697",
+              "src/requests/adapters.py:698",
+              "src/requests/adapters.py:699",
+              "src/requests/adapters.py:700",
+              "src/requests/adapters.py:701",
+              "src/requests/adapters.py:702",
+              "src/requests/adapters.py:703",
+              "src/requests/adapters.py:704",
+              "src/requests/adapters.py:705",
+              "src/requests/adapters.py:706",
+              "src/requests/adapters.py:707",
+              "src/requests/adapters.py:708",
+              "src/requests/adapters.py:709",
+              "src/requests/adapters.py:710",
+              "src/requests/adapters.py:711",
+              "src/requests/adapters.py:712",
+              "src/requests/adapters.py:713",
+              "src/requests/adapters.py:714",
+              "src/requests/adapters.py:715",
+              "src/requests/adapters.py:716",
+              "src/requests/adapters.py:717",
+              "src/requests/adapters.py:718",
+              "src/requests/adapters.py:719",
+              "src/requests/adapters.py:720",
+              "src/requests/adapters.py:721",
+              "src/requests/adapters.py:722",
+              "src/requests/adapters.py:723",
+              "src/requests/adapters.py:724",
+              "src/requests/adapters.py:725",
+              "src/requests/adapters.py:726",
+              "src/requests/adapters.py:727",
+              "src/requests/adapters.py:728",
+              "src/requests/adapters.py:729",
+              "src/requests/adapters.py:730",
+              "src/requests/adapters.py:731",
+              "src/requests/adapters.py:732",
+              "src/requests/adapters.py:733",
+              "src/requests/adapters.py:734",
+              "src/requests/adapters.py:735",
+              "src/requests/adapters.py:736",
+              "src/requests/adapters.py:737"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "02-context": {
+    "deepseek-coder-v2:16b": {
+      "n": 18,
+      "errors": 0,
+      "mean_seconds": 39.932435716668095,
+      "median_seconds": 39.944627100005164,
+      "fully_visible_target_cases": {
+        "retrieved": 14,
+        "excerpts": 11
+      },
+      "target_line_coverage": {
+        "retrieved": [
+          436,
+          458
+        ],
+        "excerpts": [
+          390,
+          458
+        ]
+      },
+      "cases": {
+        "1": {
+          "retrieved": {
+            "covered": 1,
+            "total": 1,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 1,
+            "total": 1,
+            "missing": []
+          }
+        },
+        "2": {
+          "retrieved": {
+            "covered": 3,
+            "total": 3,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 2,
+            "total": 3,
+            "missing": [
+              "src/requests/auth.py:111"
+            ]
+          }
+        },
+        "4": {
+          "retrieved": {
+            "covered": 9,
+            "total": 9,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 9,
+            "total": 9,
+            "missing": []
+          }
+        },
+        "5": {
+          "retrieved": {
+            "covered": 27,
+            "total": 27,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 27,
+            "total": 27,
+            "missing": []
+          }
+        },
+        "6": {
+          "retrieved": {
+            "covered": 35,
+            "total": 35,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 35,
+            "total": 35,
+            "missing": []
+          }
+        },
+        "7": {
+          "retrieved": {
+            "covered": 30,
+            "total": 52,
+            "missing": [
+              "src/requests/sessions.py:84",
+              "src/requests/sessions.py:85",
+              "src/requests/sessions.py:86",
+              "src/requests/sessions.py:87",
+              "src/requests/sessions.py:88",
+              "src/requests/sessions.py:89",
+              "src/requests/sessions.py:90",
+              "src/requests/sessions.py:91",
+              "src/requests/sessions.py:92",
+              "src/requests/sessions.py:93",
+              "src/requests/sessions.py:94",
+              "src/requests/sessions.py:95",
+              "src/requests/sessions.py:96",
+              "src/requests/sessions.py:97",
+              "src/requests/sessions.py:98",
+              "src/requests/sessions.py:99",
+              "src/requests/sessions.py:100",
+              "src/requests/sessions.py:101",
+              "src/requests/sessions.py:102",
+              "src/requests/sessions.py:103",
+              "src/requests/sessions.py:104",
+              "src/requests/sessions.py:105"
+            ]
+          },
+          "excerpts": {
+            "covered": 52,
+            "total": 52,
+            "missing": []
+          }
+        },
+        "8": {
+          "retrieved": {
+            "covered": 35,
+            "total": 35,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 35,
+            "total": 35,
+            "missing": []
+          }
+        },
+        "9": {
+          "retrieved": {
+            "covered": 53,
+            "total": 53,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 38,
+            "total": 53,
+            "missing": [
+              "src/requests/sessions.py:815",
+              "src/requests/sessions.py:816",
+              "src/requests/sessions.py:817",
+              "src/requests/sessions.py:818",
+              "src/requests/sessions.py:819",
+              "src/requests/sessions.py:820",
+              "src/requests/sessions.py:821",
+              "src/requests/sessions.py:822",
+              "src/requests/sessions.py:823",
+              "src/requests/sessions.py:824",
+              "src/requests/sessions.py:825",
+              "src/requests/sessions.py:826",
+              "src/requests/sessions.py:827",
+              "src/requests/sessions.py:828",
+              "src/requests/sessions.py:829"
+            ]
+          }
+        },
+        "10": {
+          "retrieved": {
+            "covered": 27,
+            "total": 27,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 27,
+            "total": 27,
+            "missing": []
+          }
+        },
+        "11": {
+          "retrieved": {
+            "covered": 15,
+            "total": 15,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 15,
+            "total": 15,
+            "missing": []
+          }
+        },
+        "12": {
+          "retrieved": {
+            "covered": 36,
+            "total": 36,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 36,
+            "total": 36,
+            "missing": []
+          }
+        },
+        "13": {
+          "retrieved": {
+            "covered": 63,
+            "total": 63,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 46,
+            "total": 63,
+            "missing": [
+              "src/requests/models.py:634",
+              "src/requests/models.py:635",
+              "src/requests/models.py:636",
+              "src/requests/models.py:637",
+              "src/requests/models.py:638",
+              "src/requests/models.py:639",
+              "src/requests/models.py:640",
+              "src/requests/models.py:641",
+              "src/requests/models.py:642",
+              "src/requests/models.py:643",
+              "src/requests/models.py:644",
+              "src/requests/models.py:645",
+              "src/requests/models.py:646",
+              "src/requests/models.py:647",
+              "src/requests/models.py:648",
+              "src/requests/models.py:649",
+              "src/requests/models.py:650"
+            ]
+          }
+        },
+        "14": {
+          "retrieved": {
+            "covered": 24,
+            "total": 24,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 24,
+            "total": 24,
+            "missing": []
+          }
+        },
+        "15": {
+          "retrieved": {
+            "covered": 12,
+            "total": 12,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 12,
+            "total": 12,
+            "missing": []
+          }
+        },
+        "16": {
+          "retrieved": {
+            "covered": 66,
+            "total": 66,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 31,
+            "total": 66,
+            "missing": [
+              "src/requests/adapters.py:712",
+              "src/requests/adapters.py:713",
+              "src/requests/adapters.py:714",
+              "src/requests/adapters.py:715",
+              "src/requests/adapters.py:716",
+              "src/requests/adapters.py:717",
+              "src/requests/adapters.py:718",
+              "src/requests/adapters.py:719",
+              "src/requests/adapters.py:720",
+              "src/requests/adapters.py:721",
+              "src/requests/adapters.py:722",
+              "src/requests/adapters.py:723",
+              "src/requests/adapters.py:724",
+              "src/requests/adapters.py:725",
+              "src/requests/adapters.py:726",
+              "src/requests/adapters.py:727",
+              "src/requests/adapters.py:728",
+              "src/requests/adapters.py:729",
+              "src/requests/adapters.py:730",
+              "src/requests/adapters.py:731",
+              "src/requests/adapters.py:732",
+              "src/requests/adapters.py:733",
+              "src/requests/adapters.py:734",
+              "src/requests/adapters.py:735",
+              "src/requests/adapters.py:736",
+              "src/requests/adapters.py:737",
+              "src/requests/adapters.py:738",
+              "src/requests/adapters.py:739",
+              "src/requests/adapters.py:740",
+              "src/requests/adapters.py:741",
+              "src/requests/adapters.py:742",
+              "src/requests/adapters.py:743",
+              "src/requests/adapters.py:744",
+              "src/requests/adapters.py:745",
+              "src/requests/adapters.py:746"
+            ]
+          }
+        }
+      }
+    },
+    "qwen3.5:4b": {
+      "n": 18,
+      "errors": 0,
+      "mean_seconds": 38.15625214444299,
+      "median_seconds": 37.740554850010085,
+      "fully_visible_target_cases": {
+        "retrieved": 14,
+        "excerpts": 11
+      },
+      "target_line_coverage": {
+        "retrieved": [
+          436,
+          458
+        ],
+        "excerpts": [
+          390,
+          458
+        ]
+      },
+      "cases": {
+        "1": {
+          "retrieved": {
+            "covered": 1,
+            "total": 1,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 1,
+            "total": 1,
+            "missing": []
+          }
+        },
+        "2": {
+          "retrieved": {
+            "covered": 3,
+            "total": 3,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 2,
+            "total": 3,
+            "missing": [
+              "src/requests/auth.py:111"
+            ]
+          }
+        },
+        "4": {
+          "retrieved": {
+            "covered": 9,
+            "total": 9,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 9,
+            "total": 9,
+            "missing": []
+          }
+        },
+        "5": {
+          "retrieved": {
+            "covered": 27,
+            "total": 27,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 27,
+            "total": 27,
+            "missing": []
+          }
+        },
+        "6": {
+          "retrieved": {
+            "covered": 35,
+            "total": 35,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 35,
+            "total": 35,
+            "missing": []
+          }
+        },
+        "7": {
+          "retrieved": {
+            "covered": 30,
+            "total": 52,
+            "missing": [
+              "src/requests/sessions.py:84",
+              "src/requests/sessions.py:85",
+              "src/requests/sessions.py:86",
+              "src/requests/sessions.py:87",
+              "src/requests/sessions.py:88",
+              "src/requests/sessions.py:89",
+              "src/requests/sessions.py:90",
+              "src/requests/sessions.py:91",
+              "src/requests/sessions.py:92",
+              "src/requests/sessions.py:93",
+              "src/requests/sessions.py:94",
+              "src/requests/sessions.py:95",
+              "src/requests/sessions.py:96",
+              "src/requests/sessions.py:97",
+              "src/requests/sessions.py:98",
+              "src/requests/sessions.py:99",
+              "src/requests/sessions.py:100",
+              "src/requests/sessions.py:101",
+              "src/requests/sessions.py:102",
+              "src/requests/sessions.py:103",
+              "src/requests/sessions.py:104",
+              "src/requests/sessions.py:105"
+            ]
+          },
+          "excerpts": {
+            "covered": 52,
+            "total": 52,
+            "missing": []
+          }
+        },
+        "8": {
+          "retrieved": {
+            "covered": 35,
+            "total": 35,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 35,
+            "total": 35,
+            "missing": []
+          }
+        },
+        "9": {
+          "retrieved": {
+            "covered": 53,
+            "total": 53,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 38,
+            "total": 53,
+            "missing": [
+              "src/requests/sessions.py:815",
+              "src/requests/sessions.py:816",
+              "src/requests/sessions.py:817",
+              "src/requests/sessions.py:818",
+              "src/requests/sessions.py:819",
+              "src/requests/sessions.py:820",
+              "src/requests/sessions.py:821",
+              "src/requests/sessions.py:822",
+              "src/requests/sessions.py:823",
+              "src/requests/sessions.py:824",
+              "src/requests/sessions.py:825",
+              "src/requests/sessions.py:826",
+              "src/requests/sessions.py:827",
+              "src/requests/sessions.py:828",
+              "src/requests/sessions.py:829"
+            ]
+          }
+        },
+        "10": {
+          "retrieved": {
+            "covered": 27,
+            "total": 27,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 27,
+            "total": 27,
+            "missing": []
+          }
+        },
+        "11": {
+          "retrieved": {
+            "covered": 15,
+            "total": 15,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 15,
+            "total": 15,
+            "missing": []
+          }
+        },
+        "12": {
+          "retrieved": {
+            "covered": 36,
+            "total": 36,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 36,
+            "total": 36,
+            "missing": []
+          }
+        },
+        "13": {
+          "retrieved": {
+            "covered": 63,
+            "total": 63,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 46,
+            "total": 63,
+            "missing": [
+              "src/requests/models.py:634",
+              "src/requests/models.py:635",
+              "src/requests/models.py:636",
+              "src/requests/models.py:637",
+              "src/requests/models.py:638",
+              "src/requests/models.py:639",
+              "src/requests/models.py:640",
+              "src/requests/models.py:641",
+              "src/requests/models.py:642",
+              "src/requests/models.py:643",
+              "src/requests/models.py:644",
+              "src/requests/models.py:645",
+              "src/requests/models.py:646",
+              "src/requests/models.py:647",
+              "src/requests/models.py:648",
+              "src/requests/models.py:649",
+              "src/requests/models.py:650"
+            ]
+          }
+        },
+        "14": {
+          "retrieved": {
+            "covered": 24,
+            "total": 24,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 24,
+            "total": 24,
+            "missing": []
+          }
+        },
+        "15": {
+          "retrieved": {
+            "covered": 12,
+            "total": 12,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 12,
+            "total": 12,
+            "missing": []
+          }
+        },
+        "16": {
+          "retrieved": {
+            "covered": 66,
+            "total": 66,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 31,
+            "total": 66,
+            "missing": [
+              "src/requests/adapters.py:712",
+              "src/requests/adapters.py:713",
+              "src/requests/adapters.py:714",
+              "src/requests/adapters.py:715",
+              "src/requests/adapters.py:716",
+              "src/requests/adapters.py:717",
+              "src/requests/adapters.py:718",
+              "src/requests/adapters.py:719",
+              "src/requests/adapters.py:720",
+              "src/requests/adapters.py:721",
+              "src/requests/adapters.py:722",
+              "src/requests/adapters.py:723",
+              "src/requests/adapters.py:724",
+              "src/requests/adapters.py:725",
+              "src/requests/adapters.py:726",
+              "src/requests/adapters.py:727",
+              "src/requests/adapters.py:728",
+              "src/requests/adapters.py:729",
+              "src/requests/adapters.py:730",
+              "src/requests/adapters.py:731",
+              "src/requests/adapters.py:732",
+              "src/requests/adapters.py:733",
+              "src/requests/adapters.py:734",
+              "src/requests/adapters.py:735",
+              "src/requests/adapters.py:736",
+              "src/requests/adapters.py:737",
+              "src/requests/adapters.py:738",
+              "src/requests/adapters.py:739",
+              "src/requests/adapters.py:740",
+              "src/requests/adapters.py:741",
+              "src/requests/adapters.py:742",
+              "src/requests/adapters.py:743",
+              "src/requests/adapters.py:744",
+              "src/requests/adapters.py:745",
+              "src/requests/adapters.py:746"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "03-grounding": {
+    "deepseek-coder-v2:16b": {
+      "n": 18,
+      "errors": 1,
+      "mean_seconds": 42.11508417222002,
+      "median_seconds": 41.712690199987264,
+      "fully_visible_target_cases": {
+        "retrieved": 14,
+        "excerpts": 11
+      },
+      "target_line_coverage": {
+        "retrieved": [
+          436,
+          458
+        ],
+        "excerpts": [
+          390,
+          458
+        ]
+      },
+      "cases": {
+        "1": {
+          "retrieved": {
+            "covered": 1,
+            "total": 1,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 1,
+            "total": 1,
+            "missing": []
+          }
+        },
+        "2": {
+          "retrieved": {
+            "covered": 3,
+            "total": 3,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 2,
+            "total": 3,
+            "missing": [
+              "src/requests/auth.py:111"
+            ]
+          }
+        },
+        "4": {
+          "retrieved": {
+            "covered": 9,
+            "total": 9,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 9,
+            "total": 9,
+            "missing": []
+          }
+        },
+        "5": {
+          "retrieved": {
+            "covered": 27,
+            "total": 27,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 27,
+            "total": 27,
+            "missing": []
+          }
+        },
+        "6": {
+          "retrieved": {
+            "covered": 35,
+            "total": 35,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 35,
+            "total": 35,
+            "missing": []
+          }
+        },
+        "7": {
+          "retrieved": {
+            "covered": 30,
+            "total": 52,
+            "missing": [
+              "src/requests/sessions.py:84",
+              "src/requests/sessions.py:85",
+              "src/requests/sessions.py:86",
+              "src/requests/sessions.py:87",
+              "src/requests/sessions.py:88",
+              "src/requests/sessions.py:89",
+              "src/requests/sessions.py:90",
+              "src/requests/sessions.py:91",
+              "src/requests/sessions.py:92",
+              "src/requests/sessions.py:93",
+              "src/requests/sessions.py:94",
+              "src/requests/sessions.py:95",
+              "src/requests/sessions.py:96",
+              "src/requests/sessions.py:97",
+              "src/requests/sessions.py:98",
+              "src/requests/sessions.py:99",
+              "src/requests/sessions.py:100",
+              "src/requests/sessions.py:101",
+              "src/requests/sessions.py:102",
+              "src/requests/sessions.py:103",
+              "src/requests/sessions.py:104",
+              "src/requests/sessions.py:105"
+            ]
+          },
+          "excerpts": {
+            "covered": 52,
+            "total": 52,
+            "missing": []
+          }
+        },
+        "8": {
+          "retrieved": {
+            "covered": 35,
+            "total": 35,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 35,
+            "total": 35,
+            "missing": []
+          }
+        },
+        "9": {
+          "retrieved": {
+            "covered": 53,
+            "total": 53,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 38,
+            "total": 53,
+            "missing": [
+              "src/requests/sessions.py:815",
+              "src/requests/sessions.py:816",
+              "src/requests/sessions.py:817",
+              "src/requests/sessions.py:818",
+              "src/requests/sessions.py:819",
+              "src/requests/sessions.py:820",
+              "src/requests/sessions.py:821",
+              "src/requests/sessions.py:822",
+              "src/requests/sessions.py:823",
+              "src/requests/sessions.py:824",
+              "src/requests/sessions.py:825",
+              "src/requests/sessions.py:826",
+              "src/requests/sessions.py:827",
+              "src/requests/sessions.py:828",
+              "src/requests/sessions.py:829"
+            ]
+          }
+        },
+        "10": {
+          "retrieved": {
+            "covered": 27,
+            "total": 27,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 27,
+            "total": 27,
+            "missing": []
+          }
+        },
+        "11": {
+          "retrieved": {
+            "covered": 15,
+            "total": 15,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 15,
+            "total": 15,
+            "missing": []
+          }
+        },
+        "12": {
+          "retrieved": {
+            "covered": 36,
+            "total": 36,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 36,
+            "total": 36,
+            "missing": []
+          }
+        },
+        "13": {
+          "retrieved": {
+            "covered": 63,
+            "total": 63,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 46,
+            "total": 63,
+            "missing": [
+              "src/requests/models.py:634",
+              "src/requests/models.py:635",
+              "src/requests/models.py:636",
+              "src/requests/models.py:637",
+              "src/requests/models.py:638",
+              "src/requests/models.py:639",
+              "src/requests/models.py:640",
+              "src/requests/models.py:641",
+              "src/requests/models.py:642",
+              "src/requests/models.py:643",
+              "src/requests/models.py:644",
+              "src/requests/models.py:645",
+              "src/requests/models.py:646",
+              "src/requests/models.py:647",
+              "src/requests/models.py:648",
+              "src/requests/models.py:649",
+              "src/requests/models.py:650"
+            ]
+          }
+        },
+        "14": {
+          "retrieved": {
+            "covered": 24,
+            "total": 24,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 24,
+            "total": 24,
+            "missing": []
+          }
+        },
+        "15": {
+          "retrieved": {
+            "covered": 12,
+            "total": 12,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 12,
+            "total": 12,
+            "missing": []
+          }
+        },
+        "16": {
+          "retrieved": {
+            "covered": 66,
+            "total": 66,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 31,
+            "total": 66,
+            "missing": [
+              "src/requests/adapters.py:712",
+              "src/requests/adapters.py:713",
+              "src/requests/adapters.py:714",
+              "src/requests/adapters.py:715",
+              "src/requests/adapters.py:716",
+              "src/requests/adapters.py:717",
+              "src/requests/adapters.py:718",
+              "src/requests/adapters.py:719",
+              "src/requests/adapters.py:720",
+              "src/requests/adapters.py:721",
+              "src/requests/adapters.py:722",
+              "src/requests/adapters.py:723",
+              "src/requests/adapters.py:724",
+              "src/requests/adapters.py:725",
+              "src/requests/adapters.py:726",
+              "src/requests/adapters.py:727",
+              "src/requests/adapters.py:728",
+              "src/requests/adapters.py:729",
+              "src/requests/adapters.py:730",
+              "src/requests/adapters.py:731",
+              "src/requests/adapters.py:732",
+              "src/requests/adapters.py:733",
+              "src/requests/adapters.py:734",
+              "src/requests/adapters.py:735",
+              "src/requests/adapters.py:736",
+              "src/requests/adapters.py:737",
+              "src/requests/adapters.py:738",
+              "src/requests/adapters.py:739",
+              "src/requests/adapters.py:740",
+              "src/requests/adapters.py:741",
+              "src/requests/adapters.py:742",
+              "src/requests/adapters.py:743",
+              "src/requests/adapters.py:744",
+              "src/requests/adapters.py:745",
+              "src/requests/adapters.py:746"
+            ]
+          }
+        }
+      }
+    },
+    "qwen3.5:4b": {
+      "n": 18,
+      "errors": 15,
+      "mean_seconds": 44.46172285000244,
+      "median_seconds": 43.3226155500015,
+      "fully_visible_target_cases": {
+        "retrieved": 14,
+        "excerpts": 11
+      },
+      "target_line_coverage": {
+        "retrieved": [
+          436,
+          458
+        ],
+        "excerpts": [
+          390,
+          458
+        ]
+      },
+      "cases": {
+        "1": {
+          "retrieved": {
+            "covered": 1,
+            "total": 1,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 1,
+            "total": 1,
+            "missing": []
+          }
+        },
+        "2": {
+          "retrieved": {
+            "covered": 3,
+            "total": 3,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 2,
+            "total": 3,
+            "missing": [
+              "src/requests/auth.py:111"
+            ]
+          }
+        },
+        "4": {
+          "retrieved": {
+            "covered": 9,
+            "total": 9,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 9,
+            "total": 9,
+            "missing": []
+          }
+        },
+        "5": {
+          "retrieved": {
+            "covered": 27,
+            "total": 27,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 27,
+            "total": 27,
+            "missing": []
+          }
+        },
+        "6": {
+          "retrieved": {
+            "covered": 35,
+            "total": 35,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 35,
+            "total": 35,
+            "missing": []
+          }
+        },
+        "7": {
+          "retrieved": {
+            "covered": 30,
+            "total": 52,
+            "missing": [
+              "src/requests/sessions.py:84",
+              "src/requests/sessions.py:85",
+              "src/requests/sessions.py:86",
+              "src/requests/sessions.py:87",
+              "src/requests/sessions.py:88",
+              "src/requests/sessions.py:89",
+              "src/requests/sessions.py:90",
+              "src/requests/sessions.py:91",
+              "src/requests/sessions.py:92",
+              "src/requests/sessions.py:93",
+              "src/requests/sessions.py:94",
+              "src/requests/sessions.py:95",
+              "src/requests/sessions.py:96",
+              "src/requests/sessions.py:97",
+              "src/requests/sessions.py:98",
+              "src/requests/sessions.py:99",
+              "src/requests/sessions.py:100",
+              "src/requests/sessions.py:101",
+              "src/requests/sessions.py:102",
+              "src/requests/sessions.py:103",
+              "src/requests/sessions.py:104",
+              "src/requests/sessions.py:105"
+            ]
+          },
+          "excerpts": {
+            "covered": 52,
+            "total": 52,
+            "missing": []
+          }
+        },
+        "8": {
+          "retrieved": {
+            "covered": 35,
+            "total": 35,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 35,
+            "total": 35,
+            "missing": []
+          }
+        },
+        "9": {
+          "retrieved": {
+            "covered": 53,
+            "total": 53,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 38,
+            "total": 53,
+            "missing": [
+              "src/requests/sessions.py:815",
+              "src/requests/sessions.py:816",
+              "src/requests/sessions.py:817",
+              "src/requests/sessions.py:818",
+              "src/requests/sessions.py:819",
+              "src/requests/sessions.py:820",
+              "src/requests/sessions.py:821",
+              "src/requests/sessions.py:822",
+              "src/requests/sessions.py:823",
+              "src/requests/sessions.py:824",
+              "src/requests/sessions.py:825",
+              "src/requests/sessions.py:826",
+              "src/requests/sessions.py:827",
+              "src/requests/sessions.py:828",
+              "src/requests/sessions.py:829"
+            ]
+          }
+        },
+        "10": {
+          "retrieved": {
+            "covered": 27,
+            "total": 27,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 27,
+            "total": 27,
+            "missing": []
+          }
+        },
+        "11": {
+          "retrieved": {
+            "covered": 15,
+            "total": 15,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 15,
+            "total": 15,
+            "missing": []
+          }
+        },
+        "12": {
+          "retrieved": {
+            "covered": 36,
+            "total": 36,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 36,
+            "total": 36,
+            "missing": []
+          }
+        },
+        "13": {
+          "retrieved": {
+            "covered": 63,
+            "total": 63,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 46,
+            "total": 63,
+            "missing": [
+              "src/requests/models.py:634",
+              "src/requests/models.py:635",
+              "src/requests/models.py:636",
+              "src/requests/models.py:637",
+              "src/requests/models.py:638",
+              "src/requests/models.py:639",
+              "src/requests/models.py:640",
+              "src/requests/models.py:641",
+              "src/requests/models.py:642",
+              "src/requests/models.py:643",
+              "src/requests/models.py:644",
+              "src/requests/models.py:645",
+              "src/requests/models.py:646",
+              "src/requests/models.py:647",
+              "src/requests/models.py:648",
+              "src/requests/models.py:649",
+              "src/requests/models.py:650"
+            ]
+          }
+        },
+        "14": {
+          "retrieved": {
+            "covered": 24,
+            "total": 24,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 24,
+            "total": 24,
+            "missing": []
+          }
+        },
+        "15": {
+          "retrieved": {
+            "covered": 12,
+            "total": 12,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 12,
+            "total": 12,
+            "missing": []
+          }
+        },
+        "16": {
+          "retrieved": {
+            "covered": 66,
+            "total": 66,
+            "missing": []
+          },
+          "excerpts": {
+            "covered": 31,
+            "total": 66,
+            "missing": [
+              "src/requests/adapters.py:712",
+              "src/requests/adapters.py:713",
+              "src/requests/adapters.py:714",
+              "src/requests/adapters.py:715",
+              "src/requests/adapters.py:716",
+              "src/requests/adapters.py:717",
+              "src/requests/adapters.py:718",
+              "src/requests/adapters.py:719",
+              "src/requests/adapters.py:720",
+              "src/requests/adapters.py:721",
+              "src/requests/adapters.py:722",
+              "src/requests/adapters.py:723",
+              "src/requests/adapters.py:724",
+              "src/requests/adapters.py:725",
+              "src/requests/adapters.py:726",
+              "src/requests/adapters.py:727",
+              "src/requests/adapters.py:728",
+              "src/requests/adapters.py:729",
+              "src/requests/adapters.py:730",
+              "src/requests/adapters.py:731",
+              "src/requests/adapters.py:732",
+              "src/requests/adapters.py:733",
+              "src/requests/adapters.py:734",
+              "src/requests/adapters.py:735",
+              "src/requests/adapters.py:736",
+              "src/requests/adapters.py:737",
+              "src/requests/adapters.py:738",
+              "src/requests/adapters.py:739",
+              "src/requests/adapters.py:740",
+              "src/requests/adapters.py:741",
+              "src/requests/adapters.py:742",
+              "src/requests/adapters.py:743",
+              "src/requests/adapters.py:744",
+              "src/requests/adapters.py:745",
+              "src/requests/adapters.py:746"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

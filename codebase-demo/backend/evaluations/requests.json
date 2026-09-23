@@ -1,0 +1,20 @@
+{
+  "repository": "psf/requests",
+  "cases": [
+    {
+      "question": "What license is assigned to __license__ in src/requests/__version__.py?",
+      "path": "src/requests/__version__.py",
+      "expected": ["apache"]
+    },
+    {
+      "question": "How does HTTPBasicAuth.__call__ in src/requests/auth.py set the Authorization header?",
+      "path": "src/requests/auth.py",
+      "expected": ["_basic_auth_str", "username", "password"]
+    },
+    {
+      "question": "What was the production database password on 1 January 2020?",
+      "path": null,
+      "expected": ["cannot determine"]
+    }
+  ]
+}

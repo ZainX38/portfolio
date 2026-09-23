@@ -1,0 +1,23 @@
+{
+  "repository": "psf/requests",
+  "questions": [
+    "What license is assigned to __license__ in src/requests/__version__.py?",
+    "How does HTTPBasicAuth.__call__ in src/requests/auth.py set the Authorization header?",
+    "What was the production database password on 1 January 2020?",
+    "How does _basic_auth_str encode usernames and passwords in src/requests/auth.py?",
+    "How does HTTPDigestAuth handle a 401 challenge and resend the request?",
+    "How do requests.get, requests.api.request and Session.request work together?",
+    "How does Session.prepare_request merge session cookies, headers and authentication with a Request?",
+    "In Session.request, how are environment settings merged before the prepared request is sent?",
+    "How does Session.send choose an adapter, dispatch response hooks, persist cookies and handle redirects?",
+    "When does SessionRedirectMixin.should_strip_auth remove Authorization on redirects? Include scheme and port exceptions.",
+    "How does rebuild_method change POST and HEAD requests for 301, 302 and 303 redirects?",
+    "How does resolve_redirects handle request bodies, cookies and rewinding for 307 and 308 responses?",
+    "How does PreparedRequest.prepare_body choose between JSON, form data and streaming bodies?",
+    "How does Response.json determine encoding and handle invalid JSON?",
+    "What does Response.raise_for_status do for 3xx, 4xx and 5xx status codes?",
+    "How does HTTPAdapter.send convert timeout values and translate urllib3 exceptions?",
+    "What is the exact current production traffic and p99 latency of applications using Requests?",
+    "Where does Requests implement automatic OAuth2 access-token refresh, and what refresh endpoint does it call?"
+  ]
+}

@@ -1,0 +1,363 @@
+[
+  {
+    "id": 1,
+    "excerpts": [
+      {
+        "id": "chunk-124",
+        "path": "src/requests/__version__.py",
+        "start_line": 1,
+        "end_line": 14,
+        "text": "# .-. .-. .-. . . .-. .-. .-. .-.\n# |(  |-  |.| | | |-  `-.  |  `-.\n# ' ' `-' `-`.`-' `-' `-'  '  `-'\n\n__title__ = \"requests\"\n__description__ = \"Python HTTP for Humans.\"\n__url__ = \"https://requests.readthedocs.io\"\n__version__ = \"2.34.2\"\n__build__ = 0x023402\n__author__ = \"Kenneth Reitz\"\n__author_email__ = \"me@kennethreitz.org\"\n__license__ = \"Apache-2.0\"\n__copyright__ = \"Copyright Kenneth Reitz\"\n__cake__ = \"\\u2728 \\U0001f370 \\u2728\"\n"
+      },
+      {
+        "id": "chunk-121",
+        "path": "setup.py",
+        "start_line": 1,
+        "end_line": 9,
+        "text": "import sys\n\nif sys.version_info < (3, 10):  # noqa: UP036\n    sys.stderr.write(\"Requests requires Python 3.10 or later.\\n\")\n    sys.exit(1)\n\nfrom setuptools import setup\n\nsetup()\n"
+      },
+      {
+        "id": "chunk-35",
+        "path": "HISTORY.md",
+        "start_line": 620,
+        "end_line": 673,
+        "text": "2.17.3 (2017-05-29)\n-------------------\n\n**Improvements**\n\n-   Improved `packages` namespace identity support, for monkeypatching\n    libraries.\n\n2.17.2 (2017-05-29)\n-------------------\n\n**Improvements**\n\n-   Improved `packages` namespace identity support, for monkeypatching\n    libraries.\n\n2.17.1 (2017-05-29)\n-------------------\n\n**Improvements**\n\n-   Improved `packages` namespace identity support, for monkeypatching\n    libraries.\n\n2.17.0 (2017-05-29)\n-------------------\n\n**Improvements**\n\n-   Removal of the 301 redirect cache. This improves thread-safety.\n\n2.16.5 (2017-05-28)\n-------------------\n\n-   Improvements to `$ python -m requests.help`.\n\n2.16.4 (2017-05-27)\n-------------------\n\n-   Introduction of the `$ python -m requests.help` command, for\n    debugging with maintainers!\n\n2.16.3 (2017-05-27)\n-------------------\n\n-   Further restored the `requests.packages` namespace for compatibility\n    reasons.\n\n2.16.2 (2017-05-27)\n-------------------\n\n-   Further restored the `requests.packages` namespace for compatibility\n    reasons.\n\n"
+      },
+      {
+        "id": "chunk-160",
+        "path": "src/requests/help.py",
+        "start_line": 1,
+        "end_line": 25,
+        "text": "\"\"\"Module containing bug report helper(s).\"\"\"\n\nimport json\nimport platform\nimport ssl\nimport sys\nfrom typing import Any\n\nimport idna\nimport urllib3\n\nfrom . import __version__ as requests_version\n\ntry:\n    import charset_normalizer\nexcept ImportError:\n    charset_normalizer = None\n\ntry:\n    import chardet\nexcept ImportError:\n    chardet = None\n\ntry:\n    from urllib3.contrib import pyopenssl\n"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "excerpts": [
+      {
+        "id": "source-1",
+        "path": "src/requests/auth.py",
+        "start_line": 112,
+        "end_line": 113,
+        "text": "        r.headers[\"Authorization\"] = _basic_auth_str(self.username, self.password)\n        return r\n",
+        "symbol": "HTTPBasicAuth.__call__",
+        "scope": "complete body"
+      },
+      {
+        "id": "source-2",
+        "path": "src/requests/auth.py",
+        "start_line": 44,
+        "end_line": 75,
+        "text": "    if not isinstance(username, basestring):  # runtime guard for non-str/bytes\n        warnings.warn(\n            \"Non-string usernames will no longer be supported in Requests \"\n            f\"3.0.0. Please convert the object you've passed in ({username!r}) to \"\n            \"a string or bytes object in the near future to avoid \"\n            \"problems.\",\n            category=DeprecationWarning,\n        )\n        username = str(username)\n\n    if not isinstance(password, basestring):  # runtime guard for non-str/bytes\n        warnings.warn(\n            \"Non-string passwords will no longer be supported in Requests \"\n            f\"3.0.0. Please convert the object you've passed in ({type(password)!r}) to \"\n            \"a string or bytes object in the near future to avoid \"\n            \"problems.\",\n            category=DeprecationWarning,\n        )\n        password = str(password)\n    # -- End Removal --\n\n    if isinstance(username, str):\n        username = username.encode(\"latin1\")\n\n    if isinstance(password, str):\n        password = password.encode(\"latin1\")\n\n    authstr = \"Basic \" + to_native_string(\n        b64encode(b\":\".join((username, password))).strip()\n    )\n\n    return authstr\n",
+        "symbol": "_basic_auth_str",
+        "scope": "complete body"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "excerpts": [
+      {
+        "id": "chunk-212",
+        "path": "tests/certs/expired/README.md",
+        "start_line": 1,
+        "end_line": 11,
+        "text": "# Expired Certificates and Configuration for Testing\n\nThis has a valid certificate authority in [ca](./ca) and an invalid server\ncertificate in [server](./server).\n\nThis can all be regenerated with:\n\n```\nmake clean\nmake all\n```\n"
+      },
+      {
+        "id": "chunk-117",
+        "path": "ext/LICENSE",
+        "start_line": 1,
+        "end_line": 1,
+        "text": "Copyright 2019 Kenneth Reitz. All rights reserved.\n"
+      },
+      {
+        "id": "chunk-161",
+        "path": "src/requests/help.py",
+        "start_line": 91,
+        "end_line": 120,
+        "text": "        \"openssl_version\": \"\",\n    }\n    if OpenSSL:\n        pyopenssl_info = {\n            \"version\": OpenSSL.__version__,\n            \"openssl_version\": f\"{OpenSSL.SSL.OPENSSL_VERSION_NUMBER:x}\",\n        }\n    cryptography_info = {\n        \"version\": getattr(cryptography, \"__version__\", \"\"),\n    }\n    idna_info = {\n        \"version\": getattr(idna, \"__version__\", \"\"),\n    }\n\n    system_ssl = ssl.OPENSSL_VERSION_NUMBER\n    system_ssl_info = {\"version\": f\"{system_ssl:x}\" if system_ssl is not None else \"\"}  # type: ignore[reportUnnecessaryComparison]\n\n    return {\n        \"platform\": platform_info,\n        \"implementation\": implementation_info,\n        \"system_ssl\": system_ssl_info,\n        \"using_pyopenssl\": pyopenssl is not None,\n        \"using_charset_normalizer\": chardet is None,\n        \"pyOpenSSL\": pyopenssl_info,\n        \"urllib3\": urllib3_info,\n        \"chardet\": chardet_info,\n        \"charset_normalizer\": charset_normalizer_info,\n        \"cryptography\": cryptography_info,\n        \"idna\": idna_info,\n        \"requests\": {\n"
+      },
+      {
+        "id": "chunk-238",
+        "path": "tests/test_requests.py",
+        "start_line": 544,
+        "end_line": 571,
+        "text": "        assert r.status_code == 200\n\n        r = requests.get(url)\n        assert r.status_code == 401\n\n        s = requests.session()\n        s.auth = auth\n        r = s.get(url)\n        assert r.status_code == 200\n\n    @pytest.mark.parametrize(\n        \"username, password\",\n        (\n            (\"user\", \"pass\"),\n            (\"\u0438\u043c\u044f\".encode(), \"\u043f\u0430\u0440\u043e\u043b\u044c\".encode()),\n            (42, 42),\n            (None, None),\n        ),\n    )\n    def test_set_basicauth(self, httpbin, username, password):\n        auth = (username, password)\n        url = httpbin(\"get\")\n\n        r = requests.Request(\"GET\", url, auth=auth)\n        p = r.prepare()\n\n        assert p.headers[\"Authorization\"] == _basic_auth_str(username, password)\n\n"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "excerpts": [
+      {
+        "id": "source-1",
+        "path": "src/requests/auth.py",
+        "start_line": 44,
+        "end_line": 75,
+        "text": "    if not isinstance(username, basestring):  # runtime guard for non-str/bytes\n        warnings.warn(\n            \"Non-string usernames will no longer be supported in Requests \"\n            f\"3.0.0. Please convert the object you've passed in ({username!r}) to \"\n            \"a string or bytes object in the near future to avoid \"\n            \"problems.\",\n            category=DeprecationWarning,\n        )\n        username = str(username)\n\n    if not isinstance(password, basestring):  # runtime guard for non-str/bytes\n        warnings.warn(\n            \"Non-string passwords will no longer be supported in Requests \"\n            f\"3.0.0. Please convert the object you've passed in ({type(password)!r}) to \"\n            \"a string or bytes object in the near future to avoid \"\n            \"problems.\",\n            category=DeprecationWarning,\n        )\n        password = str(password)\n    # -- End Removal --\n\n    if isinstance(username, str):\n        username = username.encode(\"latin1\")\n\n    if isinstance(password, str):\n        password = password.encode(\"latin1\")\n\n    authstr = \"Basic \" + to_native_string(\n        b64encode(b\":\".join((username, password))).strip()\n    )\n\n    return authstr\n",
+        "symbol": "_basic_auth_str",
+        "scope": "complete body"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "excerpts": [
+      {
+        "id": "source-1",
+        "path": "src/requests/auth.py",
+        "start_line": 282,
+        "end_line": 319,
+        "text": "        if not 400 <= r.status_code < 500:\n            self._thread_local.num_401_calls = 1\n            return r\n\n        if self._thread_local.pos is not None:\n            # Rewind the file position indicator of the body to where\n            # it was to resend the request.\n            if (seek := getattr(r.request.body, \"seek\", None)) is not None:\n                seek(self._thread_local.pos)\n        s_auth = r.headers.get(\"www-authenticate\", \"\")\n\n        if \"digest\" in s_auth.lower() and self._thread_local.num_401_calls < 2:\n            self._thread_local.num_401_calls += 1\n            pat = re.compile(r\"digest \", flags=re.IGNORECASE)\n            self._thread_local.chal = parse_dict_header(pat.sub(\"\", s_auth, count=1))\n\n            # Consume content and release the original connection\n            # to allow our new request to reuse the same one.\n            r.content\n            r.close()\n            prep = r.request.copy()\n            cookie_jar = cast(\"CookieJar\", prep._cookies)\n            extract_cookies_to_jar(cookie_jar, r.request, r.raw)\n            prep.prepare_cookies(cookie_jar)\n\n            _digest_auth = self.build_digest_header(\n                cast(str, prep.method), cast(str, prep.url)\n            )\n            if _digest_auth:\n                prep.headers[\"Authorization\"] = _digest_auth\n            _r = r.connection.send(prep, **kwargs)\n            _r.history.append(r)\n            _r.request = prep\n\n            return _r\n\n        self._thread_local.num_401_calls = 1\n        return r\n",
+        "symbol": "HTTPDigestAuth.handle_401",
+        "scope": "complete body"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "excerpts": [
+      {
+        "id": "source-1",
+        "path": "src/requests/api.py",
+        "start_line": 70,
+        "end_line": 71,
+        "text": "    with sessions.Session() as session:\n        return session.request(method=method, url=url, **kwargs)\n",
+        "symbol": "request",
+        "scope": "complete body"
+      },
+      {
+        "id": "source-2",
+        "path": "src/requests/sessions.py",
+        "start_line": 619,
+        "end_line": 653,
+        "text": "        if isinstance(url, bytes):\n            url = url.decode(\"utf-8\")\n\n        # Create the Request.\n        req = Request(\n            method=method.upper(),\n            url=url,\n            headers=headers,\n            files=files,\n            data=data or {},\n            json=json,\n            params=params or {},\n            auth=auth,\n            cookies=cookies,\n            hooks=hooks,\n        )\n        prep = self.prepare_request(req)\n\n        assert _is_prepared(prep)\n\n        proxies = proxies or {}\n\n        settings = self.merge_environment_settings(\n            prep.url, proxies, stream, verify, cert\n        )\n\n        # Send the request.\n        send_kwargs = {\n            \"timeout\": timeout,\n            \"allow_redirects\": allow_redirects,\n        }\n        send_kwargs.update(settings)\n        resp = self.send(prep, **send_kwargs)\n\n        return resp\n",
+        "symbol": "Session.request",
+        "scope": "complete body"
+      },
+      {
+        "id": "source-3",
+        "path": "src/requests/api.py",
+        "start_line": 87,
+        "end_line": 87,
+        "text": "    return request(\"get\", url, params=params, **kwargs)\n",
+        "symbol": "get",
+        "scope": "complete body"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "excerpts": [
+      {
+        "id": "source-1",
+        "path": "src/requests/sessions.py",
+        "start_line": 521,
+        "end_line": 555,
+        "text": "        url = cast(\"_t.UriType\", request.url)\n        method = cast(str, request.method)\n\n        cookies = request.cookies or {}\n\n        # Bootstrap CookieJar.\n        if not isinstance(cookies, cookielib.CookieJar):\n            cookies = cookiejar_from_dict(cookies)\n\n        # Merge with session cookies\n        merged_cookies = merge_cookies(\n            merge_cookies(RequestsCookieJar(), self.cookies), cookies\n        )\n\n        # Set environment's basic authentication if not explicitly set.\n        auth = request.auth\n        if self.trust_env and not auth and not self.auth:\n            auth = get_netrc_auth(url)\n\n        p = PreparedRequest()\n        p.prepare(\n            method=method.upper(),\n            url=url,\n            files=request.files,\n            data=request.data,\n            json=request.json,\n            headers=merge_setting(\n                request.headers, self.headers, dict_class=CaseInsensitiveDict\n            ),\n            params=merge_setting(request.params, self.params),\n            auth=merge_setting(auth, self.auth),\n            cookies=merged_cookies,\n            hooks=merge_hooks(request.hooks, self.hooks),\n        )\n        return p\n",
+        "symbol": "Session.prepare_request",
+        "scope": "complete body"
+      },
+      {
+        "id": "source-2",
+        "path": "src/requests/sessions.py",
+        "start_line": 84,
+        "end_line": 105,
+        "text": "    if session_setting is None:\n        return request_setting\n\n    if request_setting is None:\n        return session_setting\n\n    # Bypass if not a dictionary (e.g. verify)\n    if not (\n        isinstance(session_setting, Mapping) and isinstance(request_setting, Mapping)\n    ):\n        return request_setting\n\n    merged_setting = dict_class(to_key_val_list(session_setting))  # type: ignore[arg-type]  # isinstance narrows Any to Mapping[Unknown]\n    merged_setting.update(to_key_val_list(request_setting))  # type: ignore[arg-type]\n\n    # Remove keys that are set to None. Extract keys first to avoid altering\n    # the dictionary during iteration.\n    none_keys = [k for (k, v) in merged_setting.items() if v is None]\n    for key in none_keys:\n        del merged_setting[key]\n\n    return merged_setting\n",
+        "symbol": "merge_setting",
+        "scope": "complete body"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "excerpts": [
+      {
+        "id": "source-1",
+        "path": "src/requests/sessions.py",
+        "start_line": 619,
+        "end_line": 653,
+        "text": "        if isinstance(url, bytes):\n            url = url.decode(\"utf-8\")\n\n        # Create the Request.\n        req = Request(\n            method=method.upper(),\n            url=url,\n            headers=headers,\n            files=files,\n            data=data or {},\n            json=json,\n            params=params or {},\n            auth=auth,\n            cookies=cookies,\n            hooks=hooks,\n        )\n        prep = self.prepare_request(req)\n\n        assert _is_prepared(prep)\n\n        proxies = proxies or {}\n\n        settings = self.merge_environment_settings(\n            prep.url, proxies, stream, verify, cert\n        )\n\n        # Send the request.\n        send_kwargs = {\n            \"timeout\": timeout,\n            \"allow_redirects\": allow_redirects,\n        }\n        send_kwargs.update(settings)\n        resp = self.send(prep, **send_kwargs)\n\n        return resp\n",
+        "symbol": "Session.request",
+        "scope": "complete body"
+      },
+      {
+        "id": "source-2",
+        "path": "src/requests/sessions.py",
+        "start_line": 845,
+        "end_line": 868,
+        "text": "        if self.trust_env:\n            # Set environment's proxies.\n            no_proxy = proxies.get(\"no_proxy\") if proxies is not None else None\n            env_proxies = get_environ_proxies(url, no_proxy=no_proxy)\n            if proxies is not None:\n                for k, v in env_proxies.items():\n                    proxies.setdefault(k, v)\n\n            # Look for requests environment configuration\n            # and be compatible with cURL.\n            if verify is True or verify is None:\n                verify = (\n                    os.environ.get(\"REQUESTS_CA_BUNDLE\")\n                    or os.environ.get(\"CURL_CA_BUNDLE\")\n                    or verify\n                )\n\n        # Merge all the kwargs.\n        proxies = merge_setting(proxies, self.proxies)\n        stream = merge_setting(stream, self.stream)\n        verify = merge_setting(verify, self.verify)\n        cert = merge_setting(cert, self.cert)\n\n        return {\"proxies\": proxies, \"stream\": stream, \"verify\": verify, \"cert\": cert}\n",
+        "symbol": "Session.merge_environment_settings",
+        "scope": "complete body"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "excerpts": [
+      {
+        "id": "source-1",
+        "path": "src/requests/sessions.py",
+        "start_line": 759,
+        "end_line": 814,
+        "text": "        kwargs.setdefault(\"stream\", self.stream)\n        kwargs.setdefault(\"verify\", self.verify)\n        kwargs.setdefault(\"cert\", self.cert)\n        if \"proxies\" not in kwargs:\n            kwargs[\"proxies\"] = resolve_proxies(request, self.proxies, self.trust_env)\n\n        # It's possible that users might accidentally send a Request object.\n        # Guard against that specific failure case.\n        if isinstance(request, Request):\n            raise ValueError(\"You can only send PreparedRequests.\")\n\n        assert _is_prepared(request)\n\n        # Set up variables needed for resolve_redirects and dispatching of hooks\n        allow_redirects = kwargs.pop(\"allow_redirects\", True)\n        stream = kwargs.get(\"stream\")\n        hooks = request.hooks\n\n        # Get the appropriate adapter to use\n        adapter = self.get_adapter(url=request.url)\n\n        # Start time (approximately) of the request\n        start = preferred_clock()\n\n        # Send the request\n        r = adapter.send(request, **kwargs)\n\n        # Total elapsed time of the request (approximately)\n        elapsed = preferred_clock() - start\n        r.elapsed = timedelta(seconds=elapsed)\n\n        # Response manipulation hooks\n        r = dispatch_hook(\"response\", hooks, r, **kwargs)\n\n        # Persist cookies\n        if r.history:\n            # If the hooks create history then we want those cookies too\n            for resp in r.history:\n                extract_cookies_to_jar(self.cookies, resp.request, resp.raw)\n\n        extract_cookies_to_jar(self.cookies, request, r.raw)\n\n        # Resolve redirects if allowed.\n        if allow_redirects:\n            # Redirect resolving generator.\n            gen = self.resolve_redirects(r, request, **kwargs)\n            history = [resp for resp in gen]\n        else:\n            history = []\n\n        # Shuffle things around if there's history.\n        if history:\n            # Insert the first (original) request at the start\n            history.insert(0, r)\n            # Get the last request made\n            r = history.pop()\n",
+        "symbol": "Session.send",
+        "scope": "partial body; other code omitted"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "excerpts": [
+      {
+        "id": "source-1",
+        "path": "src/requests/sessions.py",
+        "start_line": 156,
+        "end_line": 184,
+        "text": "        old_parsed = urlparse(old_url)\n        new_parsed = urlparse(new_url)\n        if old_parsed.hostname != new_parsed.hostname:\n            return True\n        # Special case: allow http -> https redirect when using the standard\n        # ports. This isn't specified by RFC 7235, but is kept to avoid\n        # breaking backwards compatibility with older versions of requests\n        # that allowed any redirects on the same host.\n        if (\n            old_parsed.scheme == \"http\"\n            and old_parsed.port in (80, None)\n            and new_parsed.scheme == \"https\"\n            and new_parsed.port in (443, None)\n        ):\n            return False\n\n        # Handle default port usage corresponding to scheme.\n        changed_port = old_parsed.port != new_parsed.port\n        changed_scheme = old_parsed.scheme != new_parsed.scheme\n        default_port = (DEFAULT_PORTS.get(old_parsed.scheme, None), None)\n        if (\n            not changed_scheme\n            and old_parsed.port in default_port\n            and new_parsed.port in default_port\n        ):\n            return False\n\n        # Standard case: root URI must match\n        return changed_port or changed_scheme\n",
+        "symbol": "SessionRedirectMixin.should_strip_auth",
+        "scope": "complete body"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "excerpts": [
+      {
+        "id": "source-1",
+        "path": "src/requests/sessions.py",
+        "start_line": 376,
+        "end_line": 392,
+        "text": "        method = prepared_request.method\n\n        # https://tools.ietf.org/html/rfc7231#section-6.4.4\n        if response.status_code == codes.see_other and method != \"HEAD\":\n            method = \"GET\"\n\n        # Do what the browsers do, despite standards...\n        # First, turn 302s into GETs.\n        if response.status_code == codes.found and method != \"HEAD\":\n            method = \"GET\"\n\n        # Second, if a POST is responded to with a 301, turn it into a GET.\n        # This bizarre behaviour is explained in Issue 1704.\n        if response.status_code == codes.moved and method == \"POST\":\n            method = \"GET\"\n\n        prepared_request.method = method\n",
+        "symbol": "SessionRedirectMixin.rebuild_method",
+        "scope": "complete body"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "excerpts": [
+      {
+        "id": "source-1",
+        "path": "src/requests/sessions.py",
+        "start_line": 240,
+        "end_line": 284,
+        "text": "            if not parsed.netloc:\n                url = urljoin(resp.url, requote_uri(url))\n            else:\n                url = requote_uri(url)\n\n            prepared_request.url = to_native_string(url)\n\n            self.rebuild_method(prepared_request, resp)\n\n            # https://github.com/psf/requests/issues/1084\n            if resp.status_code not in (\n                codes.temporary_redirect,\n                codes.permanent_redirect,\n            ):\n                # https://github.com/psf/requests/issues/3490\n                purged_headers = (\"Content-Length\", \"Content-Type\", \"Transfer-Encoding\")\n                for header in purged_headers:\n                    prepared_request.headers.pop(header, None)\n                prepared_request.body = None\n\n            headers = prepared_request.headers\n            headers.pop(\"Cookie\", None)\n\n            # Extract any cookies sent on the response to the cookiejar\n            # in the new request. Because we've mutated our copied prepared\n            # request, use the old one that we haven't yet touched.\n            cookie_jar = cast(\"CookieJar\", prepared_request._cookies)\n            extract_cookies_to_jar(cookie_jar, req, resp.raw)\n            merge_cookies(cookie_jar, self.cookies)\n            prepared_request.prepare_cookies(cookie_jar)\n\n            # Rebuild auth and proxy information.\n            proxies = self.rebuild_proxies(prepared_request, proxies)\n            self.rebuild_auth(prepared_request, resp)\n\n            # A failed tell() sets `_body_position` to `object()`. This non-None\n            # value ensures `rewindable` will be True, allowing us to raise an\n            # UnrewindableBodyError, instead of hanging the connection.\n            rewindable = prepared_request._body_position is not None and (\n                \"Content-Length\" in headers or \"Transfer-Encoding\" in headers\n            )\n\n            # Attempt to rewind consumed file-like object.\n            if rewindable:\n                rewind_body(prepared_request)\n",
+        "symbol": "SessionRedirectMixin.resolve_redirects",
+        "scope": "partial body; other code omitted"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "excerpts": [
+      {
+        "id": "source-1",
+        "path": "src/requests/models.py",
+        "start_line": 585,
+        "end_line": 633,
+        "text": "        body = None\n        content_type = None\n\n        if not data and json is not None:\n            # urllib3 requires a bytes-like body. Python 2's json.dumps\n            # provides this natively, but Python 3 gives a Unicode string.\n            content_type = \"application/json\"\n\n            try:\n                body = complexjson.dumps(json, allow_nan=False)\n            except ValueError as ve:\n                raise InvalidJSONError(ve, request=self)\n\n            if not isinstance(body, bytes):\n                body = body.encode(\"utf-8\")\n\n        # data that proxies attributes to underlying objects needs hasattr\n        is_iterable = isinstance(data, Iterable) or hasattr(data, \"__iter__\")\n        if is_iterable and not isinstance(data, (str, bytes, list, tuple, Mapping)):\n            try:\n                length = super_len(data)\n            except (TypeError, AttributeError, UnsupportedOperation):\n                length = None\n\n            body = data\n\n            if getattr(body, \"tell\", None) is not None:\n                # Record the current file position before reading.\n                # This will allow us to rewind a file in the event\n                # of a redirect.\n                try:\n                    self._body_position = body.tell()  # type: ignore[union-attr]  # guarded by getattr check\n                except OSError:\n                    # This differentiates from None, allowing us to catch\n                    # a failed `tell()` later when trying to rewind the body\n                    self._body_position = object()\n\n            if files:\n                raise NotImplementedError(\n                    \"Streamed bodies and files are mutually exclusive.\"\n                )\n\n            if length:\n                self.headers[\"Content-Length\"] = builtin_str(length)\n            else:\n                self.headers[\"Transfer-Encoding\"] = \"chunked\"\n        else:\n            # After is_stream filtering, remaining data is raw (not streamed)\n            raw_data = cast(\"_t.RawDataType | None\", data)\n",
+        "symbol": "PreparedRequest.prepare_body",
+        "scope": "partial body; other code omitted"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "excerpts": [
+      {
+        "id": "source-1",
+        "path": "src/requests/models.py",
+        "start_line": 1101,
+        "end_line": 1124,
+        "text": "        if not self.encoding and self.content and len(self.content) > 3:\n            # No encoding set. JSON RFC 4627 section 3 states we should expect\n            # UTF-8, -16 or -32. Detect which one to use; If the detection or\n            # decoding fails, fall back to `self.text` (using charset_normalizer to make\n            # a best guess).\n            encoding = guess_json_utf(self.content)\n            if encoding is not None:\n                try:\n                    return complexjson.loads(self.content.decode(encoding), **kwargs)\n                except UnicodeDecodeError:\n                    # Wrong UTF codec detected; usually because it's not UTF-8\n                    # but some other 8-bit codec.  This is an RFC violation,\n                    # and the server didn't bother to tell us what codec *was*\n                    # used.\n                    pass\n                except JSONDecodeError as e:\n                    raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)\n\n        try:\n            return complexjson.loads(self.text, **kwargs)\n        except JSONDecodeError as e:\n            # Catch JSON-related errors and raise as requests.JSONDecodeError\n            # This aliases json.JSONDecodeError and simplejson.JSONDecodeError\n            raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)\n",
+        "symbol": "Response.json",
+        "scope": "complete body"
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "excerpts": [
+      {
+        "id": "source-1",
+        "path": "src/requests/models.py",
+        "start_line": 1147,
+        "end_line": 1171,
+        "text": "        http_error_msg = \"\"\n        if isinstance(self.reason, bytes):\n            # We attempt to decode utf-8 first because some servers\n            # choose to localize their reason strings. If the string\n            # isn't utf-8, we fall back to iso-8859-1 for all other\n            # encodings. (See PR #3538)\n            try:\n                reason = self.reason.decode(\"utf-8\")\n            except UnicodeDecodeError:\n                reason = self.reason.decode(\"iso-8859-1\")\n        else:\n            reason = self.reason\n\n        if 400 <= self.status_code < 500:\n            http_error_msg = (\n                f\"{self.status_code} Client Error: {reason} for url: {self.url}\"\n            )\n\n        elif 500 <= self.status_code < 600:\n            http_error_msg = (\n                f\"{self.status_code} Server Error: {reason} for url: {self.url}\"\n            )\n\n        if http_error_msg:\n            raise HTTPError(http_error_msg, response=self)\n",
+        "symbol": "Response.raise_for_status",
+        "scope": "complete body"
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "excerpts": [
+      {
+        "id": "source-1",
+        "path": "src/requests/adapters.py",
+        "start_line": 659,
+        "end_line": 711,
+        "text": "        assert _is_prepared(request)\n\n        try:\n            conn = self.get_connection_with_tls_context(\n                request, verify, proxies=proxies, cert=cert\n            )\n        except LocationValueError as e:\n            raise InvalidURL(e, request=request)\n\n        self.cert_verify(conn, request.url, verify, cert)\n        url = self.request_url(request, proxies)\n        self.add_headers(\n            request,\n            stream=stream,\n            timeout=timeout,\n            verify=verify,\n            cert=cert,\n            proxies=proxies,\n        )\n\n        chunked = not (request.body is None or \"Content-Length\" in request.headers)\n\n        if isinstance(timeout, tuple):\n            try:\n                connect, read = timeout\n                resolved_timeout = TimeoutSauce(connect=connect, read=read)\n            except ValueError:\n                raise ValueError(\n                    f\"Invalid timeout {timeout}. Pass a (connect, read) timeout tuple, \"\n                    f\"or a single float to set both timeouts to the same value.\"\n                )\n        elif isinstance(timeout, TimeoutSauce):\n            resolved_timeout = timeout\n        else:\n            resolved_timeout = TimeoutSauce(connect=timeout, read=timeout)\n\n        try:\n            resp = conn.urlopen(\n                method=request.method,\n                url=url,\n                body=request.body,  # type: ignore[arg-type]  # urllib3 stubs don't accept Iterable[bytes | str]\n                headers=request.headers,  # type: ignore[arg-type]  # urllib3#3072\n                redirect=False,\n                assert_same_host=False,\n                preload_content=False,\n                decode_content=False,\n                retries=self.max_retries,\n                timeout=resolved_timeout,\n                chunked=chunked,\n            )\n\n        except (ProtocolError, OSError) as err:\n            raise ConnectionError(err, request=request)\n",
+        "symbol": "HTTPAdapter.send",
+        "scope": "partial body; other code omitted"
+      },
+      {
+        "id": "source-2",
+        "path": "src/requests/adapters.py",
+        "start_line": 611,
+        "end_line": 611,
+        "text": "        pass\n",
+        "symbol": "HTTPAdapter.add_headers",
+        "scope": "complete body"
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "excerpts": [
+      {
+        "id": "chunk-110",
+        "path": "docs/user/quickstart.rst",
+        "start_line": 1,
+        "end_line": 42,
+        "text": ".. _quickstart:\n\nQuickstart\n==========\n\n.. module:: requests.models\n\nEager to get started? This page gives a good introduction in how to get started\nwith Requests.\n\nFirst, make sure that:\n\n* Requests is :ref:`installed <install>`\n* Requests is :ref:`up-to-date <updates>`\n\n\nLet's get started with some simple examples.\n\n\nMake a Request\n--------------\n\nMaking a request with Requests is very simple.\n\nBegin by importing the Requests module::\n\n    >>> import requests\n\nNow, let's try to get a webpage. For this example, let's get GitHub's public\ntimeline::\n\n    >>> r = requests.get('https://api.github.com/events')\n\nNow, we have a :class:`Response <requests.Response>` object called ``r``. We can\nget all the information we need from this object.\n\nRequests' simple API means that all forms of HTTP request are as obvious. For\nexample, this is how you make an HTTP POST request::\n\n    >>> r = requests.post('https://httpbin.org/post', data={'key': 'value'})\n\nNice, right? What about the other HTTP request types: PUT, DELETE, HEAD and\n"
+      },
+      {
+        "id": "chunk-258",
+        "path": "tests/test_requests.py",
+        "start_line": 2156,
+        "end_line": 2185,
+        "text": "        i = 0\n        for item in r.history:\n            assert item.history == total[0:i]\n            i += 1\n\n    def test_json_param_post_content_type_works(self, httpbin):\n        r = requests.post(httpbin(\"post\"), json={\"life\": 42})\n        assert r.status_code == 200\n        assert \"application/json\" in r.request.headers[\"Content-Type\"]\n        assert {\"life\": 42} == r.json()[\"json\"]\n\n    def test_json_param_post_should_not_override_data_param(self, httpbin):\n        r = requests.Request(\n            method=\"POST\",\n            url=httpbin(\"post\"),\n            data={\"stuff\": \"elixr\"},\n            json={\"music\": \"flute\"},\n        )\n        prep = r.prepare()\n        assert \"stuff=elixr\" == prep.body\n\n    def test_response_iter_lines(self, httpbin):\n        r = requests.get(httpbin(\"stream/4\"), stream=True)\n        assert r.status_code == 200\n\n        it = r.iter_lines()\n        next(it)\n        assert len(list(it)) == 3\n\n    def test_response_context_manager(self, httpbin):\n"
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "excerpts": [
+      {
+        "id": "chunk-107",
+        "path": "docs/user/authentication.rst",
+        "start_line": 82,
+        "end_line": 108,
+        "text": "\n    >>> requests.get(url, auth=auth)\n    <Response [200]>\n\nFor more information on how to OAuth flow works, please see the official `OAuth`_ website.\nFor examples and documentation on requests-oauthlib, please see the `requests_oauthlib`_\nrepository on GitHub\n\nOAuth 2 and OpenID Connect Authentication\n-----------------------------------------\n\nThe ``requests-oauthlib`` library also handles OAuth 2, the authentication mechanism\nunderpinning OpenID Connect. See the `requests-oauthlib OAuth2 documentation`_ for\ndetails of the various OAuth 2 credential management flows:\n\n* `Web Application Flow`_\n* `Mobile Application Flow`_\n* `Legacy Application Flow`_\n* `Backend Application Flow`_\n\nOther Authentication\n--------------------\n\nRequests is designed to allow other forms of authentication to be easily and\nquickly plugged in. Members of the open-source community frequently write\nauthentication handlers for more complicated or less commonly-used forms of\nauthentication. Some of the best have been brought together under the\n"
+      },
+      {
+        "id": "chunk-108",
+        "path": "docs/user/authentication.rst",
+        "start_line": 149,
+        "end_line": 155,
+        "text": ".. _Web Application Flow: https://requests-oauthlib.readthedocs.io/en/latest/oauth2_workflow.html#web-application-flow\n.. _Mobile Application Flow: https://requests-oauthlib.readthedocs.io/en/latest/oauth2_workflow.html#mobile-application-flow\n.. _Legacy Application Flow: https://requests-oauthlib.readthedocs.io/en/latest/oauth2_workflow.html#legacy-application-flow\n.. _Backend Application Flow: https://requests-oauthlib.readthedocs.io/en/latest/oauth2_workflow.html#backend-application-flow\n.. _Kerberos: https://github.com/requests/requests-kerberos\n.. _NTLM: https://github.com/requests/requests-ntlm\n.. _Requests organization: https://github.com/requests\n"
+      },
+      {
+        "id": "chunk-68",
+        "path": "docs/api.rst",
+        "start_line": 131,
+        "end_line": 137,
+        "text": "      r = requests.get('https://api.github.com/events')\n      r.json()   # This *call* raises an exception if JSON decoding fails\n\n* The ``Session`` API has changed. Sessions objects no longer take parameters.\n  ``Session`` is also now capitalized, but it can still be\n  instantiated with a lowercase ``session`` for backwards compatibility.\n\n"
+      }
+    ]
+  }
+]

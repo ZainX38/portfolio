@@ -1,0 +1,287 @@
+{
+  "method": "Manual source review by the evaluating assistant; no separate LLM judge. Labels assess delivered answers, with raw rejected output discussed separately.",
+  "deepseek-coder-v2:16b": {
+    "1": [
+      "Correct",
+      "Supported",
+      "Complete",
+      "__version__.py:12 assigns Apache-2.0; citation includes it. No issue."
+    ],
+    "2": [
+      "Correct",
+      "Supported",
+      "Complete",
+      "auth.py:111-113 sets Authorization to _basic_auth_str(self.username, self.password) and returns the request. Citation includes this implementation."
+    ],
+    "3": [
+      "Correct abstention",
+      "None (appropriate)",
+      "Complete",
+      "No supplied code establishes a historical production database password. Raw model abstains too; not merely hidden by postprocessing."
+    ],
+    "4": [
+      "Error; raw partly incorrect",
+      "Invalid IDs; intended ranges exist",
+      "No delivered answer",
+      "Generation emits full labels instead of chunk IDs; backend rejects. Raw answer omits Latin-1 and incorrectly implies bytes are converted to strings before encoding. auth.py:44-75 preserves bytes, Latin-1 encodes str, colon-joins bytes then Base64 encodes. Relevant full chunk ranked first but sent excerpt stops at 41; test assertion also cut off. Context loss + generation/format failure."
+    ],
+    "5": [
+      "Incorrect",
+      "Valid ranges; partial support",
+      "Incomplete",
+      "Claims client retries until authenticated and sends the challenge. Server sends challenge; auth.py:293-319 limits retries, parses challenge, consumes/closes response, copies request, prepares cookies, sends once and attaches history. Retrieved chunk has this code but sent auth.py:255-286 omits it. Cited test shows one successful exchange, not an unbounded loop. Context loss + unsupported generation."
+    ],
+    "6": [
+      "Partly incorrect",
+      "Valid ranges; partial support",
+      "Incomplete",
+      "Omits api.request creating/closing a temporary Session despite api.py:67-71 being supplied. Says get/api.request create while Session.request sends; all return a sent Response, and Session.request creates/prepares too (sessions.py:622-653). Unsupported chaining/state language; Session.request implementation absent from top five. Retrieval + generation."
+    ],
+    "7": [
+      "Partial",
+      "Valid ranges; partial support",
+      "Incomplete",
+      "Broad session-state/auth summary; no cookie merge order, request-over-session header/auth precedence or trust_env/netrc condition. sessions.py:524-553 and merge_setting:84-105 establish these. Correct Session.prepare_request code absent from all top five; retrieved models.prepare_auth explains URL auth but not session merging. Retrieval failure."
+    ],
+    "8": [
+      "Incorrect",
+      "Valid ranges; claim unsupported",
+      "Incomplete",
+      "Confuses session preparation with environment merging. sessions.py:635-651 calls prepare_request then merge_environment_settings then send; 845-868 handles trust_env, environment proxies, CA bundle precedence and merging. Implementation absent from top five; relevant advanced.rst environment discussion is in full first chunk but cut off. Retrieval + context loss + generation."
+    ],
+    "9": [
+      "Partial",
+      "Valid ranges; partial support",
+      "Incomplete",
+      "Adapter selection broadly right and redirect methods partially described; no adapter.send -> dispatch_hook -> cookie extraction -> resolve_redirects ordering, history handling or non-stream content consumption (sessions.py:777-829). Central Session.send body absent from top five; tail at rank five omitted from prompt. Retrieval + context loss."
+    ],
+    "10": [
+      "Incorrect",
+      "Valid ranges; claim contradicted",
+      "Incomplete",
+      "Reverses HTTP-to-HTTPS standard-port exception: sessions.py:158-184 strips changed hosts, preserves same-host standard-port upgrade/default-port equivalence, otherwise strips changed scheme/port. Supplied test covers HTTPS-to-HTTP downgrade, not upgrade. Actual predicate ranks 3/4 and is dropped; context loss + generation."
+    ],
+    "11": [
+      "Partial",
+      "Valid ranges; partial support",
+      "Incomplete",
+      "Only answers 301; omits requested 302/303, where non-HEAD becomes GET. HEAD remains HEAD in all three (sessions.py:378-392). sessions.py citation is rebuild_auth, not rebuild_method. Full rank-one test chunk covers more cases, cut away by context construction; 302 implementation not retrieved."
+    ],
+    "12": [
+      "Incorrect",
+      "Valid range; claim unsupported",
+      "Incomplete",
+      "False absence claim: says no bodies/cookies/rewinding handling for 307/308. sessions.py:249-284 preserves bodies/body headers for 307/308, rebuilds cookies, conditionally rewinds. Predicate/body code is absent from top five; supplied tests concern other statuses. Retrieval failure plus model violation of explicit no-absence-inference prompt."
+    ],
+    "13": [
+      "Incorrect",
+      "Valid ranges; claim unsupported",
+      "Incomplete",
+      "Uses tell() as streaming classifier and never explains JSON selection. models.py:588-603 chooses JSON when not data and json is not None; streaming uses iterable/type exclusions. tell() only records rewind position (611-620). JSON/stream predicate absent from top five; form code in first full chunk cut away. Retrieval + context loss + generation."
+    ],
+    "14": [
+      "Incorrect",
+      "Valid range; wrong method",
+      "Incomplete",
+      "Describes Response.text replacement decoding as invalid-JSON handling. Response.json (models.py:1101-1124) guesses UTF when eligible, falls back to self.text, and raises RequestsJSONDecodeError on parse failure. Full second chunk includes json but sent prefix ends at 1085 inside text. Context construction failure + model conflation."
+    ],
+    "15": [
+      "Incorrect",
+      "Valid range; claim unsupported",
+      "Incomplete",
+      "models.py:1160-1171 raises only for 400 <= status < 600; 3xx returns None. The cited quickstart.rst:397-435 only establishes the 200 case. Retrieved models.py chunk describes bool/ok, not raise_for_status. Unsupported generalization; actual method absent from top five."
+    ],
+    "16": [
+      "Misleading qualified abstention",
+      "Valid ranges; negative claim unsupported",
+      "Incomplete",
+      "Opening says HTTPAdapter.send does not convert timeout values or handle urllib3 exceptions, then qualifies that excerpts are insufficient. adapters.py:681-693 does convert tuple/scalar timeouts and preserves TimeoutSauce; 710-746 maps connection, retry, proxy, SSL, read-timeout and header exceptions. Neither final excerpt contains this body. Do not count as a clean abstention; no-citation instruction also violated."
+    ],
+    "17": [
+      "Correct abstention",
+      "None (appropriate)",
+      "Complete",
+      "Neither repository implementation nor supplied quickstart/test excerpts establish live application traffic or p99. Raw answer explicitly admits lack of evidence; no invented metric."
+    ],
+    "18": [
+      "Incorrect/unsupported",
+      "Valid ranges; partial support",
+      "Incomplete",
+      "authentication.rst:90-99 delegates OAuth2 documentation to external requests-oauthlib. This does not establish a core Requests refresh implementation or endpoint, nor the claim about a typical provider token endpoint. The latter uses outside knowledge; should state that the requested implementation and endpoint cannot be determined from this snapshot's excerpts."
+    ]
+  },
+  "qwen3.5:4b": {
+    "1": [
+      "Correct",
+      "Supported",
+      "Complete",
+      "__version__.py:12 and cited chunk assign Apache-2.0."
+    ],
+    "2": [
+      "Correct",
+      "Supported (one extra citation)",
+      "Complete",
+      "auth.py:111-113 directly supports helper invocation and header assignment. chunk-143 is unnecessary; chunk-144 contains the implementation."
+    ],
+    "3": [
+      "Correct abstention",
+      "None (appropriate)",
+      "Complete",
+      "Raw and delivered answers decline to invent the historical database password."
+    ],
+    "4": [
+      "Safe insufficient-context abstention",
+      "None (appropriate)",
+      "Incomplete",
+      "Raw answer says encoding is not established. auth.py:65-72 supplies Latin-1 and Base64 in the full source, but sent excerpt ends at line 41. Safe behavior, unsuccessful repository answer."
+    ],
+    "5": [
+      "Partial",
+      "Partial support",
+      "Incomplete",
+      "auth.py:282-284 and supplied digest test support the broad 4xx guard and resend behavior. Omits challenge parsing, retry bound, response close, cookies and history at 293-319, which context construction discards. Not a complete explanation."
+    ],
+    "6": [
+      "Partial; imprecise call chain",
+      "Partial support",
+      "Incomplete",
+      "api.py:70-71 creates the context-managed session; get at 87 delegates to request, not a separate with block. New-session behavior is indirectly true for get, but wording obscures delegation and omits Session.request preparation/environment/send at sessions.py:622-653."
+    ],
+    "7": [
+      "Incorrect",
+      "Claims unsupported",
+      "Incomplete",
+      "sessions.py:524-553 merges cookies and calls PreparedRequest.prepare directly. It does not call Request.prepare then Session.prepare_cookies. Cited models.py:678-701 belongs to PreparedRequest, not Session. Same retrieval failure as DeepSeek plus class/method conflation."
+    ],
+    "8": [
+      "Safe insufficient-context abstention",
+      "Valid but unnecessary citations",
+      "Incomplete",
+      "Correctly limits claim to supplied excerpts. Actual environment merging is sessions.py:641-651 and 845-868. Keeps citations despite explicit instruction to return none for insufficient evidence."
+    ],
+    "9": [
+      "Incorrect despite abstention preface",
+      "Partial support; contradiction",
+      "Incomplete",
+      "Claims redirect code turns 307/308 into GET; sessions.py:378-392 only changes 303/302 non-HEAD and 301 POST. This actual predicate is supplied. No Session.send sequencing explanation (777-829)."
+    ],
+    "10": [
+      "Partial",
+      "Supported host condition",
+      "Incomplete",
+      "Correctly reports host change from supplied rebuild_auth comment; avoids inventing port exceptions. sessions.py:158-184 establishes omitted same-host standard-port upgrade and default-port equivalence."
+    ],
+    "11": [
+      "Partial",
+      "Supported narrow test observation",
+      "Incomplete",
+      "Correctly describes the supplied 301 POST-to-GET assertion, and limits other claims. Full rebuild_method at sessions.py:378-392 covers all requested statuses and preserves HEAD. The excerpt includes a HEAD test name/setup but not its assertion."
+    ],
+    "12": [
+      "Safe insufficient-context abstention",
+      "Valid but unnecessary citations",
+      "Incomplete",
+      "Accurately says supplied excerpts omit 307/308 body/cookie/rewind behavior; source at sessions.py:249-284 establishes it. Keeps citations against abstention instruction."
+    ],
+    "13": [
+      "Safe insufficient-context abstention",
+      "Supported observations; unnecessary citations",
+      "Incomplete",
+      "Correctly describes tell() as rewind bookkeeping and files/streams exclusion from models.py:611-624. Missing JSON/stream selection at 588-603; no false tell()-based classifier. Insufficient answer retains citations."
+    ],
+    "14": [
+      "Incorrect",
+      "Wrong-method citation; unsupported exception claim",
+      "Incomplete",
+      "Confuses Response.text with json. models.py:1101-1124 guesses UTF then parses, falls back to self.text on UnicodeDecodeError, and wraps JSONDecodeError. text at 1080-1087 catches LookupError/TypeError rather than propagating them as claimed."
+    ],
+    "15": [
+      "Safe insufficient-context abstention",
+      "None (appropriate)",
+      "Incomplete",
+      "Raw answer declines to infer behavior from 200 example/bool documentation. Full source models.py:1160-1171 answers the question, so safe but unsuccessful retrieval."
+    ],
+    "16": [
+      "Safe insufficient-context abstention",
+      "None (appropriate)",
+      "Incomplete",
+      "No unsupported negative claim. Actual conversion and exception mapping at adapters.py:681-746 is not supplied."
+    ],
+    "17": [
+      "Correct abstention; protocol violation",
+      "Valid but unnecessary citations",
+      "Complete content",
+      "Correctly declines live traffic/p99 inference but returns quickstart/test citations. Semantically correct; fails explicit no-citations abstention contract."
+    ],
+    "18": [
+      "Unsupported categorical claim",
+      "Partial support only",
+      "Incomplete",
+      "authentication.rst:90-99 points readers to requests-oauthlib for OAuth2 flows; does not prove repository-wide absence or automatic refresh implementation. Should scope uncertainty and state that no refresh endpoint is established. No core OAuth2 refresh implementation was found in snapshot source inspection; absence still cannot be inferred from these excerpts alone."
+    ]
+  },
+  "additional_deepseek_diagnostics": {
+    "19": [
+      "Broadly correct conclusion; insufficient direct support",
+      "Valid ranges; indirect support only",
+      "Incomplete grounding",
+      "Correctly says 302 does not raise and describes client/server error range, but neither models.py:832-857 (bool/nonzero) nor status_codes.py:1-34 contains raise_for_status or its exact predicates. Actual models.py:1160-1171 uses 400 <= status < 600. Prompt specificity changes answer but does not recover direct method grounding."
+    ],
+    "20": [
+      "Incorrect",
+      "Wrong-method citation",
+      "Incomplete",
+      "Claims LookupError/TypeError become RequestsJSONDecodeError. Actual models.py:1101-1124 wraps JSONDecodeError and handles UnicodeDecodeError fallback; text catches LookupError/TypeError. Retrieved chunk contains json later, but prompt prefix again stops inside text at 1084."
+    ],
+    "21": [
+      "Incorrect and internally contradictory",
+      "Valid ranges; predicate absent",
+      "Incomplete",
+      "Says should_strip_auth returns True for same-host HTTP:80 -> HTTPS:443, then says auth should not be stripped. Actual sessions.py:164-170 returns False. Supplied rebuild_auth/downgrade-test excerpts do not establish the upgrade exception. More precise question does not resolve retrieval/context and grounding failures."
+    ]
+  },
+  "rubric": {
+    "strict_success": "Complete correct answer with supplied claim support, or correct abstention on unanswerable question with no citations.",
+    "semantic_success": "Complete correct answer or appropriate unanswerable-question abstention; separately flag citation protocol violations.",
+    "answerable_ids": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16
+    ],
+    "unanswerable_ids": [
+      3,
+      17,
+      18
+    ],
+    "deepseek_strict_success_ids": [
+      1,
+      2,
+      3,
+      17
+    ],
+    "qwen_strict_success_ids": [
+      1,
+      2,
+      3
+    ],
+    "qwen_semantic_success_ids": [
+      1,
+      2,
+      3,
+      17
+    ],
+    "note": "Manual judgments, not an independent or blinded judge; partial/abstained answerable questions are not full successes. Unsupported OAuth2 claims are not rewarded just because plausible."
+  }
+}

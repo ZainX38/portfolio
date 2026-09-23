@@ -1,0 +1,20 @@
+{
+  "description": "Source regions selected from the pinned Requests implementation before stage results were reviewed. Coverage measures visibility, not semantic correctness. Paths relative to src/requests unless explicitly docs/.",
+  "cases": {
+    "1": [["__version__.py", 12, 12]],
+    "2": [["auth.py", 111, 113]],
+    "4": [["auth.py", 65, 73]],
+    "5": [["auth.py", 293, 319]],
+    "6": [["api.py", 70, 71], ["api.py", 87, 87], ["sessions.py", 622, 653]],
+    "7": [["sessions.py", 524, 553], ["sessions.py", 84, 105]],
+    "8": [["sessions.py", 641, 651], ["sessions.py", 845, 868]],
+    "9": [["sessions.py", 777, 829]],
+    "10": [["sessions.py", 158, 184]],
+    "11": [["sessions.py", 378, 392]],
+    "12": [["sessions.py", 249, 284]],
+    "13": [["models.py", 588, 650]],
+    "14": [["models.py", 1101, 1124]],
+    "15": [["models.py", 1160, 1171]],
+    "16": [["adapters.py", 681, 746]]
+  }
+}

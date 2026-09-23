@@ -1,0 +1,27 @@
+{
+  "01-retrieval": {
+    "records": 36,
+    "expected": 36,
+    "complete": true,
+    "errors": 1,
+    "provenance_and_source_checks": "passed",
+    "identical_model_prompt_pairs": 18
+  },
+  "02-context": {
+    "records": 36,
+    "expected": 36,
+    "complete": true,
+    "errors": 0,
+    "provenance_and_source_checks": "passed",
+    "identical_model_prompt_pairs": 18
+  },
+  "03-grounding": {
+    "records": 36,
+    "expected": 36,
+    "complete": true,
+    "errors": 16,
+    "provenance_and_source_checks": "passed",
+    "identical_model_prompt_pairs": 18,
+    "unchanged_context_comparisons": 36
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "method": "Manual source review by the evaluating assistant; no separate LLM judge. Labels assess delivered answers, with raw rejected output discussed separately.",
+  "deepseek-coder-v2:16b": {
+    "1": [
+      "Correct",
+      "Supported",
+      "Complete",
+      "__version__.py:12 assigns Apache-2.0; citation includes it. No issue."
+    ],
+    "2": [
+      "Correct",
+      "Supported",
+      "Complete",
+      "auth.py:111-113 sets Authorization to _basic_auth_str(self.username, self.password) and returns the request. Citation includes this implementation."
+    ],
+    "3": [
+      "Correct abstention",
+      "None (appropriate)",
+      "Complete",
+      "No supplied code establishes a historical production database password. Raw model abstains too; not merely hidden by postprocessing."
+    ],
+    "4": [
+      "Error; raw partly incorrect",
+      "Invalid IDs; intended ranges exist",
+      "No delivered answer",
+      "Generation emits full labels instead of chunk IDs; backend rejects. Raw answer omits Latin-1 and incorrectly implies bytes are converted to strings before encoding. auth.py:44-75 preserves bytes, Latin-1 encodes str, colon-joins bytes then Base64 encodes. Relevant full chunk ranked first but sent excerpt stops at 41; test assertion also cut off. Context loss + generation/format failure."
+    ],
+    "5": [
+      "Incorrect",
+      "Valid ranges; partial support",
+      "Incomplete",
+      "Claims client retries until authenticated and sends the challenge. Server sends challenge; auth.py:293-319 limits retries, parses challenge, consumes/closes response, copies request, prepares cookies, sends once and attaches history. Retrieved chunk has this code but sent auth.py:255-286 omits it. Cited test shows one successful exchange, not an unbounded loop. Context loss + unsupported generation."
+    ],
+    "6": [
+      "Partly incorrect",
+      "Valid ranges; partial support",
+      "Incomplete",
+      "Omits api.request creating/closing a temporary Session despite api.py:67-71 being supplied. Says get/api.request create while Session.request sends; all return a sent Response, and Session.request creates/prepares too (sessions.py:622-653). Unsupported chaining/state language; Session.request implementation absent from top five. Retrieval + generation."
+    ],
+    "7": [
+      "Partial",
+      "Valid ranges; partial support",
+      "Incomplete",
+      "Broad session-state/auth summary; no cookie merge order, request-over-session header/auth precedence or trust_env/netrc condition. sessions.py:524-553 and merge_setting:84-105 establish these. Correct Session.prepare_request code absent from all top five; retrieved models.prepare_auth explains URL auth but not session merging. Retrieval failure."
+    ],
+    "8": [
+      "Incorrect",
+      "Valid ranges; claim unsupported",
+      "Incomplete",
+      "Confuses session preparation with environment merging. sessions.py:635-651 calls prepare_request then merge_environment_settings then send; 845-868 handles trust_env, environment proxies, CA bundle precedence and merging. Implementation absent from top five; relevant advanced.rst environment discussion is in full first chunk but cut off. Retrieval + context loss + generation."
+    ],
+    "9": [
+      "Partial",
+      "Valid ranges; partial support",
+      "Incomplete",
+      "Adapter selection broadly right and redirect methods partially described; no adapter.send -> dispatch_hook -> cookie extraction -> resolve_redirects ordering, history handling or non-stream content consumption (sessions.py:777-829). Central Session.send body absent from top five; tail at rank five omitted from prompt. Retrieval + context loss."
+    ],
+    "10": [
+      "Incorrect",
+      "Valid ranges; claim contradicted",
+      "Incomplete",
+      "Reverses HTTP-to-HTTPS standard-port exception: sessions.py:158-184 strips changed hosts, preserves same-host standard-port upgrade/default-port equivalence, otherwise strips changed scheme/port. Supplied test covers HTTPS-to-HTTP downgrade, not upgrade. Actual predicate ranks 3/4 and is dropped; context loss + generation."
+    ],
+    "11": [
+      "Partial",
+      "Valid ranges; partial support",
+      "Incomplete",
+      "Only answers 301; omits requested 302/303, where non-HEAD becomes GET. HEAD remains HEAD in all three (sessions.py:378-392). sessions.py citation is rebuild_auth, not rebuild_method. Full rank-one test chunk covers more cases, cut away by context construction; 302 implementation not retrieved."
+    ],
+    "12": [
+      "Incorrect",
+      "Valid range; claim unsupported",
+      "Incomplete",
+      "False absence claim: says no bodies/cookies/rewinding handling for 307/308. sessions.py:249-284 preserves bodies/body headers for 307/308, rebuilds cookies, conditionally rewinds. Predicate/body code is absent from top five; supplied tests concern other statuses. Retrieval failure plus model violation of explicit no-absence-inference prompt."
+    ],
+    "13": [
+      "Incorrect",
+      "Valid ranges; claim unsupported",
+      "Incomplete",
+      "Uses tell() as streaming classifier and never explains JSON selection. models.py:588-603 chooses JSON when not data and json is not None; streaming uses iterable/type exclusions. tell() only records rewind position (611-620). JSON/stream predicate absent from top five; form code in first full chunk cut away. Retrieval + context loss + generation."
+    ],
+    "14": [
+      "Incorrect",
+      "Valid range; wrong method",
+      "Incomplete",
+      "Describes Response.text replacement decoding as invalid-JSON handling. Response.json (models.py:1101-1124) guesses UTF when eligible, falls back to self.text, and raises RequestsJSONDecodeError on parse failure. Full second chunk includes json but sent prefix ends at 1085 inside text. Context construction failure + model conflation."
+    ]
+  },
+  "qwen3.5:4b": {}
+}

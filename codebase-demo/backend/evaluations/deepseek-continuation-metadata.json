@@ -1,0 +1,161 @@
+{
+  "time_utc": "2026-09-23T00:10:28.621749+00:00",
+  "model": "deepseek-coder-v2:16b",
+  "tags": {
+    "models": [
+      {
+        "name": "deepseek-coder-v2:16b",
+        "model": "deepseek-coder-v2:16b",
+        "modified_at": "2026-09-22T20:24:13.3522237+01:00",
+        "size": 8905126121,
+        "digest": "63fb193b3a9b4322a18e8c6b250ca2e70a5ff531e962dbf95ba089b2566f2fa5",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "deepseek2",
+          "families": [
+            "deepseek2"
+          ],
+          "parameter_size": "15.7B",
+          "quantization_level": "Q4_0",
+          "context_length": 163840,
+          "embedding_length": 2048
+        },
+        "capabilities": [
+          "completion",
+          "insert"
+        ]
+      },
+      {
+        "name": "qwen3.5:4b",
+        "model": "qwen3.5:4b",
+        "modified_at": "2026-09-21T23:50:17.6705486+01:00",
+        "size": 3389983735,
+        "digest": "2a654d98e6fba55d452b7043684e9b57a947e393bbffa62485a7aac05ee4eefd",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen35",
+          "families": [
+            "qwen35"
+          ],
+          "parameter_size": "4.7B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 262144,
+          "embedding_length": 2560
+        },
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ]
+      },
+      {
+        "name": "qwen3-embedding:0.6b",
+        "model": "qwen3-embedding:0.6b",
+        "modified_at": "2026-09-21T23:49:49.9678408+01:00",
+        "size": 639150858,
+        "digest": "ac6da0dfba84a81fdbfbaf330198c33cd77c4cdfc53e8bc50eb581914a15621d",
+        "details": {
+          "parent_model": "/Users/ollama/.ollama/models/blobs/sha256-06507c7b42688469c4e7298b0a1e16deff06caf291cf0a5b278c308249c3e439",
+          "format": "gguf",
+          "family": "qwen3",
+          "families": [
+            "qwen3"
+          ],
+          "parameter_size": "595.78M",
+          "quantization_level": "Q8_0",
+          "context_length": 32768,
+          "embedding_length": 1024
+        },
+        "capabilities": [
+          "tools",
+          "thinking",
+          "embedding"
+        ]
+      },
+      {
+        "name": "qwen2.5-coder:14b",
+        "model": "qwen2.5-coder:14b",
+        "modified_at": "2026-07-10T19:54:26.0801836+01:00",
+        "size": 8988124298,
+        "digest": "9ec8897f747e246e970bc5cfdda85d22f1123dc2e3d34978a010a75968716849",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen2",
+          "families": [
+            "qwen2"
+          ],
+          "parameter_size": "14.8B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 32768,
+          "embedding_length": 5120
+        },
+        "capabilities": [
+          "completion",
+          "tools",
+          "insert"
+        ]
+      },
+      {
+        "name": "mario:latest",
+        "model": "mario:latest",
+        "modified_at": "2026-07-06T18:30:25.6141074+01:00",
+        "size": 1929912728,
+        "digest": "0533bfb1ed89411440cf8628d818477dd684c3e9de2e94ac2fed17423123d620",
+        "details": {
+          "parent_model": "qwen2.5-coder:3b",
+          "format": "gguf",
+          "family": "qwen2",
+          "families": [
+            "qwen2"
+          ],
+          "parameter_size": "3.1B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 32768,
+          "embedding_length": 2048
+        },
+        "capabilities": [
+          "completion",
+          "tools",
+          "insert"
+        ]
+      },
+      {
+        "name": "qwen2.5-coder:3b",
+        "model": "qwen2.5-coder:3b",
+        "modified_at": "2026-06-16T17:11:19.3069324+01:00",
+        "size": 1929912626,
+        "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen2",
+          "families": [
+            "qwen2"
+          ],
+          "parameter_size": "3.1B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 32768,
+          "embedding_length": 2048
+        },
+        "capabilities": [
+          "completion",
+          "tools",
+          "insert"
+        ]
+      }
+    ]
+  },
+  "original_metadata_sha256": "9c5bdcb31fbabb6bfc6234a96ef5befb1ddf187cfad02db6c7209db8fd31f7d4",
+  "bundle_sha256": "aa09b79d549d182d60da49f3946202c3aa4b039fa32750997fa06f4804e5ed95",
+  "original_results_sha256": "a51256f68dccaccd1a6dc0852878a522702a155a6698b442a09c676168454cff",
+  "implementation_and_env_match_original": true,
+  "questions": {
+    "19": "In src/requests/models.py, what status-code conditions inside Response.raise_for_status cause HTTPError? Does a 302 cause it?",
+    "20": "In src/requests/models.py, how does Response.json use guess_json_utf and RequestsJSONDecodeError?",
+    "21": "In src/requests/sessions.py, what does should_strip_auth return for a same-host http port 80 to https port 443 redirect, and why?"
+  }
+}

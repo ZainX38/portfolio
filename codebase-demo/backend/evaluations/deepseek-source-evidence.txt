@@ -1,0 +1,962 @@
+
+FILE src/requests/auth.py
+34: def _basic_auth_str(username: bytes | str, password: bytes | str) -> str:
+35:     """Returns a Basic Auth string."""
+36: 
+37:     # "I want us to put a big-ol' comment on top of it that
+38:     # says that this behaviour is dumb but we need to preserve
+39:     # it because people are relying on it."
+40:     #    - Lukasa
+41:     #
+42:     # These are here solely to maintain backwards compatibility
+43:     # for things like ints. This will be removed in 3.0.0.
+44:     if not isinstance(username, basestring):  # runtime guard for non-str/bytes
+45:         warnings.warn(
+46:             "Non-string usernames will no longer be supported in Requests "
+47:             f"3.0.0. Please convert the object you've passed in ({username!r}) to "
+48:             "a string or bytes object in the near future to avoid "
+49:             "problems.",
+50:             category=DeprecationWarning,
+51:         )
+52:         username = str(username)
+53: 
+54:     if not isinstance(password, basestring):  # runtime guard for non-str/bytes
+55:         warnings.warn(
+56:             "Non-string passwords will no longer be supported in Requests "
+57:             f"3.0.0. Please convert the object you've passed in ({type(password)!r}) to "
+58:             "a string or bytes object in the near future to avoid "
+59:             "problems.",
+60:             category=DeprecationWarning,
+61:         )
+62:         password = str(password)
+63:     # -- End Removal --
+64: 
+65:     if isinstance(username, str):
+66:         username = username.encode("latin1")
+67: 
+68:     if isinstance(password, str):
+69:         password = password.encode("latin1")
+70: 
+71:     authstr = "Basic " + to_native_string(
+72:         b64encode(b":".join((username, password))).strip()
+73:     )
+74: 
+75:     return authstr
+81:     def __call__(self, r: PreparedRequest) -> PreparedRequest:
+82:         raise NotImplementedError("Auth hooks must be callable.")
+111:     def __call__(self, r: PreparedRequest) -> PreparedRequest:
+112:         r.headers["Authorization"] = _basic_auth_str(self.username, self.password)
+113:         return r
+119:     def __call__(self, r: PreparedRequest) -> PreparedRequest:
+120:         r.headers["Proxy-Authorization"] = _basic_auth_str(self.username, self.password)
+121:         return r
+273:     def handle_401(self, r: Response, **kwargs: Any) -> Response:
+274:         """
+275:         Takes the given response and tries digest-auth, if needed.
+276: 
+277:         :rtype: requests.Response
+278:         """
+279: 
+280:         # If response is not 4xx, do not auth
+281:         # See https://github.com/psf/requests/issues/3772
+282:         if not 400 <= r.status_code < 500:
+283:             self._thread_local.num_401_calls = 1
+284:             return r
+285: 
+286:         if self._thread_local.pos is not None:
+287:             # Rewind the file position indicator of the body to where
+288:             # it was to resend the request.
+289:             if (seek := getattr(r.request.body, "seek", None)) is not None:
+290:                 seek(self._thread_local.pos)
+291:         s_auth = r.headers.get("www-authenticate", "")
+292: 
+293:         if "digest" in s_auth.lower() and self._thread_local.num_401_calls < 2:
+294:             self._thread_local.num_401_calls += 1
+295:             pat = re.compile(r"digest ", flags=re.IGNORECASE)
+296:             self._thread_local.chal = parse_dict_header(pat.sub("", s_auth, count=1))
+297: 
+298:             # Consume content and release the original connection
+299:             # to allow our new request to reuse the same one.
+300:             r.content
+301:             r.close()
+302:             prep = r.request.copy()
+303:             cookie_jar = cast("CookieJar", prep._cookies)
+304:             extract_cookies_to_jar(cookie_jar, r.request, r.raw)
+305:             prep.prepare_cookies(cookie_jar)
+306: 
+307:             _digest_auth = self.build_digest_header(
+308:                 cast(str, prep.method), cast(str, prep.url)
+309:             )
+310:             if _digest_auth:
+311:                 prep.headers["Authorization"] = _digest_auth
+312:             _r = r.connection.send(prep, **kwargs)
+313:             _r.history.append(r)
+314:             _r.request = prep
+315: 
+316:             return _r
+317: 
+318:         self._thread_local.num_401_calls = 1
+319:         return r
+321:     def __call__(self, r: PreparedRequest) -> PreparedRequest:
+322:         # Initialize per-thread state, if needed
+323:         self.init_per_thread_state()
+324:         # If we have a saved nonce, skip the 401
+325:         if self._thread_local.last_nonce:
+326:             _digest_auth = self.build_digest_header(
+327:                 cast(str, r.method), cast(str, r.url)
+328:             )
+329:             if _digest_auth:
+330:                 r.headers["Authorization"] = _digest_auth
+331:         if (tell := getattr(r.body, "tell", None)) is not None:
+332:             self._thread_local.pos = tell()
+333:         else:
+334:             # In the case of HTTPDigestAuth being reused and the body of
+335:             # the previous request was a file-like object, pos has the
+336:             # file position of the previous body. Ensure it's set to
+337:             # None.
+338:             self._thread_local.pos = None
+339:         r.register_hook("response", self.handle_401)
+340:         r.register_hook("response", self.handle_redirect)
+341:         self._thread_local.num_401_calls = 1
+342: 
+343:         return r
+
+FILE src/requests/api.py
+24: def request(
+25:     method: str, url: _t.UriType, **kwargs: Unpack[_t.RequestKwargs]
+26: ) -> Response:
+27:     """Constructs and sends a :class:`Request <Request>`.
+28: 
+29:     :param method: method for the new :class:`Request` object: ``GET``, ``OPTIONS``, ``HEAD``, ``POST``, ``PUT``, ``PATCH``, or ``DELETE``.
+30:     :param url: URL for the new :class:`Request` object.
+31:     :param params: (optional) Dictionary, list of tuples or bytes to send
+32:         in the query string for the :class:`Request`.
+33:     :param data: (optional) Dictionary, list of tuples, bytes, or file-like
+34:         object to send in the body of the :class:`Request`.
+35:     :param json: (optional) A JSON serializable Python object to send in the body of the :class:`Request`.
+36:     :param headers: (optional) Dictionary of HTTP Headers to send with the :class:`Request`.
+37:     :param cookies: (optional) Dict or CookieJar object to send with the :class:`Request`.
+38:     :param files: (optional) Dictionary of ``'name': file-like-objects`` (or ``{'name': file-tuple}``) for multipart encoding upload.
+39:         ``file-tuple`` can be a 2-tuple ``('filename', fileobj)``, 3-tuple ``('filename', fileobj, 'content_type')``
+40:         or a 4-tuple ``('filename', fileobj, 'content_type', custom_headers)``, where ``'content_type'`` is a string
+41:         defining the content type of the given file and ``custom_headers`` a dict-like object containing additional headers
+42:         to add for the file.
+43:     :param auth: (optional) Auth tuple to enable Basic/Digest/Custom HTTP Auth.
+44:     :param timeout: (optional) How many seconds to wait for the server to send data
+45:         before giving up, as a float, or a :ref:`(connect timeout, read
+46:         timeout) <timeouts>` tuple.
+47:     :type timeout: float or tuple
+48:     :param allow_redirects: (optional) Boolean. Enable/disable GET/OPTIONS/POST/PUT/PATCH/DELETE/HEAD redirection. Defaults to ``True``.
+49:     :type allow_redirects: bool
+50:     :param proxies: (optional) Dictionary mapping protocol to the URL of the proxy.
+51:     :param verify: (optional) Either a boolean, in which case it controls whether we verify
+52:             the server's TLS certificate, or a string, in which case it must be a path
+53:             to a CA bundle to use. Defaults to ``True``.
+54:     :param stream: (optional) if ``False``, the response content will be immediately downloaded.
+55:     :param cert: (optional) if String, path to ssl client cert file (.pem). If Tuple, ('cert', 'key') pair.
+56:     :return: :class:`Response <Response>` object
+57:     :rtype: requests.Response
+58: 
+59:     Usage::
+60: 
+61:       >>> import requests
+62:       >>> req = requests.request('GET', 'https://httpbin.org/get')
+63:       >>> req
+64:       <Response [200]>
+65:     """
+66: 
+67:     # By using the 'with' statement we are sure the session is closed, thus we
+68:     # avoid leaving sockets open which can trigger a ResourceWarning in some
+69:     # cases, and look like a memory leak in others.
+70:     with sessions.Session() as session:
+71:         return session.request(method=method, url=url, **kwargs)
+74: def get(
+75:     url: _t.UriType, params: _t.ParamsType = None, **kwargs: Unpack[_t.GetKwargs]
+76: ) -> Response:
+77:     r"""Sends a GET request.
+78: 
+79:     :param url: URL for the new :class:`Request` object.
+80:     :param params: (optional) Dictionary, list of tuples or bytes to send
+81:         in the query string for the :class:`Request`.
+82:     :param \*\*kwargs: Optional arguments that ``request`` takes.
+83:     :return: :class:`Response <Response>` object
+84:     :rtype: requests.Response
+85:     """
+86: 
+87:     return request("get", url, params=params, **kwargs)
+
+FILE src/requests/sessions.py
+132:     def send(self, request: PreparedRequest, **kwargs: Any) -> Response: ...
+154:     def should_strip_auth(self, old_url: str, new_url: str) -> bool:
+155:         """Decide whether Authorization header should be removed when redirecting"""
+156:         old_parsed = urlparse(old_url)
+157:         new_parsed = urlparse(new_url)
+158:         if old_parsed.hostname != new_parsed.hostname:
+159:             return True
+160:         # Special case: allow http -> https redirect when using the standard
+161:         # ports. This isn't specified by RFC 7235, but is kept to avoid
+162:         # breaking backwards compatibility with older versions of requests
+163:         # that allowed any redirects on the same host.
+164:         if (
+165:             old_parsed.scheme == "http"
+166:             and old_parsed.port in (80, None)
+167:             and new_parsed.scheme == "https"
+168:             and new_parsed.port in (443, None)
+169:         ):
+170:             return False
+171: 
+172:         # Handle default port usage corresponding to scheme.
+173:         changed_port = old_parsed.port != new_parsed.port
+174:         changed_scheme = old_parsed.scheme != new_parsed.scheme
+175:         default_port = (DEFAULT_PORTS.get(old_parsed.scheme, None), None)
+176:         if (
+177:             not changed_scheme
+178:             and old_parsed.port in default_port
+179:             and new_parsed.port in default_port
+180:         ):
+181:             return False
+182: 
+183:         # Standard case: root URI must match
+184:         return changed_port or changed_scheme
+186:     def resolve_redirects(
+187:         self,
+188:         resp: Response,
+189:         req: PreparedRequest,
+190:         stream: bool = False,
+191:         timeout: _t.TimeoutType = None,
+192:         verify: _t.VerifyType = True,
+193:         cert: _t.CertType = None,
+194:         proxies: dict[str, str] | None = None,
+195:         yield_requests: bool = False,
+196:         **adapter_kwargs: Any,
+197:     ) -> Generator[Response, None, None]:
+198:         """Receives a Response. Returns a generator of Responses or Requests."""
+199: 
+200:         hist: list[Response] = []  # keep track of history
+201: 
+202:         url = self.get_redirect_target(resp)
+203:         previous_fragment = urlparse(req.url).fragment
+204:         while url:
+205:             prepared_request = req.copy()
+206: 
+207:             # Update history and keep track of redirects.
+208:             resp.history = hist[:]
+209:             hist.append(resp)
+210: 
+211:             try:
+212:                 resp.content  # Consume socket so it can be released
+213:             except (ChunkedEncodingError, ContentDecodingError, RuntimeError):
+214:                 resp.raw.read(decode_content=False)
+215: 
+216:             if len(resp.history) >= self.max_redirects:
+217:                 raise TooManyRedirects(
+218:                     f"Exceeded {self.max_redirects} redirects.", response=resp
+219:                 )
+220: 
+221:             # Release the connection back into the pool.
+222:             resp.close()
+223: 
+224:             # Handle redirection without scheme (see: RFC 1808 Section 4)
+225:             if url.startswith("//"):
+226:                 parsed_rurl = urlparse(resp.url)
+227:                 url = ":".join([to_native_string(parsed_rurl.scheme), url])
+228: 
+229:             # Normalize url case and attach previous fragment if needed (RFC 7231 7.1.2)
+230:             parsed = urlparse(url)
+231:             if parsed.fragment == "" and previous_fragment:
+232:                 parsed = parsed._replace(fragment=previous_fragment)
+233:             elif parsed.fragment:
+234:                 previous_fragment = parsed.fragment
+235:             url = parsed.geturl()
+236: 
+237:             # Facilitate relative 'location' headers, as allowed by RFC 7231.
+238:             # (e.g. '/path/to/resource' instead of 'http://domain.tld/path/to/resource')
+239:             # Compliant with RFC3986, we percent encode the url.
+240:             if not parsed.netloc:
+241:                 url = urljoin(resp.url, requote_uri(url))
+242:             else:
+243:                 url = requote_uri(url)
+244: 
+245:             prepared_request.url = to_native_string(url)
+246: 
+247:             self.rebuild_method(prepared_request, resp)
+248: 
+249:             # https://github.com/psf/requests/issues/1084
+250:             if resp.status_code not in (
+251:                 codes.temporary_redirect,
+252:                 codes.permanent_redirect,
+253:             ):
+254:                 # https://github.com/psf/requests/issues/3490
+255:                 purged_headers = ("Content-Length", "Content-Type", "Transfer-Encoding")
+256:                 for header in purged_headers:
+257:                     prepared_request.headers.pop(header, None)
+258:                 prepared_request.body = None
+259: 
+260:             headers = prepared_request.headers
+261:             headers.pop("Cookie", None)
+262: 
+263:             # Extract any cookies sent on the response to the cookiejar
+264:             # in the new request. Because we've mutated our copied prepared
+265:             # request, use the old one that we haven't yet touched.
+266:             cookie_jar = cast("CookieJar", prepared_request._cookies)
+267:             extract_cookies_to_jar(cookie_jar, req, resp.raw)
+268:             merge_cookies(cookie_jar, self.cookies)
+269:             prepared_request.prepare_cookies(cookie_jar)
+270: 
+271:             # Rebuild auth and proxy information.
+272:             proxies = self.rebuild_proxies(prepared_request, proxies)
+273:             self.rebuild_auth(prepared_request, resp)
+274: 
+275:             # A failed tell() sets `_body_position` to `object()`. This non-None
+276:             # value ensures `rewindable` will be True, allowing us to raise an
+277:             # UnrewindableBodyError, instead of hanging the connection.
+278:             rewindable = prepared_request._body_position is not None and (
+279:                 "Content-Length" in headers or "Transfer-Encoding" in headers
+280:             )
+281: 
+282:             # Attempt to rewind consumed file-like object.
+283:             if rewindable:
+284:                 rewind_body(prepared_request)
+285: 
+286:             # Override the original request.
+287:             req = prepared_request
+288: 
+289:             if yield_requests:
+290:                 yield req  # type: ignore[misc]  # Internal use only, returns PreparedRequest
+291:             else:
+292:                 resp = self.send(
+293:                     req,
+294:                     stream=stream,
+295:                     timeout=timeout,
+296:                     verify=verify,
+297:                     cert=cert,
+298:                     proxies=proxies,
+299:                     allow_redirects=False,
+300:                     **adapter_kwargs,
+301:                 )
+302: 
+303:                 extract_cookies_to_jar(self.cookies, prepared_request, resp.raw)
+304: 
+305:                 # extract redirect url, if any, for the next loop
+306:                 url = self.get_redirect_target(resp)
+307:                 yield resp
+309:     def rebuild_auth(
+310:         self, prepared_request: PreparedRequest, response: Response
+311:     ) -> None:
+312:         """When being redirected we may want to strip authentication from the
+313:         request to avoid leaking credentials. This method intelligently removes
+314:         and reapplies authentication where possible to avoid credential loss.
+315:         """
+316:         original_request = response.request
+317:         assert _is_prepared(original_request)
+318:         assert _is_prepared(prepared_request)
+319: 
+320:         headers = prepared_request.headers
+321:         original_url = original_request.url
+322:         url = prepared_request.url
+323: 
+324:         if "Authorization" in headers and self.should_strip_auth(original_url, url):
+325:             # If we get redirected to a new host, we should strip out any
+326:             # authentication headers.
+327:             del headers["Authorization"]
+328: 
+329:         # .netrc might have more auth for us on our new host.
+330:         new_auth = get_netrc_auth(url) if self.trust_env else None
+331:         if new_auth is not None:
+332:             prepared_request.prepare_auth(new_auth)
+370:     def rebuild_method(
+371:         self, prepared_request: PreparedRequest, response: Response
+372:     ) -> None:
+373:         """When being redirected we may want to change the method of the request
+374:         based on certain specs or browser behavior.
+375:         """
+376:         method = prepared_request.method
+377: 
+378:         # https://tools.ietf.org/html/rfc7231#section-6.4.4
+379:         if response.status_code == codes.see_other and method != "HEAD":
+380:             method = "GET"
+381: 
+382:         # Do what the browsers do, despite standards...
+383:         # First, turn 302s into GETs.
+384:         if response.status_code == codes.found and method != "HEAD":
+385:             method = "GET"
+386: 
+387:         # Second, if a POST is responded to with a 301, turn it into a GET.
+388:         # This bizarre behaviour is explained in Issue 1704.
+389:         if response.status_code == codes.moved and method == "POST":
+390:             method = "GET"
+391: 
+392:         prepared_request.method = method
+511:     def prepare_request(self, request: Request) -> PreparedRequest:
+512:         """Constructs a :class:`PreparedRequest <PreparedRequest>` for
+513:         transmission and returns it. The :class:`PreparedRequest` has settings
+514:         merged from the :class:`Request <Request>` instance and those of the
+515:         :class:`Session`.
+516: 
+517:         :param request: :class:`Request` instance to prepare with this
+518:             session's settings.
+519:         :rtype: requests.PreparedRequest
+520:         """
+521:         url = cast("_t.UriType", request.url)
+522:         method = cast(str, request.method)
+523: 
+524:         cookies = request.cookies or {}
+525: 
+526:         # Bootstrap CookieJar.
+527:         if not isinstance(cookies, cookielib.CookieJar):
+528:             cookies = cookiejar_from_dict(cookies)
+529: 
+530:         # Merge with session cookies
+531:         merged_cookies = merge_cookies(
+532:             merge_cookies(RequestsCookieJar(), self.cookies), cookies
+533:         )
+534: 
+535:         # Set environment's basic authentication if not explicitly set.
+536:         auth = request.auth
+537:         if self.trust_env and not auth and not self.auth:
+538:             auth = get_netrc_auth(url)
+539: 
+540:         p = PreparedRequest()
+541:         p.prepare(
+542:             method=method.upper(),
+543:             url=url,
+544:             files=request.files,
+545:             data=request.data,
+546:             json=request.json,
+547:             headers=merge_setting(
+548:                 request.headers, self.headers, dict_class=CaseInsensitiveDict
+549:             ),
+550:             params=merge_setting(request.params, self.params),
+551:             auth=merge_setting(auth, self.auth),
+552:             cookies=merged_cookies,
+553:             hooks=merge_hooks(request.hooks, self.hooks),
+554:         )
+555:         return p
+557:     def request(
+558:         self,
+559:         method: str,
+560:         url: _t.UriType,
+561:         params: _t.ParamsType = None,
+562:         data: _t.DataType = None,
+563:         headers: _t.HeadersType = None,
+564:         cookies: RequestsCookieJar | CookieJar | dict[str, str] | None = None,
+565:         files: _t.FilesType = None,
+566:         auth: _t.AuthType = None,
+567:         timeout: _t.TimeoutType = None,
+568:         allow_redirects: bool = True,
+569:         proxies: dict[str, str] | None = None,
+570:         hooks: _t.HooksInputType | None = None,
+571:         stream: bool | None = None,
+572:         verify: _t.VerifyType | None = None,
+573:         cert: _t.CertType = None,
+574:         json: _t.JsonType = None,
+575:     ) -> Response:
+576:         """Constructs a :class:`Request <Request>`, prepares it and sends it.
+577:         Returns :class:`Response <Response>` object.
+578: 
+579:         :param method: method for the new :class:`Request` object.
+580:         :param url: URL for the new :class:`Request` object.
+581:         :param params: (optional) Dictionary or bytes to be sent in the query
+582:             string for the :class:`Request`.
+583:         :param data: (optional) Dictionary, list of tuples, bytes, or file-like
+584:             object to send in the body of the :class:`Request`.
+585:         :param json: (optional) json to send in the body of the
+586:             :class:`Request`.
+587:         :param headers: (optional) Dictionary of HTTP Headers to send with the
+588:             :class:`Request`.
+589:         :param cookies: (optional) Dict or CookieJar object to send with the
+590:             :class:`Request`.
+591:         :param files: (optional) Dictionary of ``'filename': file-like-objects``
+592:             for multipart encoding upload.
+593:         :param auth: (optional) Auth tuple or callable to enable
+594:             Basic/Digest/Custom HTTP Auth.
+595:         :param timeout: (optional) How many seconds to wait for the server to send
+596:             data before giving up, as a float, or a :ref:`(connect timeout,
+597:             read timeout) <timeouts>` tuple.
+598:         :type timeout: float or tuple
+599:         :param allow_redirects: (optional) Set to True by default.
+600:         :type allow_redirects: bool
+601:         :param proxies: (optional) Dictionary mapping protocol or protocol and
+602:             hostname to the URL of the proxy.
+603:         :param hooks: (optional) Dictionary mapping hook name to one event or
+604:             list of events, event must be callable.
+605:         :param stream: (optional) whether to immediately download the response
+606:             content. Defaults to ``False``.
+607:         :param verify: (optional) Either a boolean, in which case it controls whether we verify
+608:             the server's TLS certificate, or a string, in which case it must be a path
+609:             to a CA bundle to use. Defaults to ``True``. When set to
+610:             ``False``, requests will accept any TLS certificate presented by
+611:             the server, and will ignore hostname mismatches and/or expired
+612:             certificates, which will make your application vulnerable to
+613:             man-in-the-middle (MitM) attacks. Setting verify to ``False``
+614:             may be useful during local development or testing.
+615:         :param cert: (optional) if String, path to ssl client cert file (.pem).
+616:             If Tuple, ('cert', 'key') pair.
+617:         :rtype: requests.Response
+618:         """
+619:         if isinstance(url, bytes):
+620:             url = url.decode("utf-8")
+621: 
+622:         # Create the Request.
+623:         req = Request(
+624:             method=method.upper(),
+625:             url=url,
+626:             headers=headers,
+627:             files=files,
+628:             data=data or {},
+629:             json=json,
+630:             params=params or {},
+631:             auth=auth,
+632:             cookies=cookies,
+633:             hooks=hooks,
+634:         )
+635:         prep = self.prepare_request(req)
+636: 
+637:         assert _is_prepared(prep)
+638: 
+639:         proxies = proxies or {}
+640: 
+641:         settings = self.merge_environment_settings(
+642:             prep.url, proxies, stream, verify, cert
+643:         )
+644: 
+645:         # Send the request.
+646:         send_kwargs = {
+647:             "timeout": timeout,
+648:             "allow_redirects": allow_redirects,
+649:         }
+650:         send_kwargs.update(settings)
+651:         resp = self.send(prep, **send_kwargs)
+652: 
+653:         return resp
+655:     def get(
+656:         self,
+657:         url: _t.UriType,
+658:         params: _t.ParamsType = None,
+659:         **kwargs: Unpack[_t.GetKwargs],
+660:     ) -> Response:
+661:         r"""Sends a GET request. Returns :class:`Response` object.
+662: 
+663:         :param url: URL for the new :class:`Request` object.
+664:         :param params: (optional) Dictionary, list of tuples or bytes to send
+665:             in the query string for the :class:`Request`.
+666:         :param \*\*kwargs: Optional arguments that ``request`` takes.
+667:         :rtype: requests.Response
+668:         """
+669: 
+670:         kwargs.setdefault("allow_redirects", True)
+671:         return self.request("GET", url, params=params, **kwargs)
+752:     def send(self, request: PreparedRequest, **kwargs: Any) -> Response:
+753:         """Send a given PreparedRequest.
+754: 
+755:         :rtype: requests.Response
+756:         """
+757:         # Set defaults that the hooks can utilize to ensure they always have
+758:         # the correct parameters to reproduce the previous request.
+759:         kwargs.setdefault("stream", self.stream)
+760:         kwargs.setdefault("verify", self.verify)
+761:         kwargs.setdefault("cert", self.cert)
+762:         if "proxies" not in kwargs:
+763:             kwargs["proxies"] = resolve_proxies(request, self.proxies, self.trust_env)
+764: 
+765:         # It's possible that users might accidentally send a Request object.
+766:         # Guard against that specific failure case.
+767:         if isinstance(request, Request):
+768:             raise ValueError("You can only send PreparedRequests.")
+769: 
+770:         assert _is_prepared(request)
+771: 
+772:         # Set up variables needed for resolve_redirects and dispatching of hooks
+773:         allow_redirects = kwargs.pop("allow_redirects", True)
+774:         stream = kwargs.get("stream")
+775:         hooks = request.hooks
+776: 
+777:         # Get the appropriate adapter to use
+778:         adapter = self.get_adapter(url=request.url)
+779: 
+780:         # Start time (approximately) of the request
+781:         start = preferred_clock()
+782: 
+783:         # Send the request
+784:         r = adapter.send(request, **kwargs)
+785: 
+786:         # Total elapsed time of the request (approximately)
+787:         elapsed = preferred_clock() - start
+788:         r.elapsed = timedelta(seconds=elapsed)
+789: 
+790:         # Response manipulation hooks
+791:         r = dispatch_hook("response", hooks, r, **kwargs)
+792: 
+793:         # Persist cookies
+794:         if r.history:
+795:             # If the hooks create history then we want those cookies too
+796:             for resp in r.history:
+797:                 extract_cookies_to_jar(self.cookies, resp.request, resp.raw)
+798: 
+799:         extract_cookies_to_jar(self.cookies, request, r.raw)
+800: 
+801:         # Resolve redirects if allowed.
+802:         if allow_redirects:
+803:             # Redirect resolving generator.
+804:             gen = self.resolve_redirects(r, request, **kwargs)
+805:             history = [resp for resp in gen]
+806:         else:
+807:             history = []
+808: 
+809:         # Shuffle things around if there's history.
+810:         if history:
+811:             # Insert the first (original) request at the start
+812:             history.insert(0, r)
+813:             # Get the last request made
+814:             r = history.pop()
+815:             r.history = history
+816: 
+817:         # If redirects aren't being followed, store the response on the Request for Response.next().
+818:         if not allow_redirects:
+819:             try:
+820:                 r._next = next(  # type: ignore[assignment]  # yield_requests=True returns PreparedRequest
+821:                     self.resolve_redirects(r, request, yield_requests=True, **kwargs)
+822:                 )
+823:             except StopIteration:
+824:                 pass
+825: 
+826:         if not stream:
+827:             r.content
+828: 
+829:         return r
+831:     def merge_environment_settings(
+832:         self,
+833:         url: str,
+834:         proxies: dict[str, str] | None,
+835:         stream: bool | None,
+836:         verify: _t.VerifyType | None,
+837:         cert: _t.CertType,
+838:     ) -> dict[str, Any]:
+839:         """
+840:         Check the environment and merge it with some settings.
+841: 
+842:         :rtype: dict
+843:         """
+844:         # Gather clues from the surrounding environment.
+845:         if self.trust_env:
+846:             # Set environment's proxies.
+847:             no_proxy = proxies.get("no_proxy") if proxies is not None else None
+848:             env_proxies = get_environ_proxies(url, no_proxy=no_proxy)
+849:             if proxies is not None:
+850:                 for k, v in env_proxies.items():
+851:                     proxies.setdefault(k, v)
+852: 
+853:             # Look for requests environment configuration
+854:             # and be compatible with cURL.
+855:             if verify is True or verify is None:
+856:                 verify = (
+857:                     os.environ.get("REQUESTS_CA_BUNDLE")
+858:                     or os.environ.get("CURL_CA_BUNDLE")
+859:                     or verify
+860:                 )
+861: 
+862:         # Merge all the kwargs.
+863:         proxies = merge_setting(proxies, self.proxies)
+864:         stream = merge_setting(stream, self.stream)
+865:         verify = merge_setting(verify, self.verify)
+866:         cert = merge_setting(cert, self.cert)
+867: 
+868:         return {"proxies": proxies, "stream": stream, "verify": verify, "cert": cert}
+
+FILE src/requests/models.py
+576:     def prepare_body(
+577:         self, data: _t.DataType, files: _t.FilesType, json: _t.JsonType = None
+578:     ) -> None:
+579:         """Prepares the given HTTP body data."""
+580: 
+581:         # Check if file, fo, generator, iterator.
+582:         # If not, run through normal process.
+583: 
+584:         # Nottin' on you.
+585:         body = None
+586:         content_type = None
+587: 
+588:         if not data and json is not None:
+589:             # urllib3 requires a bytes-like body. Python 2's json.dumps
+590:             # provides this natively, but Python 3 gives a Unicode string.
+591:             content_type = "application/json"
+592: 
+593:             try:
+594:                 body = complexjson.dumps(json, allow_nan=False)
+595:             except ValueError as ve:
+596:                 raise InvalidJSONError(ve, request=self)
+597: 
+598:             if not isinstance(body, bytes):
+599:                 body = body.encode("utf-8")
+600: 
+601:         # data that proxies attributes to underlying objects needs hasattr
+602:         is_iterable = isinstance(data, Iterable) or hasattr(data, "__iter__")
+603:         if is_iterable and not isinstance(data, (str, bytes, list, tuple, Mapping)):
+604:             try:
+605:                 length = super_len(data)
+606:             except (TypeError, AttributeError, UnsupportedOperation):
+607:                 length = None
+608: 
+609:             body = data
+610: 
+611:             if getattr(body, "tell", None) is not None:
+612:                 # Record the current file position before reading.
+613:                 # This will allow us to rewind a file in the event
+614:                 # of a redirect.
+615:                 try:
+616:                     self._body_position = body.tell()  # type: ignore[union-attr]  # guarded by getattr check
+617:                 except OSError:
+618:                     # This differentiates from None, allowing us to catch
+619:                     # a failed `tell()` later when trying to rewind the body
+620:                     self._body_position = object()
+621: 
+622:             if files:
+623:                 raise NotImplementedError(
+624:                     "Streamed bodies and files are mutually exclusive."
+625:                 )
+626: 
+627:             if length:
+628:                 self.headers["Content-Length"] = builtin_str(length)
+629:             else:
+630:                 self.headers["Transfer-Encoding"] = "chunked"
+631:         else:
+632:             # After is_stream filtering, remaining data is raw (not streamed)
+633:             raw_data = cast("_t.RawDataType | None", data)
+634: 
+635:             # Multi-part file uploads.
+636:             if files:
+637:                 (body, content_type) = self._encode_files(files, raw_data)
+638:             else:
+639:                 if raw_data:
+640:                     body = self._encode_params(raw_data)
+641:                     if isinstance(data, basestring) or _t.has_read(data):
+642:                         content_type = None
+643:                     else:
+644:                         content_type = "application/x-www-form-urlencoded"
+645: 
+646:             self.prepare_content_length(body)
+647: 
+648:             # Add content-type if it wasn't explicitly provided.
+649:             if content_type and ("content-type" not in self.headers):
+650:                 self.headers["Content-Type"] = content_type
+651: 
+652:         self.body = body  # type: ignore[assignment]  # body transforms from DataType to BodyType
+1091:     def json(self, **kwargs: Any) -> Any:
+1092:         r"""Decodes the JSON response body (if any) as a Python object.
+1093: 
+1094:         This may return a dictionary, list, etc. depending on what is in the response.
+1095: 
+1096:         :param \*\*kwargs: Optional arguments that ``json.loads`` takes.
+1097:         :raises requests.exceptions.JSONDecodeError: If the response body does not
+1098:             contain valid json.
+1099:         """
+1100: 
+1101:         if not self.encoding and self.content and len(self.content) > 3:
+1102:             # No encoding set. JSON RFC 4627 section 3 states we should expect
+1103:             # UTF-8, -16 or -32. Detect which one to use; If the detection or
+1104:             # decoding fails, fall back to `self.text` (using charset_normalizer to make
+1105:             # a best guess).
+1106:             encoding = guess_json_utf(self.content)
+1107:             if encoding is not None:
+1108:                 try:
+1109:                     return complexjson.loads(self.content.decode(encoding), **kwargs)
+1110:                 except UnicodeDecodeError:
+1111:                     # Wrong UTF codec detected; usually because it's not UTF-8
+1112:                     # but some other 8-bit codec.  This is an RFC violation,
+1113:                     # and the server didn't bother to tell us what codec *was*
+1114:                     # used.
+1115:                     pass
+1116:                 except JSONDecodeError as e:
+1117:                     raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)
+1118: 
+1119:         try:
+1120:             return complexjson.loads(self.text, **kwargs)
+1121:         except JSONDecodeError as e:
+1122:             # Catch JSON-related errors and raise as requests.JSONDecodeError
+1123:             # This aliases json.JSONDecodeError and simplejson.JSONDecodeError
+1124:             raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)
+1144:     def raise_for_status(self) -> None:
+1145:         """Raises :class:`HTTPError`, if one occurred."""
+1146: 
+1147:         http_error_msg = ""
+1148:         if isinstance(self.reason, bytes):
+1149:             # We attempt to decode utf-8 first because some servers
+1150:             # choose to localize their reason strings. If the string
+1151:             # isn't utf-8, we fall back to iso-8859-1 for all other
+1152:             # encodings. (See PR #3538)
+1153:             try:
+1154:                 reason = self.reason.decode("utf-8")
+1155:             except UnicodeDecodeError:
+1156:                 reason = self.reason.decode("iso-8859-1")
+1157:         else:
+1158:             reason = self.reason
+1159: 
+1160:         if 400 <= self.status_code < 500:
+1161:             http_error_msg = (
+1162:                 f"{self.status_code} Client Error: {reason} for url: {self.url}"
+1163:             )
+1164: 
+1165:         elif 500 <= self.status_code < 600:
+1166:             http_error_msg = (
+1167:                 f"{self.status_code} Server Error: {reason} for url: {self.url}"
+1168:             )
+1169: 
+1170:         if http_error_msg:
+1171:             raise HTTPError(http_error_msg, response=self)
+
+FILE src/requests/adapters.py
+128:     def send(
+129:         self,
+130:         request: PreparedRequest,
+131:         stream: bool = False,
+132:         timeout: _t.TimeoutType = None,
+133:         verify: _t.VerifyType = True,
+134:         cert: _t.CertType = None,
+135:         proxies: dict[str, str] | None = None,
+136:     ) -> Response:
+137:         """Sends PreparedRequest object. Returns Response object.
+138: 
+139:         :param request: The :class:`PreparedRequest <PreparedRequest>` being sent.
+140:         :param stream: (optional) Whether to stream the request content.
+141:         :param timeout: (optional) How long to wait for the server to send
+142:             data before giving up, as a float, or a :ref:`(connect timeout,
+143:             read timeout) <timeouts>` tuple.
+144:         :type timeout: float or tuple
+145:         :param verify: (optional) Either a boolean, in which case it controls whether we verify
+146:             the server's TLS certificate, or a string, in which case it must be a path
+147:             to a CA bundle to use
+148:         :param cert: (optional) Any user-provided SSL certificate to be trusted.
+149:         :param proxies: (optional) The proxies dictionary to apply to the request.
+150:         """
+151:         raise NotImplementedError
+634:     def send(
+635:         self,
+636:         request: PreparedRequest,
+637:         stream: bool = False,
+638:         timeout: _t.TimeoutType = None,
+639:         verify: _t.VerifyType = True,
+640:         cert: _t.CertType = None,
+641:         proxies: dict[str, str] | None = None,
+642:     ) -> Response:
+643:         """Sends PreparedRequest object. Returns Response object.
+644: 
+645:         :param request: The :class:`PreparedRequest <PreparedRequest>` being sent.
+646:         :param stream: (optional) Whether to stream the request content.
+647:         :param timeout: (optional) How long to wait for the server to send
+648:             data before giving up, as a float, or a :ref:`(connect timeout,
+649:             read timeout) <timeouts>` tuple.
+650:         :type timeout: float or tuple or urllib3 Timeout object
+651:         :param verify: (optional) Either a boolean, in which case it controls whether
+652:             we verify the server's TLS certificate, or a string, in which case it
+653:             must be a path to a CA bundle to use
+654:         :param cert: (optional) Any user-provided SSL certificate to be trusted.
+655:         :param proxies: (optional) The proxies dictionary to apply to the request.
+656:         :rtype: requests.Response
+657:         """
+658: 
+659:         assert _is_prepared(request)
+660: 
+661:         try:
+662:             conn = self.get_connection_with_tls_context(
+663:                 request, verify, proxies=proxies, cert=cert
+664:             )
+665:         except LocationValueError as e:
+666:             raise InvalidURL(e, request=request)
+667: 
+668:         self.cert_verify(conn, request.url, verify, cert)
+669:         url = self.request_url(request, proxies)
+670:         self.add_headers(
+671:             request,
+672:             stream=stream,
+673:             timeout=timeout,
+674:             verify=verify,
+675:             cert=cert,
+676:             proxies=proxies,
+677:         )
+678: 
+679:         chunked = not (request.body is None or "Content-Length" in request.headers)
+680: 
+681:         if isinstance(timeout, tuple):
+682:             try:
+683:                 connect, read = timeout
+684:                 resolved_timeout = TimeoutSauce(connect=connect, read=read)
+685:             except ValueError:
+686:                 raise ValueError(
+687:                     f"Invalid timeout {timeout}. Pass a (connect, read) timeout tuple, "
+688:                     f"or a single float to set both timeouts to the same value."
+689:                 )
+690:         elif isinstance(timeout, TimeoutSauce):
+691:             resolved_timeout = timeout
+692:         else:
+693:             resolved_timeout = TimeoutSauce(connect=timeout, read=timeout)
+694: 
+695:         try:
+696:             resp = conn.urlopen(
+697:                 method=request.method,
+698:                 url=url,
+699:                 body=request.body,  # type: ignore[arg-type]  # urllib3 stubs don't accept Iterable[bytes | str]
+700:                 headers=request.headers,  # type: ignore[arg-type]  # urllib3#3072
+701:                 redirect=False,
+702:                 assert_same_host=False,
+703:                 preload_content=False,
+704:                 decode_content=False,
+705:                 retries=self.max_retries,
+706:                 timeout=resolved_timeout,
+707:                 chunked=chunked,
+708:             )
+709: 
+710:         except (ProtocolError, OSError) as err:
+711:             raise ConnectionError(err, request=request)
+712: 
+713:         except MaxRetryError as e:
+714:             if isinstance(e.reason, ConnectTimeoutError):
+715:                 # TODO: Remove this in 3.0.0: see #2811
+716:                 if not isinstance(e.reason, NewConnectionError):
+717:                     raise ConnectTimeout(e, request=request)
+718: 
+719:             if isinstance(e.reason, ResponseError):
+720:                 raise RetryError(e, request=request)
+721: 
+722:             if isinstance(e.reason, _ProxyError):
+723:                 raise ProxyError(e, request=request)
+724: 
+725:             if isinstance(e.reason, _SSLError):
+726:                 # This branch is for urllib3 v1.22 and later.
+727:                 raise SSLError(e, request=request)
+728: 
+729:             raise ConnectionError(e, request=request)
+730: 
+731:         except ClosedPoolError as e:
+732:             raise ConnectionError(e, request=request)
+733: 
+734:         except _ProxyError as e:
+735:             raise ProxyError(e)
+736: 
+737:         except (_SSLError, _HTTPError) as e:
+738:             if isinstance(e, _SSLError):
+739:                 # This branch is for urllib3 versions earlier than v1.22
+740:                 raise SSLError(e, request=request)
+741:             elif isinstance(e, ReadTimeoutError):
+742:                 raise ReadTimeout(e, request=request)
+743:             elif isinstance(e, _InvalidHeader):
+744:                 raise InvalidHeader(e, request=request)
+745:             else:
+746:                 raise
+747: 
+748:         return self.build_response(request, resp)
+
+FILE src/requests/__version__.py
+1: # .-. .-. .-. . . .-. .-. .-. .-.
+2: # |(  |-  |.| | | |-  `-.  |  `-.
+3: # ' ' `-' `-`.`-' `-' `-'  '  `-'
+4: 
+5: __title__ = "requests"
+6: __description__ = "Python HTTP for Humans."
+7: __url__ = "https://requests.readthedocs.io"
+8: __version__ = "2.34.2"
+9: __build__ = 0x023402
+10: __author__ = "Kenneth Reitz"
+11: __author_email__ = "me@kennethreitz.org"
+12: __license__ = "Apache-2.0"
+13: __copyright__ = "Copyright Kenneth Reitz"
+14: __cake__ = "\u2728 \U0001f370 \u2728"

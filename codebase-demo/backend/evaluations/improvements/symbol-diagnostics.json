@@ -1,0 +1,428 @@
+[
+  {
+    "id": 1,
+    "matches": []
+  },
+  {
+    "id": 2,
+    "matches": [
+      {
+        "name": "HTTPBasicAuth.__call__",
+        "path": "src/requests/auth.py",
+        "score": 30,
+        "start": 111,
+        "body_start": 112,
+        "end": 113,
+        "body_bytes": 100,
+        "whole_bytes": 163
+      },
+      {
+        "name": "._basic_auth_str",
+        "path": "src/requests/auth.py",
+        "score": 11,
+        "start": 34,
+        "body_start": 44,
+        "end": 75,
+        "body_bytes": 1200,
+        "whole_bytes": 1628
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "matches": []
+  },
+  {
+    "id": 4,
+    "matches": [
+      {
+        "name": "._basic_auth_str",
+        "path": "src/requests/auth.py",
+        "score": 25,
+        "start": 34,
+        "body_start": 44,
+        "end": 75,
+        "body_bytes": 1200,
+        "whole_bytes": 1628
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "matches": [
+      {
+        "name": "HTTPDigestAuth.handle_401",
+        "path": "src/requests/auth.py",
+        "score": 22,
+        "start": 273,
+        "body_start": 282,
+        "end": 319,
+        "body_bytes": 1525,
+        "whole_bytes": 1822
+      },
+      {
+        "name": "HTTPDigestAuth.handle_redirect",
+        "path": "src/requests/auth.py",
+        "score": 21,
+        "start": 268,
+        "body_start": 270,
+        "end": 271,
+        "body_bytes": 75,
+        "whole_bytes": 198
+      },
+      {
+        "name": "HTTPDigestAuth.build_digest_header",
+        "path": "src/requests/auth.py",
+        "score": 10,
+        "start": 157,
+        "body_start": 162,
+        "end": 266,
+        "body_bytes": 3667,
+        "whole_bytes": 3784
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "matches": [
+      {
+        "name": ".request",
+        "path": "src/requests/api.py",
+        "score": 30,
+        "start": 24,
+        "body_start": 70,
+        "end": 71,
+        "body_bytes": 105,
+        "whole_bytes": 2974
+      },
+      {
+        "name": "Session.request",
+        "path": "src/requests/sessions.py",
+        "score": 30,
+        "start": 557,
+        "body_start": 619,
+        "end": 653,
+        "body_bytes": 880,
+        "whole_bytes": 4135
+      },
+      {
+        "name": "Session.prepare_request",
+        "path": "src/requests/sessions.py",
+        "score": 11,
+        "start": 511,
+        "body_start": 521,
+        "end": 555,
+        "body_bytes": 1188,
+        "whole_bytes": 1666
+      },
+      {
+        "name": "Session.send",
+        "path": "src/requests/sessions.py",
+        "score": 10,
+        "start": 752,
+        "body_start": 759,
+        "end": 829,
+        "body_bytes": 2569,
+        "whole_bytes": 2875
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "matches": [
+      {
+        "name": "Session.prepare_request",
+        "path": "src/requests/sessions.py",
+        "score": 30,
+        "start": 511,
+        "body_start": 521,
+        "end": 555,
+        "body_bytes": 1188,
+        "whole_bytes": 1666
+      },
+      {
+        "name": ".session",
+        "path": "src/requests/sessions.py",
+        "score": 25,
+        "start": 908,
+        "body_start": 920,
+        "end": 920,
+        "body_bytes": 21,
+        "whole_bytes": 404
+      },
+      {
+        "name": "Request.prepare",
+        "path": "src/requests/models.py",
+        "score": 21,
+        "start": 360,
+        "body_start": 362,
+        "end": 375,
+        "body_bytes": 378,
+        "whole_bytes": 523
+      },
+      {
+        "name": ".merge_setting",
+        "path": "src/requests/sessions.py",
+        "score": 11,
+        "start": 76,
+        "body_start": 84,
+        "end": 105,
+        "body_bytes": 809,
+        "whole_bytes": 1161
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "matches": [
+      {
+        "name": "Session.request",
+        "path": "src/requests/sessions.py",
+        "score": 30,
+        "start": 557,
+        "body_start": 619,
+        "end": 653,
+        "body_bytes": 880,
+        "whole_bytes": 4135
+      },
+      {
+        "name": "Session.merge_environment_settings",
+        "path": "src/requests/sessions.py",
+        "score": 12,
+        "start": 831,
+        "body_start": 845,
+        "end": 868,
+        "body_bytes": 1012,
+        "whole_bytes": 1405
+      },
+      {
+        "name": "Session.prepare_request",
+        "path": "src/requests/sessions.py",
+        "score": 11,
+        "start": 511,
+        "body_start": 521,
+        "end": 555,
+        "body_bytes": 1188,
+        "whole_bytes": 1666
+      },
+      {
+        "name": "Session.send",
+        "path": "src/requests/sessions.py",
+        "score": 10,
+        "start": 752,
+        "body_start": 759,
+        "end": 829,
+        "body_bytes": 2569,
+        "whole_bytes": 2875
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "matches": [
+      {
+        "name": "Session.send",
+        "path": "src/requests/sessions.py",
+        "score": 30,
+        "start": 752,
+        "body_start": 759,
+        "end": 829,
+        "body_bytes": 2569,
+        "whole_bytes": 2875
+      },
+      {
+        "name": "Session.get_adapter",
+        "path": "src/requests/sessions.py",
+        "score": 11,
+        "start": 870,
+        "body_start": 876,
+        "end": 881,
+        "body_bytes": 249,
+        "whole_bytes": 442
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "matches": [
+      {
+        "name": "SessionRedirectMixin.should_strip_auth",
+        "path": "src/requests/sessions.py",
+        "score": 30,
+        "start": 154,
+        "body_start": 156,
+        "end": 184,
+        "body_bytes": 1189,
+        "whole_bytes": 1343
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "matches": [
+      {
+        "name": "SessionRedirectMixin.rebuild_method",
+        "path": "src/requests/sessions.py",
+        "score": 25,
+        "start": 370,
+        "body_start": 376,
+        "end": 392,
+        "body_bytes": 669,
+        "whole_bytes": 921
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "matches": [
+      {
+        "name": "SessionRedirectMixin.resolve_redirects",
+        "path": "src/requests/sessions.py",
+        "score": 25,
+        "start": 186,
+        "body_start": 200,
+        "end": 307,
+        "body_bytes": 4493,
+        "whole_bytes": 4970
+      },
+      {
+        "name": "SessionRedirectMixin.send",
+        "path": "src/requests/sessions.py",
+        "score": 10,
+        "start": 132,
+        "body_start": 132,
+        "end": 132,
+        "body_bytes": 77,
+        "whole_bytes": 77
+      },
+      {
+        "name": "SessionRedirectMixin.get_redirect_target",
+        "path": "src/requests/sessions.py",
+        "score": 10,
+        "start": 134,
+        "body_start": 142,
+        "end": 152,
+        "body_bytes": 635,
+        "whole_bytes": 1169
+      },
+      {
+        "name": "SessionRedirectMixin.rebuild_auth",
+        "path": "src/requests/sessions.py",
+        "score": 10,
+        "start": 309,
+        "body_start": 316,
+        "end": 332,
+        "body_bytes": 713,
+        "whole_bytes": 1066
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "matches": [
+      {
+        "name": "PreparedRequest.prepare_body",
+        "path": "src/requests/models.py",
+        "score": 30,
+        "start": 576,
+        "body_start": 585,
+        "end": 652,
+        "body_bytes": 2842,
+        "whole_bytes": 3131
+      },
+      {
+        "name": "PreparedRequest.prepare_content_length",
+        "path": "src/requests/models.py",
+        "score": 11,
+        "start": 654,
+        "body_start": 656,
+        "end": 668,
+        "body_bytes": 586,
+        "whole_bytes": 728
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "matches": [
+      {
+        "name": "Response.json",
+        "path": "src/requests/models.py",
+        "score": 30,
+        "start": 1091,
+        "body_start": 1101,
+        "end": 1124,
+        "body_bytes": 1320,
+        "whole_bytes": 1724
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "matches": [
+      {
+        "name": "Response.raise_for_status",
+        "path": "src/requests/models.py",
+        "score": 30,
+        "start": 1144,
+        "body_start": 1147,
+        "end": 1171,
+        "body_bytes": 957,
+        "whole_bytes": 1056
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "matches": [
+      {
+        "name": "HTTPAdapter.send",
+        "path": "src/requests/adapters.py",
+        "score": 30,
+        "start": 634,
+        "body_start": 659,
+        "end": 748,
+        "body_bytes": 3321,
+        "whole_bytes": 4502
+      },
+      {
+        "name": "HTTPAdapter.cert_verify",
+        "path": "src/requests/adapters.py",
+        "score": 10,
+        "start": 307,
+        "body_start": 321,
+        "end": 363,
+        "body_bytes": 1519,
+        "whole_bytes": 2223
+      },
+      {
+        "name": "HTTPAdapter.build_response",
+        "path": "src/requests/adapters.py",
+        "score": 10,
+        "start": 365,
+        "body_start": 375,
+        "end": 401,
+        "body_bytes": 896,
+        "whole_bytes": 1424
+      },
+      {
+        "name": "HTTPAdapter.get_connection_with_tls_context",
+        "path": "src/requests/adapters.py",
+        "score": 10,
+        "start": 455,
+        "body_start": 481,
+        "end": 510,
+        "body_bytes": 1068,
+        "whole_bytes": 2198
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "matches": []
+  },
+  {
+    "id": 18,
+    "matches": []
+  }
+]
