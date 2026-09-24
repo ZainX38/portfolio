@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { askQuestion } from '../api.js';
 
 function SendIcon() {
@@ -14,6 +14,30 @@ export default function QuestionPanel({ repository, onFileSelect, isDimmed }) {
     const [answer, setAnswer] = useState(null);
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [loadingStep, setLoadingStep] = useState(0);
+
+    useEffect(() => {
+        if (!isLoading) {
+            setLoadingStep(0);
+            return undefined;
+        }
+        const timer = window.setInterval(() => {
+            setLoadingStep(step => (step + 1) % 4);
+        }, 450);
+        return () => window.clearInterval(timer);
+    }, [isLoading]);
+
+    function handleQuestionKeyDown(event) {
+        if (
+            event.key === 'Enter'
+            && !event.shiftKey
+            && !event.nativeEvent.isComposing
+            && !isLoading
+        ) {
+            event.preventDefault();
+            event.currentTarget.form?.requestSubmit();
+        }
+    }
 
     async function submitQuestion(event) {
         event.preventDefault();
@@ -33,9 +57,10 @@ export default function QuestionPanel({ repository, onFileSelect, isDimmed }) {
     return (
         <section className="pointer-events-none absolute inset-x-0 bottom-0 z-20 px-3 pb-3 sm:px-5 sm:pb-5" aria-labelledby="question-heading">
             <div className={`pointer-events-auto mx-auto max-w-4xl transition-opacity duration-300 ${isDimmed ? 'opacity-55 hover:opacity-100 focus-within:opacity-100' : 'opacity-100'}`}>
-                {(error || answer) && (
+                {(error || answer || isLoading) && (
                     <div aria-live="polite" className="mb-2 max-h-52 overflow-auto rounded-2xl border border-sky-300/20 bg-slate-800/95 p-4 shadow-2xl shadow-slate-950/40 backdrop-blur-xl sm:p-5">
                         {error && <p role="alert" className="text-sm text-red-200">{error}</p>}
+                        {isLoading && <p role="status" className="text-sm font-medium text-sky-200">{'loading' + '.'.repeat(loadingStep)}</p>}
                         {answer && (
                             <>
                                 <p className="whitespace-pre-wrap text-sm leading-6 text-slate-100">{answer.answer}</p>
@@ -74,6 +99,7 @@ export default function QuestionPanel({ repository, onFileSelect, isDimmed }) {
                             rows={2}
                             disabled={!repository.ai_available || isLoading}
                             required
+                            onKeyDown={handleQuestionKeyDown}
                             placeholder="Ask a question about the repository…"
                             aria-describedby={!repository.ai_available ? 'question-availability' : undefined}
                             className="max-h-36 min-h-16 w-full resize-none bg-transparent px-2 py-2 text-sm leading-6 text-white outline-none placeholder:text-slate-500 disabled:cursor-not-allowed disabled:text-slate-500 sm:text-base"

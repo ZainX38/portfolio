@@ -52,6 +52,7 @@ export default function Demo() {
                     <a
                         className={topControlClass}
                         href="/"
+                        target="_self"
                         aria-label="Return to portfolio home page"
                     >
                         <span className="hidden sm:inline">Portfolio</span>

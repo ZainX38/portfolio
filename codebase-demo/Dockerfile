@@ -28,4 +28,4 @@ ENV PATH="/app/backend/.venv/bin:$PATH"
 RUN useradd --create-home demo && mkdir /app/usage && chown demo:demo /app/usage
 USER demo
 EXPOSE 8000
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1", "--no-proxy-headers"]
+CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000} --workers 1 --no-proxy-headers"]
