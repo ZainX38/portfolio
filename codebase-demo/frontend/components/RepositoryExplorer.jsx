@@ -10,6 +10,7 @@ export default function RepositoryExplorer({ repository }) {
     const [selectedFile, setSelectedFile] = useState(null);
     const [isTreeLoading, setIsTreeLoading] = useState(true);
     const [isFileLoading, setIsFileLoading] = useState(false);
+    const [isFileScrolling, setIsFileScrolling] = useState(false);
     const [treeError, setTreeError] = useState('');
     const [fileError, setFileError] = useState('');
     const fileCache = useRef(new Map());
@@ -34,6 +35,7 @@ export default function RepositoryExplorer({ repository }) {
 
     async function selectFile(entry) {
         selectedPath.current = entry.path;
+        setIsFileScrolling(false);
         setFileError('');
         if (fileCache.current.has(entry.path)) {
             setSelectedFile(fileCache.current.get(entry.path));
@@ -54,26 +56,31 @@ export default function RepositoryExplorer({ repository }) {
     }
 
     return (
-        <>
-            <QuestionPanel repository={repository} onFileSelect={selectFile} />
-            <section className="mt-8" aria-labelledby="explorer-heading">
-                <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-                    <div>
-                        <p className="text-xs font-semibold tracking-[0.2em] text-sky-300 uppercase">Source browser</p>
-                        <h2 id="explorer-heading" className="mt-1 text-2xl font-bold">Repository explorer</h2>
-                    </div>
-                    {repository.coverage && (
-                        <p className="text-sm text-slate-400">
-                            {repository.coverage.indexed_files} of {repository.coverage.total_files} files indexed
-                            {repository.coverage.scope === 'selected' && ' · Configured paths only'}
-                        </p>
-                    )}
+        <section className="mx-auto flex min-h-0 w-full max-w-[1600px] flex-1 flex-col" aria-label="Codebase workspace">
+            <div className="mb-3 flex items-center justify-between gap-4 px-1 text-xs text-slate-300">
+                <p className="font-semibold tracking-wide text-sky-200">Repository Explorer</p>
+                {repository.coverage && (
+                    <p className="text-right">
+                        <span className="font-medium text-slate-200">{repository.coverage.indexed_files}</span> of {repository.coverage.total_files} files indexed
+                        {repository.coverage.scope === 'selected' && ' · configured paths'}
+                    </p>
+                )}
+            </div>
+
+            <div className="grid min-h-0 flex-1 overflow-hidden rounded-2xl border border-sky-300/25 bg-slate-800/80 shadow-2xl shadow-slate-950/35 backdrop-blur-sm lg:grid-cols-[280px_minmax(0,1fr)]">
+                <RepositoryTree
+                    entries={entries}
+                    snapshotId={snapshotId}
+                    isLoading={isTreeLoading}
+                    error={treeError}
+                    onFileSelect={selectFile}
+                    selectedPath={selectedFile?.path}
+                />
+                <div className="relative min-h-[36rem] min-w-0 lg:min-h-0">
+                    <FileViewer selectedFile={selectedFile} isLoading={isFileLoading} error={fileError} onScrollStateChange={setIsFileScrolling} />
+                    <QuestionPanel repository={repository} onFileSelect={selectFile} isDimmed={isFileScrolling} />
                 </div>
-                <div className="grid overflow-hidden rounded-xl border border-slate-700 bg-slate-950/80 shadow-2xl shadow-black/30 lg:grid-cols-[300px_minmax(0,1fr)]">
-                <RepositoryTree entries={entries} snapshotId={snapshotId} isLoading={isTreeLoading} error={treeError} onFileSelect={selectFile} />
-                <FileViewer selectedFile={selectedFile} isLoading={isFileLoading} error={fileError} />
-                </div>
-            </section>
-        </>
+            </div>
+        </section>
     );
 }

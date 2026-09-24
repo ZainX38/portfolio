@@ -2,9 +2,18 @@ import { useEffect, useState } from 'react';
 import { getRepository } from './api.js';
 import RepositoryExplorer from './components/RepositoryExplorer.jsx';
 
+function HomeIcon() {
+    return (
+        <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-none stroke-current stroke-2">
+            <path strokeLinecap="round" strokeLinejoin="round" d="m3 11 9-8 9 8M5.5 9.5V21h13V9.5M9.5 21v-6h5v6" />
+        </svg>
+    );
+}
+
 export default function Demo() {
     const [repository, setRepository] = useState(null);
     const [error, setError] = useState('');
+    const topControlClass = 'inline-flex h-10 items-center justify-center gap-2 rounded-xl border border-sky-400/40 bg-slate-800/90 px-4 text-sm font-semibold text-slate-100 shadow-md shadow-black/15 transition-colors hover:border-sky-300 hover:bg-sky-800 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300';
 
     useEffect(() => {
         let isCurrentRequest = true;
@@ -17,39 +26,48 @@ export default function Demo() {
     }, []);
 
     return (
-        <main className="min-h-screen bg-linear-to-b from-black via-sky-950 to-slate-900 px-4 py-8 font-sans text-white sm:px-8 lg:px-12 lg:py-12">
-            <div className="mx-auto max-w-7xl">
-                <a
-                    className="inline-flex items-center gap-2 rounded-full border border-slate-600 bg-slate-950/70 px-4 py-2 text-sm font-medium text-slate-200 transition-colors hover:border-sky-400 hover:bg-sky-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
-                    href="/"
-                >
-                    <span aria-hidden="true">←</span> Back to portfolio
-                </a>
-                <header className="mt-8 border-b border-slate-700 pb-6 sm:flex sm:items-end sm:justify-between sm:gap-8">
-                    <div>
-                        <p className="mb-3 text-xs font-semibold tracking-[0.22em] text-sky-300 uppercase">Interactive project</p>
-                        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Codebase AI</h1>
-                        <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-300 sm:text-base">
-                            Explore a real repository, inspect its source, and ask questions grounded in the indexed code.
-                        </p>
-                    </div>
+        <main className="flex min-h-dvh flex-col bg-linear-to-br from-slate-900 via-sky-900 to-slate-800 font-sans text-white lg:h-dvh lg:overflow-hidden">
+            <header className="flex shrink-0 items-center justify-between gap-4 border-b border-sky-300/20 bg-slate-900/85 px-4 py-3 shadow-sm backdrop-blur-xl sm:px-6 lg:px-8">
+                <div className="min-w-0 flex-1">
+                    <h1 className="truncate text-lg font-bold tracking-tight sm:text-xl">Codebase AI</h1>
+                </div>
+
+                <div className="flex shrink-0 items-center gap-2">
                     {repository && (
-                        <div className="mt-5 flex shrink-0 flex-wrap gap-2 text-xs sm:mt-0 sm:max-w-sm sm:justify-end">
-                            <span className="rounded-full border border-slate-600 bg-slate-900/80 px-3 py-1.5 font-medium text-slate-200">{repository.repository}</span>
-                            <span className="rounded-full border border-slate-600 bg-slate-900/80 px-3 py-1.5 text-slate-300">{repository.branch}</span>
+                        <div className="hidden items-center gap-2 md:flex" aria-label="Repository details">
+                            <span className={topControlClass}>
+                                {repository.branch}
+                            </span>
                             <a
-                                className="rounded-full border border-sky-700 bg-sky-950 px-3 py-1.5 font-mono text-sky-200 transition-colors hover:border-sky-400 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
-                                href={`https://github.com/${repository.repository}/tree/${repository.commit}`}
+                                className={`${topControlClass} hidden max-w-52 truncate lg:inline-flex`}
+                                href={`https://github.com/${repository.repository}`}
                                 target="_blank"
                                 rel="noreferrer"
+                                aria-label={`View ${repository.repository} on GitHub`}
                             >
-                                {repository.commit.slice(0, 7)}
+                                {repository.repository}
                             </a>
                         </div>
                     )}
-                </header>
-                {error && <p role="alert" className="mt-8 rounded-xl border border-red-400/40 bg-red-950/60 p-5 text-red-100">{error}</p>}
-                {!repository && !error && <p role="status" className="mt-8 rounded-xl border border-slate-700 bg-slate-950/70 p-5 text-slate-300">Loading repository…</p>}
+                    <a
+                        className={topControlClass}
+                        href="/"
+                        aria-label="Return to portfolio home page"
+                    >
+                        <span className="hidden sm:inline">Portfolio</span>
+                        <HomeIcon />
+                    </a>
+                </div>
+            </header>
+
+            <div className="flex min-h-0 flex-1 flex-col px-3 py-3 sm:px-5 sm:py-5 lg:px-6">
+                {error && <p role="alert" className="mx-auto mt-8 w-full max-w-3xl rounded-xl border border-red-400/40 bg-red-950/70 p-5 text-red-100">{error}</p>}
+                {!repository && !error && (
+                    <div role="status" className="m-auto flex items-center gap-3 rounded-full border border-white/10 bg-slate-950/70 px-5 py-3 text-sm text-slate-300 shadow-xl">
+                        <span className="h-2 w-2 animate-pulse rounded-full bg-amber-300" />
+                        Loading repository…
+                    </div>
+                )}
                 {repository && <RepositoryExplorer repository={repository} />}
             </div>
         </main>
