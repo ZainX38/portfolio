@@ -8,8 +8,8 @@ Standalone React/Vite page at `/codebase-demo/`, with a small FastAPI API. Explo
 - Public repository configured by `DEMO_REPOSITORY` (GitHub HTTPS URL or `owner/repo`), defaulting to `psf/requests`. Optional `DEMO_REPOSITORY_COMMIT` pins a full SHA for both preparation and serving.
 - Offline downloader resolves the default branch to one commit, saves supported text files and creates line-based chunks.
 - Browser and API use the same snapshot ID; stale clients receive 409 and must reload.
-- Ollama integration uses `qwen3.5:4b` for answers and `qwen3-embedding:0.6b` for repository/query embeddings. Defaults to `http://localhost:11434` and a configurable 4096-token context. Generation disables thinking, bounds output and sends `keep_alive: 0`.
-- **Public AI remains disabled at the owner's request.** Usage limits stay at zero. `/api/demo/ask` returns 503 and the question form is disabled; offline evaluation can still use the local models.
+- Production uses the official OpenAI Python SDK: `gpt-6-luna` through the Responses API and `text-embedding-3-small` for both repository and query embeddings. Responses are stateless, tool-free, bounded, and not stored. Ollama remains available with `DEMO_AI_PROVIDER=ollama` for local experiments.
+- Anonymous visitors receive three accepted questions per UTC day, tracked by an HttpOnly UUID cookie and persistent SQLite state. A configurable global daily cap, per-IP minute cap and concurrency cap provide additional cost controls.
 - Embeddings, cosine retrieval, bounded context, structured answers and validated file references are implemented without a RAG framework. Switching answer models requires only configuration. Switching embedding models requires reindexing.
 - Python symbol lookup now prioritizes explicitly named implementations and direct helpers within indexed source. Context assembly supplies exact implementation-body spans, skips leading docstrings, and labels oversized bodies as partial. Other queries retain vector retrieval. Controlled comparison details are in `backend/evaluations/improvements/report.md`.
 - Initial AI coverage includes all supported text files. Optional `--scope selected --include "src/*"` filters coverage using repeatable path globs. The explorer retains every snapshot file. The UI states partial coverage, file responses include their indexing status, and `/api/demo/coverage?snapshot_id=...` lists indexed paths and every exclusion reason.
@@ -37,13 +37,16 @@ From `codebase-demo/backend`:
 
 ```sh
 uv sync --frozen
-uv run python index_repository.py
-uv run uvicorn main:app --host 127.0.0.1 --port 8001
+Copy-Item .env.example .env
+# Fill OPENAI_API_KEY and set:
+# DEMO_BUNDLE_PATH=../data/psf--requests/default/bundle-openai-indexed.json
+uv run --env-file .env python embed_repository.py --input ../data/psf--requests/default/bundle.json --output ../data/psf--requests/default/bundle-openai-indexed.json --cache ../data/psf--requests/default/embedding-cache-openai.sqlite --batch-size 32
+uv run --env-file .env uvicorn main:app --host 127.0.0.1 --port 8001
 ```
 
 Run `npm run dev` from the portfolio root in another terminal. Open `http://localhost:5173/codebase-demo/`. Vite forwards `/api/demo` to port 8001. The Codebase AI Preview button also opens the demo.
 
-For AI, start a local Ollama service, install the models and pre-index the saved snapshot:
+The embedding command reads the existing immutable snapshot and canonical chunks; it does not fetch GitHub again. Its provider-specific output and cache are separate from the retained Ollama/Qwen files. To use Ollama locally instead, set `DEMO_AI_PROVIDER=ollama`, start Ollama, install the models, and run:
 
 ```sh
 ollama pull qwen3.5:4b
@@ -51,7 +54,7 @@ ollama pull qwen3-embedding:0.6b
 uv run python embed_repository.py
 ```
 
-The result is `data/psf--requests/default/bundle-indexed.json` with the default configuration. Point `DEMO_BUNDLE_PATH` to its absolute path and restart the API. Keep limits at zero while public AI is disabled. The server does not index on startup. The separate `embedding-cache.sqlite` saves completed batches; rerunning the command resumes through cache hits. Do not ship this cache to production.
+The Ollama result remains `data/psf--requests/default/bundle-indexed.json`. The server does not index on startup. Provider-specific SQLite caches save completed batches; rerunning the same command resumes through cache hits. Do not ship either cache to production.
 
 All supported text is indexed by default, including reStructuredText (`.rst`). An empty text file or an oversized line may have no chunks. For a larger preset, select paths explicitly, then expand from the same saved source:
 
@@ -60,7 +63,7 @@ uv run python embed_repository.py --scope selected --include "src/*" --include "
 uv run python embed_repository.py --input ../data/selected.json --scope all --output ../data/expanded.json
 ```
 
-The cache key includes the complete snapshot ID, model digest and exact path/text. Batches can resume or be reused during scope expansion only within the same snapshot. Changing repository, commit or source contents requires fresh embeddings, even when chunk text is identical. Legacy cache entries are not reused. No partial index is published.
+The cache key includes the complete snapshot ID, provider/model identity and exact path/text. Batches can resume or be reused during scope expansion only within the same snapshot. Changing repository, commit, provider or source contents requires fresh embeddings. Legacy cache entries are not reused. No partial index is published.
 
 The snapshot and embedding commands refuse to overwrite existing outputs. To prepare an update:
 
@@ -105,7 +108,7 @@ For named Python symbols, implementation context replaces prefix truncation: com
 
 No hosting provider has been selected. A host supporting a long-running Docker container is the simplest complete deployment: one service serves both the portfolio build and `/api/demo`, avoiding cross-origin configuration.
 
-1. Generate and verify `codebase-demo/data/psf--requests/default/bundle-indexed.json` in the release workspace.
+1. Generate and verify `codebase-demo/data/psf--requests/default/bundle-openai-indexed.json` in the release workspace.
 2. In CI, download the already-generated bundle from your release artifact storage into that exact path. Git checkout alone is insufficient because the file is ignored. Do not regenerate or embed on each container startup.
 3. Build from the portfolio root:
 
@@ -119,15 +122,15 @@ No hosting provider has been selected. A host supporting a long-running Docker c
 
 Production loads the packaged bundle into memory exactly once. Neither the snapshot nor embeddings need writable production storage. The daily usage counter needs a persistent writable volume at `/app/usage`; do not put it on an ephemeral filesystem. Keep a single worker/replica for the in-memory throttles. Proxy-header trust must be configured for the actual host before relying on per-IP limits; the image currently disables forwarded headers. Configure request timeouts/body limits at the ingress too.
 
-Ollama must run on the server's loopback interface or a private container network, never a public port. The browser contacts only FastAPI. Inside a container, `localhost:11434` refers to that container; set `OLLAMA_URL` to the private Ollama service address or a supported host gateway. Only publish the portfolio/API port. The host needs sufficient CPU/GPU/RAM for the models; static hosting alone cannot run Ollama. Model weights are provisioned separately on that private service and are not included in the portfolio image. Do not expose or proxy `/api/chat`, `/api/embed` or the whole Ollama API to visitors.
+Production needs only `OPENAI_API_KEY` in the server environment; it must never be provided as a Vite variable. The browser contacts FastAPI, and FastAPI sends only the current question plus retrieved excerpts to OpenAI. The API makes one Responses generation call per accepted question and does not send conversation history, the full repository, tools, or web-search configuration.
 
 Alternative: host `dist/` on a static host and run the API separately. Prefer a same-origin `/api/demo` reverse proxy. If unavailable, set the **public** `VITE_DEMO_API_ORIGIN` at frontend build time and `DEMO_ALLOWED_ORIGINS` on the API. `npm run preview` is only a frontend preview and does not reproduce the API deployment. No host-specific deployment has been performed.
 
-## AI limits — replacement values pending
+## AI limits
 
-The earlier proposal of 25 attempts/day, 3/minute/IP, one concurrent request, 1,000-character questions and 500 output tokens was not approved. Defaults are zero, which disables public AI. Set `DEMO_DAILY_LIMIT`, `DEMO_IP_PER_MINUTE`, `DEMO_MAX_CONCURRENT`, `DEMO_MAX_QUESTION_CHARS` and `DEMO_MAX_OUTPUT_TOKENS` to the owner's chosen positive values. Request bodies have an additional 8 KB ceiling. There are no automatic model retries.
+Defaults are three accepted questions per anonymous visitor per UTC day, 100 accepted questions globally per UTC day, 3/minute/IP, two concurrent requests, 500 question characters, five retrieved candidates, a 4,096-token context budget and 400 maximum output tokens. Request bodies also have an 8 KB ceiling. Configure the global/short-lived limits with `DEMO_DAILY_LIMIT`, `DEMO_IP_PER_MINUTE` and `DEMO_MAX_CONCURRENT`; configure prompt bounds with `DEMO_MAX_QUESTION_CHARS`, `DEMO_RETRIEVAL_COUNT`, `DEMO_CONTEXT_TOKENS` and `DEMO_MAX_OUTPUT_TOKENS`. There are no SDK retries or automatic generation retries.
 
-One small SQLite daily counter reserves attempts atomically before model calls, including failed attempts. Short-lived IP/concurrency limits stay in memory. This avoids Redis while retaining the daily cap across restarts. An unwritable counter prevents inference. Limits apply to compute usage with local Ollama; hosting cost is separate. Offline indexing is an administrator command, not a public endpoint. The daily cap is shared by all visitors and can be exhausted deliberately; this MVP has no account-level abuse prevention.
+SQLite atomically reserves the global daily count and visitor's current UTC-day allowance before paid inference. Clearly malformed requests, snapshot/index mismatches and missing OpenAI configuration fail before reservation. The visitor UUID is generated by FastAPI, stored in an HttpOnly cookie, and mapped to persistent SQLite usage, so a normal refresh or server restart does not restore questions; the allowance resets on the next UTC date. Set `DEMO_COOKIE_SECURE=true` under HTTPS and persist `DEMO_USAGE_PATH`. Anonymous limits can still be bypassed by deleting cookies or changing clients; making them resistant to deliberate bypass requires authentication. Short-lived IP/concurrency limits stay in memory, so keep a single worker/replica unless replacing them with shared coordination.
 
 ## Checks
 
@@ -139,7 +142,7 @@ npm run build
 # codebase-demo/backend
 uv run python -m unittest discover -s tests -v
 
-# Explicit real-model smoke test, using a tiny in-memory subset of the same SHA:
+# Optional Ollama-only real-model smoke test:
 uv run python verify_ollama.py
 
 # After the complete index exists:
@@ -152,9 +155,9 @@ The three-stage comparison is complete (108 live attempts). The retained Stage 2
 
 Tests cover chunk boundaries, archive filtering, path traversal, snapshot mismatch, contents endpoints, oversized requests, citations and persistent/IP/concurrency limits. Unit tests mock the model; the explicit live smoke test uses real Ollama embeddings and generation and does not publish a partial index. Evaluation cases are in `backend/evaluations/requests.json`. For another preset, pass a matching JSON fixture using `--cases` to both evaluation scripts; repository mismatches are rejected. Full-index retrieval and browser AI checks must be completed against the final artifact and approved limits.
 
-Validation on 22 September 2026: 22 backend tests, frontend lint and production build pass. Fresh Requests indexing completed: 288 vectors from 96 files, a 5.36 MB indexed bundle, approximately 25 minutes on the local CPU. All three real-model evaluation cases pass the automated content/citation checks. Manual review found that the authentication answer ended in an incomplete code expression despite identifying the correct operation and citing the implementation; answer wording needs refinement before public release. API checks through the Vite proxy verified matching source/index SHA, indexed file contents, stale-snapshot rejection and disabled public questions. No browser was connected for visual verification. Docker execution and production deployment remain unverified.
+Validation on 25 September 2026: 36 mocked backend tests, frontend lint and the production frontend build pass. The retained Ollama evaluation remains historical: its Requests index contains 288 vectors from 96 files, and its results were not rerun while adding OpenAI. The OpenAI production index, Docker execution and deployment still require the manual steps above.
 
-The local ignored `backend/.env` selects the completed Requests index and keeps all public AI limits at zero, as requested. Restart the local API with:
+The local ignored `backend/.env` should select the OpenAI Requests index and contain the server-side key. Restart the local API with:
 
 ```sh
 uv run --env-file .env uvicorn main:app --host 127.0.0.1 --port 8001

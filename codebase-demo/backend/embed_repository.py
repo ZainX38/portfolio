@@ -9,10 +9,10 @@ import sqlite3
 import tempfile
 import time
 
-from config import BUNDLE_PATH, PRESET_DIR, EMBEDDING_MODEL
+from config import BUNDLE_PATH, PRESET_DIR, EMBEDDING_MODEL, PROVIDER
 from chunking import chunk_files
 from coverage import select_chunks
-from llm import embed, model_digest
+from llm import embed, model_digest, provider_configured
 from repository import Repository
 
 
@@ -24,12 +24,16 @@ def cache_key(snapshot, digest, text):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--input", type=Path, default=BUNDLE_PATH)
-    parser.add_argument("--output", type=Path, default=PRESET_DIR / "bundle-indexed.json")
-    parser.add_argument("--cache", type=Path, default=PRESET_DIR / "embedding-cache.sqlite")
+    default_output = "bundle-openai-indexed.json" if PROVIDER == "openai" else "bundle-indexed.json"
+    default_cache = "embedding-cache-openai.sqlite" if PROVIDER == "openai" else "embedding-cache.sqlite"
+    parser.add_argument("--output", type=Path, default=PRESET_DIR / default_output)
+    parser.add_argument("--cache", type=Path, default=PRESET_DIR / default_cache)
     parser.add_argument("--batch-size", type=int, default=8)
     parser.add_argument("--scope", choices=["selected", "all"], default="all")
     parser.add_argument("--include", action="append", default=[], help="Path glob for selected scope; repeat to include more paths")
     args = parser.parse_args()
+    if not provider_configured():
+        parser.error("OPENAI_API_KEY is required to build an OpenAI index")
     if args.output.exists() or args.input.resolve() == args.output.resolve():
         parser.error("Choose a new output path; existing bundles are never overwritten.")
     if not 1 <= args.batch_size <= 32:
@@ -40,7 +44,10 @@ def main():
     # resolves a newer branch or loses previously unindexed files.
     if args.include and args.scope != "selected":
         parser.error("--include requires --scope selected")
-    chunks, coverage = select_chunks(repository.files, chunk_files(repository.files), args.scope, args.include)
+    # A source bundle already contains the canonical chunks. Rebuild only when
+    # expanding or changing a previously partial index.
+    all_chunks = chunk_files(repository.files) if repository.coverage and repository.coverage["scope"] != "all" else repository.chunks
+    chunks, coverage = select_chunks(repository.files, all_chunks, args.scope, args.include)
     if not chunks:
         parser.error("No chunks selected; adjust the configured index paths")
     bundle["chunks"] = chunks
@@ -71,7 +78,7 @@ def main():
     if model_digest(EMBEDDING_MODEL) != digest:
         raise ValueError("Embedding model changed during indexing; rerun with a stable model")
     bundle["embeddings"] = {
-        "model": EMBEDDING_MODEL, "digest": digest,
+        "provider": PROVIDER, "model": EMBEDDING_MODEL, "digest": digest,
         "snapshot_id": repository.id, "dimensions": len(vectors[0]),
         "chunk_ids": [chunk["id"] for chunk in chunks], "vectors": vectors,
     }

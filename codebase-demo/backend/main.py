@@ -2,18 +2,22 @@ from contextlib import asynccontextmanager
 import os
 import logging
 import sqlite3
+from uuid import UUID, uuid4
 
 import httpx
-from fastapi import FastAPI, HTTPException, Query, Request
+from fastapi import FastAPI, HTTPException, Query, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ConfigDict, Field
+from openai import OpenAIError
 
 from config import (
-    BUNDLE_PATH, CONTEXT_TOKENS, DAILY_LIMIT, EMBEDDING_MODEL, IP_PER_MINUTE,
-    MAX_CONCURRENT, MAX_OUTPUT_TOKENS, MAX_QUESTION_CHARS, USAGE_PATH,
+    ANONYMOUS_DAILY_QUESTION_LIMIT, BUNDLE_PATH, CONTEXT_TOKENS, COOKIE_SECURE,
+    DAILY_LIMIT, IP_PER_MINUTE, MAX_CONCURRENT, MAX_OUTPUT_TOKENS,
+    MAX_QUESTION_CHARS, USAGE_PATH,
 )
+from llm import index_matches_configuration, provider_configured
 from limits import UsageLimits
 from rag import answer_question
 from repository import Repository
@@ -28,7 +32,10 @@ async def lifespan(app):
     if all(value > 0 for value in (DAILY_LIMIT, IP_PER_MINUTE, MAX_CONCURRENT, MAX_OUTPUT_TOKENS, MAX_QUESTION_CHARS)):
         if MAX_OUTPUT_TOKENS + 1536 >= CONTEXT_TOKENS:
             raise ValueError("Output limit must leave room for repository context")
-        app.state.limits = UsageLimits(USAGE_PATH, DAILY_LIMIT, IP_PER_MINUTE, MAX_CONCURRENT)
+        app.state.limits = UsageLimits(
+            USAGE_PATH, DAILY_LIMIT, IP_PER_MINUTE, MAX_CONCURRENT,
+            ANONYMOUS_DAILY_QUESTION_LIMIT,
+        )
     yield
 
 
@@ -49,7 +56,27 @@ async def bound_question_body(request: Request, call_next):
 
 origins = [origin.strip() for origin in os.environ.get("DEMO_ALLOWED_ORIGINS", "").split(",") if origin.strip()]
 if origins:
-    app.add_middleware(CORSMiddleware, allow_origins=origins, allow_methods=["GET", "POST"], allow_headers=["Content-Type"])
+    app.add_middleware(
+        CORSMiddleware, allow_origins=origins, allow_credentials=True,
+        allow_methods=["GET", "POST"], allow_headers=["Content-Type"],
+    )
+
+
+VISITOR_COOKIE = "codebase_demo_visitor"
+
+
+def visitor_id(request, response):
+    value = request.cookies.get(VISITOR_COOKIE, "")
+    try:
+        if str(UUID(value, version=4)) != value:
+            raise ValueError()
+    except (ValueError, AttributeError):
+        value = str(uuid4())
+    response.set_cookie(
+        VISITOR_COOKIE, value, max_age=365 * 24 * 60 * 60, httponly=True,
+        secure=COOKIE_SECURE, samesite="none" if COOKIE_SECURE else "lax", path="/",
+    )
+    return value
 
 
 def check_snapshot(snapshot_id):
@@ -60,14 +87,21 @@ def check_snapshot(snapshot_id):
 
 
 @app.get("/api/demo/repository")
-def get_repository():
+def get_repository(request: Request, response: Response):
     repository = app.state.repository
-    ai_available = bool(getattr(app.state, "limits", None) and repository.embeddings and repository.embeddings["model"] == EMBEDDING_MODEL)
+    limits = getattr(app.state, "limits", None)
+    visitor = visitor_id(request, response)
+    remaining = limits.remaining(visitor) if limits else 0
+    ai_available = bool(limits and provider_configured() and index_matches_configuration(repository) and remaining > 0)
     ai_message = ""
     if not repository.embeddings:
         ai_message = "This repository snapshot needs a new AI index. File browsing is available."
-    elif repository.embeddings["model"] != EMBEDDING_MODEL:
+    elif not index_matches_configuration(repository):
         ai_message = "This repository needs reindexing with the configured embedding model."
+    elif not provider_configured():
+        ai_message = "AI questions are not configured on the server."
+    elif remaining == 0:
+        ai_message = "You have used all three AI questions available today."
     elif not ai_available:
         ai_message = "AI questions are not enabled yet."
     return {
@@ -77,6 +111,7 @@ def get_repository():
         "snapshot_id": repository.id,
         "ai_available": ai_available,
         "ai_message": ai_message,
+        "questions_remaining": remaining,
         "max_question_chars": MAX_QUESTION_CHARS,
         "coverage": {
             "scope": repository.coverage["scope"] if repository.coverage else "none",
@@ -110,21 +145,38 @@ class Question(BaseModel):
 
 
 @app.post("/api/demo/ask")
-def ask_question(question: Question, request: Request):
+def ask_question(question: Question, request: Request, response: Response):
     repository = check_snapshot(question.snapshot_id)
     limits = getattr(app.state, "limits", None)
-    if not limits or not repository.embeddings:
+    if not limits or not repository.embeddings or not provider_configured():
         raise HTTPException(503, "AI questions are not enabled yet.")
+    if not index_matches_configuration(repository):
+        raise HTTPException(503, "The repository needs reindexing with the configured embedding model.")
     if len(question.question) > MAX_QUESTION_CHARS:
         raise HTTPException(422, "Question exceeds the configured length limit")
+    visitor = visitor_id(request, response)
+    remaining = None
     try:
-        with limits.reserve(request.client.host if request.client else "unknown"):
-            return answer_question(repository, question.question, MAX_OUTPUT_TOKENS)
+        with limits.reserve(request.client.host if request.client else "unknown", visitor) as reservation:
+            def accept_question():
+                nonlocal remaining
+                remaining = reservation.accept()
+
+            result = answer_question(
+                repository, question.question, MAX_OUTPUT_TOKENS,
+                before_generation=accept_question,
+            )
+            if remaining is None:
+                remaining = limits.remaining(visitor)
+            return {**result, "questions_remaining": remaining}
     except HTTPException:
         raise
-    except (httpx.HTTPError, ValueError, KeyError, sqlite3.Error):
-        logging.getLogger(__name__).warning("AI request failed", exc_info=True)
-        raise HTTPException(503, "The AI service could not answer this question. Please try again later.")
+    except (httpx.HTTPError, OpenAIError, ValueError, KeyError, sqlite3.Error) as error:
+        logging.getLogger(__name__).warning("AI request failed (%s)", type(error).__name__)
+        detail = {"message": "The AI service could not answer this question. Please try again later."}
+        if remaining is not None:
+            detail["questions_remaining"] = remaining
+        raise HTTPException(503, detail)
 
 
 # Optional single-service deployment: API routes take precedence over static files.

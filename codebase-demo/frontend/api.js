@@ -7,23 +7,31 @@ async function getResponseData(response) {
     }
     const data = await response.json();
     if (!response.ok) {
-        throw new Error(typeof data.detail === 'string' ? data.detail : 'The request could not be completed.');
+        const detail = data.detail;
+        const error = new Error(
+            typeof detail === 'string'
+                ? detail
+                : detail?.message || 'The request could not be completed.',
+        );
+        error.questionsRemaining = data.questions_remaining ?? detail?.questions_remaining;
+        throw error;
     }
     return data;
 }
 
 export async function getRepository() {
-    return getResponseData(await fetch(`${apiUrl}/repository`, { cache: 'no-store' }));
+    return getResponseData(await fetch(`${apiUrl}/repository`, { cache: 'no-store', credentials: 'include' }));
 }
 
 export async function getContents(snapshotId, path = '') {
     const params = new URLSearchParams({ snapshot_id: snapshotId, path });
-    return getResponseData(await fetch(`${apiUrl}/contents?${params}`));
+    return getResponseData(await fetch(`${apiUrl}/contents?${params}`, { credentials: 'include' }));
 }
 
 export async function askQuestion(snapshotId, question) {
     return getResponseData(await fetch(`${apiUrl}/ask`, {
         method: 'POST',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ snapshot_id: snapshotId, question }),
     }));

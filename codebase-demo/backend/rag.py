@@ -1,8 +1,8 @@
 import math
 from urllib.parse import quote
 
-from config import CONTEXT_TOKENS, EMBEDDING_MODEL
-from llm import embed, generate, model_digest
+from config import CONTEXT_TOKENS, EMBEDDING_MODEL, RETRIEVAL_COUNT
+from llm import embed, generate, index_matches_configuration, model_digest
 from symbol_retrieval import rank_chunks
 from source_context import header, implementation_context
 
@@ -18,7 +18,7 @@ SYSTEM_PROMPT = (
 )
 
 
-def retrieve(repository, query_vector, count=5, question=""):
+def retrieve(repository, query_vector, count=RETRIEVAL_COUNT, question=""):
     norm = math.sqrt(sum(value * value for value in query_vector))
     if not norm or len(query_vector) != repository.embeddings["dimensions"]:
         raise ValueError("Question embedding does not match index dimensions")
@@ -63,8 +63,8 @@ def build_context(chunks, question, max_output_tokens, repository=None):
     return excerpts
 
 
-def answer_question(repository, question, max_output_tokens):
-    if not repository.embeddings or repository.embeddings["model"] != EMBEDDING_MODEL:
+def answer_question(repository, question, max_output_tokens, before_generation=None):
+    if not index_matches_configuration(repository):
         raise ValueError("The repository must be indexed with the configured embedding model")
     if model_digest(EMBEDDING_MODEL) != repository.embeddings["digest"]:
         raise ValueError("The embedding model has changed; reindex the repository")
@@ -73,6 +73,8 @@ def answer_question(repository, question, max_output_tokens):
     if not excerpts:
         return {"answer": "I could not find usable source context for this question.", "references": []}
     context = "\n\n".join(header(item) + item["text"] for item in excerpts)
+    if before_generation is not None:
+        before_generation()
     result = generate([
         {"role": "system", "content": SYSTEM_PROMPT},
         {"role": "user", "content": f"Question: {question}\n\nRepository excerpts:\n{context}"},

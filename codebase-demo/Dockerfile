@@ -18,7 +18,7 @@ RUN uv sync --frozen --no-dev
 COPY codebase-demo/backend/*.py ./
 # Explicit COPY includes this artifact even though Git ignores it.
 # Missing artifacts fail the image build, rather than indexing at startup.
-ARG DEMO_BUNDLE=codebase-demo/data/psf--requests/default/bundle-indexed.json
+ARG DEMO_BUNDLE=codebase-demo/data/psf--requests/default/bundle-openai-indexed.json
 COPY ${DEMO_BUNDLE} /app/data/bundle.json
 COPY --from=frontend /build/dist /app/dist
 ENV DEMO_BUNDLE_PATH=/app/data/bundle.json

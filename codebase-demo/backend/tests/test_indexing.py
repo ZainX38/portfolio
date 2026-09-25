@@ -9,6 +9,7 @@ import unittest
 from unittest.mock import patch
 
 from chunking import chunk_files
+from config import PROVIDER
 from embed_repository import main
 from repository import Repository, snapshot_id
 from test_snapshot import make_bundle
@@ -28,7 +29,7 @@ class IndexingTests(unittest.TestCase):
                 argv = ["embed_repository.py", "--input", str(input_path), "--output", str(output_path), "--cache", str(cache), "--scope", scope]
                 if scope == "selected":
                     argv.extend(["--include", "src/*"])
-                with patch("sys.argv", argv), patch("embed_repository.model_digest", return_value="test-digest"), patch("embed_repository.embed", side_effect=lambda texts, **kwargs: [[1, 0] for _ in texts]) as model, redirect_stdout(io.StringIO()):
+                with patch("sys.argv", argv), patch("embed_repository.provider_configured", return_value=True), patch("embed_repository.model_digest", return_value="test-digest"), patch("embed_repository.embed", side_effect=lambda texts, **kwargs: [[1, 0] for _ in texts]) as model, redirect_stdout(io.StringIO()):
                     main()
                 return model
             initial_model = run_index(source, core, "selected")
@@ -60,7 +61,9 @@ class IndexingTests(unittest.TestCase):
                 source.write_text(json.dumps(bundle), encoding="utf-8")
                 output = directory / f"indexed-{index}.json"
                 argv = ["embed_repository.py", "--input", str(source), "--output", str(output), "--cache", str(cache)]
-                with patch("sys.argv", argv), patch("repository.REPOSITORY", name), patch("embed_repository.model_digest", return_value="test-digest"), patch("embed_repository.embed", return_value=[[1, 0]]) as model, redirect_stdout(io.StringIO()):
+                with patch("sys.argv", argv), patch("repository.REPOSITORY", name), patch("embed_repository.provider_configured", return_value=True), patch("embed_repository.model_digest", return_value="test-digest"), patch("embed_repository.embed", return_value=[[1, 0]]) as model, redirect_stdout(io.StringIO()):
                     main()
                     self.assertEqual(model.call_count, calls)
-                    self.assertEqual(list(Repository.load(output).vectors[0]), [1, 0])
+                    indexed = Repository.load(output)
+                    self.assertEqual(list(indexed.vectors[0]), [1, 0])
+                    self.assertEqual(indexed.embeddings["provider"], PROVIDER)
