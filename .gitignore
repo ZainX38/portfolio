@@ -23,8 +23,11 @@ dist-ssr
 *.sln
 *.sw?
 
-# Standalone Codebase demo: generated artifacts, local settings and Python cache
-codebase-demo/data/
+# Standalone Codebase demo: ignore generated data except the production index.
+codebase-demo/data/**
+!codebase-demo/data/psf--requests/
+!codebase-demo/data/psf--requests/default/
+!codebase-demo/data/psf--requests/default/bundle-openai-indexed.json
 codebase-demo/backend/.env
 codebase-demo/backend/.venv/
 __pycache__/
