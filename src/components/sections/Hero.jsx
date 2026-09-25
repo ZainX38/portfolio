@@ -1,5 +1,5 @@
 import heroImage from '/images/zain.webp';
-import CreateButton from '../layout/createButton.jsx';
+import CreateButton from '../layout/CreateButton.jsx';
 import socialLinks from '../../data/socials.js';
 
 const buttonData = socialLinks;
