@@ -2,14 +2,16 @@
     {
         "id": 1,
         "title": "Codebase AI",
-        "description": "Built an end-to-end RAG pipeline for querying PDF documents, optimising vector retrieval and reducing hallucinations through evaluation-driven iteration.",
-        "tech": ["Python", "Pinecone", "OpenAI"],
+        "description": "Queries any public GitHub repository in natural language and returns cited, source-grounded answers. Retrieval is a hybrid of cosine similarity and AST-based Python symbol lookup. No RAG framework was used and every retrieval change was validated with a controlled A/B evaluation across 100+ live runs before being kept.",
+        "tech": ["Python", "FastAPI", "Ollama", "OpenAI", "React"],
         "colours": {
-            "Python": "bg-cyan-700/50", 
-            "Pinecone": "bg-purple-900/60", 
-            "OpenAI": "bg-black/50"
+            "Python": "bg-cyan-700/50",
+            "FastAPI": "bg-teal-700/50",
+            "Ollama": "bg-[#F5F0E6]/70",
+            "OpenAI": "bg-black/50",
+            "React": "bg-[#04cafc]/50"
         },
-        "image": "/images/project1.png",
+        "image": "/images/project1.jpg",
         "links": {
             "github": "https://github.com/ZainX38/AI-Codebase",
             "preview": "/codebase-demo/"

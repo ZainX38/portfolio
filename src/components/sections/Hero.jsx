@@ -33,11 +33,10 @@ function Hero() {
                 </GlowingBadge>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl font-bold leading-tight mb-4">Hey, I'm Zain</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold leading-tight mb-4">Zain Mohammad</h1>
 
             <p className="text-sm md:text-lg min-w-44 mb-4 text-balance">
-                I’m a first-year Computer Science student building <span className='font-bold text-amber-300'> full-stack web applications and exploring AI-powered solutions </span>to solve real problems.
-                I’m actively seeking software engineering internships where I can contribute, learn, and grow.
+                <span className='font-bold text-amber-300'>Full-stack & AI Developer, </span>currently in my 2nd year in Computer Science (BSc). I like to contribute to open source projects in Github such as <span className='font-bold text-amber-300'>Ragas</span>, but open to new technologies and been working in a <span className='font-bold text-amber-300'>C++ open source project, Tilky Engine.</span>
             </p>
             
             <div className='flex flex-row gap-4'>

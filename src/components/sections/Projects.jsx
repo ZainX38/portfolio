@@ -4,7 +4,7 @@ import CreateButton from '../layout/CreateButton.jsx';
 import projectsButton from '../../data/projectsButton.js';
 
 const projectsButtonData = projectsButton
-const hasLogo = ["Python", "Node.js", "Next.js", "React", "TailwindCSS"]
+const hasLogo = ["Python", "Node.js", "Next.js", "React", "TailwindCSS", "Ollama"]
 const defaultColor = "bg-gray-700/60"
 
 function DisplayTech({ project }) {
@@ -58,7 +58,7 @@ function Projects() {
                             <DisplayTech project={project} />
                         </div>
 
-                        <p className='text-gray-200 text-balance text-md md:text-lg'>
+                        <p className='text-gray-200 text-balance text-md md:text-lg whitespace-pre-line'>
                             {project.description}
                         </p>
 
