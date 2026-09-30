@@ -3,7 +3,7 @@ import zainImage from '/images/zain3.jpg';
 
 function AboutMe() {
     return (
-        <section id="aboutme" className="text-white mb-60">
+        <section id="aboutme" className="text-white mb-60 mt-20">
             <div className="flex flex-row items-center gap-4 mb-6">
                 <Icon iconRef="/sprites.svg#about" className="w-8 h-8" />
                 <h1 className="text-3xl font-bold">About Me</h1>

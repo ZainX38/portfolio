@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "name": "Ollama",
+        "tagline": "Local LLM runtime",
+        "description": "Improved model loading behaviour and documentation for local inference.",
+        "language": "Go",
+        "accent": "#7c5cff",
+        "link": "https://github.com/ollama/ollama/pulls?q=author%3AZainX38",
+        "contributions": 2
+    },
+    {
+        "id": 2,
+        "name": "Tilky Engine",
+        "tagline": "Game engine",
+        "description": "Fixed a crash in the asset loader and added regression tests.",
+        "language": "Docs",
+        "accent": "#ff9f43",
+        "link": "https://github.com/...",
+        "contributions": 1
+    }
+]
