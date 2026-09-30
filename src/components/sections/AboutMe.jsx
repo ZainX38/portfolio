@@ -12,17 +12,16 @@ function AboutMe() {
             <div className="flex flex-col-reverse md:flex-row gap-10 text-balanced leading-7">
                 <div className="w-full md:w-3/4 flex flex-col gap-4">
                     <p>
-                        I'm Zain Mohammad and I started programming with Arduinos, when I was 12 years old. Now, I am first year Computer Science student who is
+                        I'm Zain Mohammad and I started programming with Arduinos, when I was 12 years old. Now, I am second year Computer Science student who is
                         experimenting with different technologies and building projects.
                     </p>
                     <p>
                     Some of my achievements include building
-                    <span className='text-amber-200'> full-stack web applications and AI-powered projects, </span>
-                    such as an end-to-end RAG retrieval system and an AI-enhanced recipe platform, combining practical engineering with innovative problem-solving. 
+                    <span className='text-amber-200'> full-stack web applications and AI projects, </span>
+                    such as a Codebase AI, but I have also been experimenting with low-level systems recently. 
                     </p>
                     <p>
-                    Through my work, I aim to build real-world solutions, deepen my understanding of software development, and contribute to meaningful projects. 
-                    My goal is to secure software engineering internships where I can continue growing, apply my skills, and make a tangible impact.
+                    I also like to work on open source projects on my free time such as Ollama. 
                     </p>
                 </div>
                 <div className="mx-auto mb-6 md:mb-0 mt-6">

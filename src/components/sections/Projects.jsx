@@ -64,6 +64,7 @@ function Projects() {
 
                         <div className='flex flex-row mt-4'>
                             {projectsButtonData.map(button => {
+                                if (!project.links[button.link]) return null;
                                 return <CreateButton key={button.name} name={button.name} link={project.links[button.link]} icon={button.icon} className="
                                 w-28 rounded-xl bg-sky-900 px-4 py-2 mr-4 cursor-pointer
                                 border border-gray-300

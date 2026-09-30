@@ -36,7 +36,7 @@ function Hero() {
             <h1 className="text-2xl sm:text-3xl font-bold leading-tight mb-4">Zain Mohammad</h1>
 
             <p className="text-sm md:text-lg min-w-44 mb-4 text-balance">
-                <span className='font-bold text-amber-300'>Full-stack & AI Developer, </span>currently in my 2nd year in Computer Science (BSc). I like to contribute to open source projects in Github such as <span className='font-bold text-amber-300'>Ragas</span>, but open to new technologies and been working in a <span className='font-bold text-amber-300'>C++ open source project, Tilky Engine.</span>
+                <span className='font-bold text-amber-300'>Full-stack & AI Developer, </span>currently in my 2nd year in Computer Science (BSc). I like to contribute to open source projects in Github such as <span className='font-bold text-amber-300'>Ollama</span> in my free time, but open to new technologies and been working in a <span className='font-bold text-amber-300'>C++ open source project, Tilky Engine.</span>
             </p>
             
             <div className='flex flex-row gap-4'>
