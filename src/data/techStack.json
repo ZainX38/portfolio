@@ -1,0 +1,22 @@
+[
+    {
+        "category": "Languages",
+        "items": ["C", "Python", "Java", "TypeScript", "JavaScript"]
+    },
+    {
+        "category": "Frontend",
+        "items": ["React", "Next.js", "TailwindCSS"]
+    },
+    {
+        "category": "Backend",
+        "items": ["FastAPI", "Node.js"]
+    },
+    {
+        "category": "Data",
+        "items": ["PostgreSQL", "MongoDB", "SQLite"]
+    },
+    {
+        "category": "Tools",
+        "items": ["Ollama", "Git", "Docker", "Linux", "AWS"]
+    }
+]

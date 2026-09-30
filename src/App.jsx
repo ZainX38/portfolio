@@ -3,6 +3,7 @@ import Hero from './components/sections/Hero.jsx'
 import Projects from './components/sections/Projects.jsx'
 import AboutMe from './components/sections/AboutMe.jsx'
 import OpenSource from './components/sections/OpenSource.jsx'
+import TechStack from './components/sections/TechStack.jsx'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Hero/>
       <Projects />
       <OpenSource />
+      <TechStack />
       <AboutMe />
     </main>
     

@@ -8,7 +8,7 @@ function OpenSource() {
                 <Icon className="w-9 h-9" iconRef="/sprites.svg#github" />
                 <h1 className='text-3xl font-bold'>Open Source</h1>
             </div>
-            
+
             <div className='flex flex-row flex-wrap gap-5 mt-8'>
                 {openSourceData.map(item => (
                     <a key={item.id}
@@ -42,7 +42,7 @@ function OpenSource() {
                             <span className='flex items-center gap-2 text-gray-300'>
                                 <span className='w-2 h-2 rounded-full'
                                     style={{ backgroundColor: 'var(--accent)' }} />
-                                {item.language}
+                                {item.contributionType  }
                             </span>
                             <span className='text-gray-400'>
                                 {item.contributions} merged
