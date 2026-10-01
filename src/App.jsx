@@ -15,7 +15,6 @@ function App() {
     ">
       <Hero/>
       <Projects />
-      <OpenSource />
       <TechStack />
       <AboutMe />
     </main>
