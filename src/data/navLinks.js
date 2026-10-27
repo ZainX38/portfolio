@@ -6,3 +6,5 @@ const navLinks = [
 ]
 
 export default navLinks
+
+export const contactEmail = 'zainchema2007@gmail.com'

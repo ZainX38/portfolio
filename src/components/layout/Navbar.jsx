@@ -1,5 +1,5 @@
 import { useEffect, useEffectEvent, useState } from "react";
-import navLinks from "../../data/navLinks";
+import navLinks, {contactEmail} from "../../data/navLinks";
 
 function Navbar() {
     const [scrolled, setScrolled] = useState(false)
@@ -72,6 +72,12 @@ function Navbar() {
                         </a>
                     )
                 })}
+
+                <a href={`mailto:${contactEmail}`}
+                    className="ml-1 rounded-full px-2 sm:px-3 py-1.5 bg-sky-900 border border-white/20
+                    text-white hover:bg-white hover:text-black transition-colors">
+                    Contact
+                </a>
             </nav>
         </header>
     )
