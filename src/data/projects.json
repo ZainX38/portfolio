@@ -38,7 +38,7 @@
         "id": 3,
         "title": "MNIST Neural Network",
         "description": "Neural Network that classifies handwritten digits, trained on the MNIST dataset (70,000 28×28 greyscale images). It was built from scratch with forward propagation, backpropagation and gradient descent, before I wrote the AI backend for Codebase AI. Reaches 97.2% accuracy on the 10,000-image test set.",
-        "tech": ["Python", "NumPy", "Pandas", "MatPlotLib"],
+        "tech": ["Python", "NumPy", "Pandas", "Matplotlib"],
         "colours": {
             "Python": "bg-cyan-700/50",
             "NumPy": "bg-indigo-700/50",

@@ -1,4 +1,4 @@
-import { useEffect, useEffectEvent, useState } from "react";
+import { useEffect, useState } from "react";
 import navLinks, {contactEmail} from "../../data/navLinks";
 
 function Navbar() {
@@ -26,14 +26,12 @@ function Navbar() {
         const sections = navLinks
             .map(link => document.getElementById(link.id))
             .filter(Boolean)    // drops any id that doesn't exist on the page
-        console.log('Watching sections:', sections.map(s => s.id))
 
         // Create the observer
         const observer = new IntersectionObserver(
             entries => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        console.log('Active section:', entry.target.id)
                         setActive(entry.target.id)
                     }
                 })

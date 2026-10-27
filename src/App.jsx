@@ -5,6 +5,7 @@ import AboutMe from './components/sections/AboutMe.jsx'
 import OpenSource from './components/sections/OpenSource.jsx'
 import TechStack from './components/sections/TechStack.jsx'
 import Navbar from "./components/layout/Navbar.jsx"
+import Footer from './components/layout/Footer.jsx'
 
 function App() {
   return (
@@ -14,12 +15,13 @@ function App() {
       bg-linear-to-b from-black via-sky-700 to-gray-800 
       text-white font-sans 
       px-14 sm:px-20 lg:px-60 py-20
-      max-w-screen min-w-xl min-h-dvh
+      max-w-screen min-h-dvh
       ">
         <Hero/>
         <Projects />
         <TechStack />
         <AboutMe />
+        <Footer />
       </main>
     </> 
   )
