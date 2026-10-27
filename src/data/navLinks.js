@@ -1,4 +1,5 @@
 const navLinks = [
+    {title: "Hero", id: "hero"},
     {title: "Projects", id: "projects"},
     {title: "Stack", id: "tech-stack"},
     {title: "About", id: "aboutme"}
