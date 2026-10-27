@@ -21,7 +21,7 @@ function AboutMe() {
                     such as a Codebase AI, but I have also been experimenting with low-level systems recently. 
                     </p>
                     <p>
-                    I also like to work on open source projects on my free time such as Ollama. 
+                    Outside university, I do freelance work for local businesses.
                     </p>
                 </div>
                 <div className="mx-auto mb-6 md:mb-0 mt-6">
