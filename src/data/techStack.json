@@ -1,22 +1,64 @@
 [
     {
         "category": "Languages",
-        "items": ["C", "Python", "Java", "TypeScript", "JavaScript"]
+        "items": [
+            { "name": "Python", "icon": "python" },
+            { "name": "TypeScript", "icon": "typescript" },
+            { "name": "JavaScript", "icon": "javascript" },
+            { "name": "C", "icon": "c" },
+            { "name": "Java", "icon": "openjdk" }
+        ]
     },
     {
         "category": "Frontend",
-        "items": ["React", "Next.js", "TailwindCSS"]
+        "items": [
+            { "name": "React", "icon": "react" },
+            { "name": "Next.js", "icon": "nextdotjs" },
+            { "name": "Tailwind CSS", "icon": "tailwindcss" }
+        ]
     },
     {
-        "category": "Backend",
-        "items": ["FastAPI", "Node.js"]
+        "category": "Backend & Data",
+        "items": [
+            { "name": "FastAPI", "icon": "fastapi" },
+            { "name": "Node.js", "icon": "nodedotjs" },
+            { "name": "PostgreSQL", "icon": "postgresql" },
+            { "name": "MongoDB", "icon": "mongodb" },
+            { "name": "SQLite", "icon": "sqlite" }
+        ]
     },
     {
-        "category": "Data",
-        "items": ["PostgreSQL", "MongoDB", "SQLite"]
+        "category": "AI & ML",
+        "items": [
+            { "name": "RAG" },
+            { "name": "OpenAI API", "icon": "openai" },
+            { "name": "Ollama", "icon": "ollama" },
+            { "name": "Pinecone", "icon": "pinecone" },
+            { "name": "Ragas" },
+            { "name": "Jev" },
+            { "name": "NumPy", "icon": "numpy" },
+            { "name": "pandas", "icon": "pandas" },
+            { "name": "Matplotlib" }
+        ]
     },
     {
-        "category": "Tools",
-        "items": ["Ollama", "Git", "Docker", "Linux", "AWS"]
+        "category": "Cloud & Systems",
+        "items": [
+            { "name": "Docker", "icon": "docker" },
+            { "name": "AWS EC2" },
+            { "name": "AWS S3" },
+            { "name": "AWS SES" },
+            { "name": "Linux", "icon": "linux" },
+            { "name": "Raspberry Pi", "icon": "raspberrypi" },
+            { "name": "systemd" }
+        ]
+    },
+    {
+        "category": "Developer Tools",
+        "items": [
+            { "name": "Git", "icon": "git" },
+            { "name": "Claude Code", "icon": "claude" },
+            { "name": "GitHub Copilot", "icon": "githubcopilot" }
+        ]
     }
 ]

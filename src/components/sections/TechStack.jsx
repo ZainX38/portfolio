@@ -1,41 +1,48 @@
 import Icon from '../layout/Icon.jsx';
 import techStackData from '../../data/techStack.json';
 
-const hasLogo = ["Python", "Node.js", "Next.js", "React", "TailwindCSS"];
-const defaultColor = "bg-gray-700/60";
+// Returns the logo as an SVG in the colour you ask for
+const iconUrl = (slug) => `https://cdn.simpleicons.org/${slug}/d1d5db`;
+
+function SkillPill({ item }) {
+    return (
+        <li className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm
+            bg-white/5 border border-white/10 text-gray-200
+            hover:border-amber-300/50 hover:text-white transition-colors">
+            {item.icon && (
+                <img
+                    src={iconUrl(item.icon)}
+                    alt=""
+                    className="w-4 h-4"
+                    loading="lazy"
+                    onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                />
+            )}
+            {item.name}
+        </li>
+    );
+}
 
 function TechStack() {
     return (
-        <section id="tech-stack" className='mt-20 max-w-5xl'>
+        <section id="tech-stack" className="mt-20 max-w-5xl">
             <div className="flex flex-row items-center gap-4">
-                <Icon className="w-9 h-9" iconRef="/sprites.svg#about" />
-                <h1 className='text-3xl font-bold'>Tech Stack</h1>
+                <Icon className="w-9 h-9" iconRef="/sprites.svg#projects" />
+                <h1 className="text-3xl font-bold">Tech Stack</h1>
             </div>
 
-            <div className='mt-8 border-none rounded-xl px-6 py-2'>
-                {techStackData.map((group, index) => (
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {techStackData.map(group => (
                     <div key={group.category}
-                         className={`flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 py-4
-                         ${index !== techStackData.length - 1 ? 'border-b border-gray-500/40' : ''}`}>
-
-                        <h2 className='text-gray-300 text-sm w-28 shrink-0'>
+                        className="rounded-2xl p-5 bg-black/30 border border-white/10">
+                        <h2 className="text-xs font-semibold uppercase tracking-widest text-amber-300/80 mb-4">
                             {group.category}
                         </h2>
-
-                        <div className='text-xs flex flex-row flex-wrap gap-2'>
+                        <ul className="flex flex-wrap gap-2">
                             {group.items.map(item => (
-                                <span key={item}
-                                      className={`border-none rounded-full px-2 py-1
-                                      flex flex-row items-center gap-2
-                                      ${group.colours?.[item] || defaultColor}`}>
-                                    {hasLogo.includes(item) && (
-                                        <Icon iconRef={`/sprites.svg#${item.toLowerCase()}`}
-                                              className="w-4 h-4" />
-                                    )}
-                                    {item}
-                                </span>
+                                <SkillPill key={item.name} item={item} />
                             ))}
-                        </div>
+                        </ul>
                     </div>
                 ))}
             </div>
