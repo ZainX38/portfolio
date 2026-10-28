@@ -1,5 +1,5 @@
 import Icon from "../layout/Icon"
-import zainImage from '/images/zain3.jpg';
+import zainImage from '/images/zain3.webp';
 
 function AboutMe() {
     return (

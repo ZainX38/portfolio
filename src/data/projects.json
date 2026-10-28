@@ -11,7 +11,7 @@
             "OpenAI": "bg-black/50",
             "React": "bg-[#04cafc]/50"
         },
-        "image": "/images/project1.jpg",
+        "image": "/images/project1.webp",
         "links": {
             "github": "https://github.com/ZainX38/CodebaseAI",
             "preview": "/codebase-demo/"
@@ -28,7 +28,7 @@
             "Make": "bg-emerald-800",
             "AddressSanitizer": "bg-rose-900/80"
         },
-        "image": "/images/b_tree.jpg",
+        "image": "/images/b_tree.webp",
         "links": {
             "github": "https://github.com/ZainX38/btree_db"
         }
@@ -45,7 +45,7 @@
             "Pandas": "bg-gray-600/80",
             "Matplotlib": "bg-orange-700/40"
         },
-        "image": "/images/mnist.jpg",
+        "image": "/images/mnist.webp",
         "links": {
             "github": "https://github.com/ZainX38/Neural-Network"
         }

@@ -35,13 +35,6 @@ section {
   }
 }
 
-.anim-fade-in {
-  animation: fade-in-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-.anim-delay-1 { animation-delay: 120ms; }
-.anim-delay-2 { animation-delay: 260ms; }
-.anim-delay-3 { animation-delay: 400ms; }
-
 @media (prefers-reduced-motion: reduce) {
   [data-section],
   .anim-fade-in {

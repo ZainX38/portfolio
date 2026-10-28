@@ -23,9 +23,9 @@ function GlowingBadge({ children }) {
 
 function Hero() {
     return (
-        <section id="hero" data-section className='max-w-5xl mx-auto px-4'>
+        <section id="hero" className='max-w-5xl mx-auto px-4'>
             <div className="flex flex-row items-center gap-10 mb-4">
-                <img src={heroImage} alt="Hero Image" className="
+                <img src={heroImage} alt="Zain Mohammad" className="
                 w-14 h-14 sm:w-20 sm:h-20 object-cover rounded-full"/>
                 
                 <GlowingBadge>
@@ -37,7 +37,7 @@ function Hero() {
 
             <p className="text-sm md:text-lg min-w-44 mb-4 text-balance">
                 <span className='font-bold text-amber-300'>Full-stack & AI Developer, </span>
-                currently in my 2nd year in Computer Science (BSc). Outside of university, I do 
+                currently in my 2nd year in Software Engineering (BSc). Outside of university, I do 
                     <span className='font-bold text-amber-300'> freelance work </span> 
                     for local businesses, and contribute to open source projects. I have recently been experimenting
                     with low-level systems and contributed to
