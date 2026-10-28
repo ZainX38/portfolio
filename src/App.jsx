@@ -7,6 +7,7 @@ import TechStack from './components/sections/TechStack.jsx'
 import Navbar from "./components/layout/Navbar.jsx"
 import Footer from './components/layout/Footer.jsx'
 import SpriteSheet from './components/layout/SpriteSheet.jsx'
+import Experience from './components/sections/Experience.jsx'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       max-w-screen min-h-dvh
       ">
         <Hero/>
+        <Experience />
         <Projects />
         <TechStack />
         <AboutMe />

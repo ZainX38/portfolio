@@ -1,0 +1,15 @@
+[
+    {
+        "id": 1,
+        "title": "Freelance Full-Stack Developer",
+        "company": "Italianish",
+        "date": "Sep 2026 – Present",
+        "current": true,
+        "description": "Building the website for a local hospitality business so non-technical staff can manage it themselves.",
+        "highlights": [
+            "Built the site with Next.js and Sanity CMS, so staff can update menus and pricing without a developer",
+            "Developed a custom reservation module that sends automated email confirmations through AWS SES"
+        ],
+        "tech": ["TypeScript", "Next.js", "Sanity", "AWS SES"]
+    }
+]
