@@ -12,7 +12,7 @@ function AboutMe() {
             <div className="flex flex-col-reverse md:flex-row gap-10 text-balanced leading-7">
                 <div className="w-full md:w-3/4 flex flex-col gap-4">
                     <p>
-                        I'm Zain Mohammad and I started programming with Arduinos, when I was 12 years old. Now, I am second year Computer Science student who is
+                        I'm Zain Mohammad and I started programming with Arduinos, when I was 12 years old. Now, I am second year Software Engineering student who is
                         experimenting with different technologies and building projects.
                     </p>
                     <p>
