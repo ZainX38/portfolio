@@ -17,15 +17,20 @@ function AboutMe() {
                     </p>
                     <p>
                     Some of my achievements include building
-                    <span className='text-amber-200'> full-stack web applications and AI projects, </span>
-                    such as a Codebase AI, but I have also been experimenting with low-level systems recently. 
+                    <span className='text-amber-200 font-semibold'> full-stack web applications and AI projects, </span>
+                    such as a Codebase AI, but I have also been experimenting with 
+                    <span className='text-amber-200 font-semibold'> low-level systems and been learning C++</span>. 
+                    I started by looking at C++ Open Source projects and doing little contributions, and now I am working in
+                    personal projects with this tool.
                     </p>
                     <p>
-                    Outside university, I do freelance work for local businesses.
+                    Outside university, I do freelance work for local businesses. In my most recent work, I have developed a website
+                    and booking system for a local restaurant, Italianish. I also like to keep up with the current tech world and
+                    been testing new tools like <span className='text-amber-200 font-semibold'>Jev or REA</span>.
                     </p>
                 </div>
                 <div className="mx-auto mb-6 md:mb-0 mt-6">
-                    <img src={zainImage} className="
+                    <img src={zainImage} alt="Zain Mohammad" className="
                     w-44 bg-black/40 border border-gray-500 p-2 rounded-2xl rotate-6
                     "/>
                 </div>

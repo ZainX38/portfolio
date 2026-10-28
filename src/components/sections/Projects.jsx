@@ -33,7 +33,7 @@ function Projects() {
     return (
         <section id="projects" className='mt-20 max-w-5xl'>
             <div className="flex flex-row items-center gap-4">
-                <Icon className="w-9 h-9" iconRef="#projects" />
+                <Icon className="w-9 h-9" iconRef="#projects-icon" />
                 <h1 className='text-3xl font-bold'>Projects</h1>
             </div>
 
@@ -46,6 +46,7 @@ function Projects() {
                         <img 
                         src={project.image} 
                         alt={project.title} 
+                        loading='lazy'
                         className='
                         w-fit sm:w-full h-full object-cover scale-105 rounded-tl-lg shadow-2xl shadow-black/40
                         group-hover:scale-110 transition-transform ease-in-out duration-700'/>
