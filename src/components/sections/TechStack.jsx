@@ -25,7 +25,7 @@ function SkillPill({ item }) {
 
 function TechStack() {
     return (
-        <section id="tech-stack" className="mt-20 max-w-5xl">
+        <section id="tech-stack" data-section className="mt-20 max-w-5xl">
             <div className="flex flex-row items-center gap-4">
                 <Icon className="w-9 h-9" iconRef="/sprites.svg#projects" />
                 <h1 className="text-3xl font-bold">Tech Stack</h1>

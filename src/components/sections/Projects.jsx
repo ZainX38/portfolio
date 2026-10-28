@@ -39,7 +39,7 @@ function Projects() {
 
             {projectsData.map(project => {
                 return (
-                <div key={project.id} className="flex flex-col md:flex-row justify-center items-center gap-4 mt-6 mb-16 group">
+                <div key={project.id} data-section className="flex flex-col md:flex-row justify-center items-center gap-4 mt-6 mb-16 group">
                     <div className='border border-gray-500
                     inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.8))] 
                     rounded-xl min-w-1/2 w-fit md:w-1/2 h-56 sm:h-64 overflow-hidden pl-10 pt-4'>

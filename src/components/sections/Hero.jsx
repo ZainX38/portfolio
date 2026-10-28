@@ -23,7 +23,7 @@ function GlowingBadge({ children }) {
 
 function Hero() {
     return (
-        <section id="hero" className='max-w-5xl mx-auto px-4'>
+        <section id="hero" data-section className='max-w-5xl mx-auto px-4'>
             <div className="flex flex-row items-center gap-10 mb-4">
                 <img src={heroImage} alt="Hero Image" className="
                 w-14 h-14 sm:w-20 sm:h-20 object-cover rounded-full"/>
