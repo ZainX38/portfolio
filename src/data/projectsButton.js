@@ -1,11 +1,11 @@
 const projectsButton = [{
         name: "Code",
         link: "github",
-        icon: "/sprites.svg#github"
+        icon: "#github"
     }, {
         name: "Preview",
         link: "preview",
-        icon: "/sprites.svg#preview"
+        icon: "#preview"
     }]
 
 export default projectsButton

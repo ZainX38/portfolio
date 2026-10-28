@@ -18,7 +18,7 @@ function DisplayTech({ project }) {
                     className={`border-none rounded-full px-2 py-1 flex flex-row items-center gap-2 ${colorClass}`}>
                             {(hasLogo.includes(tech)) && (
                                 <Icon 
-                                iconRef={`/sprites.svg#${tech.toLowerCase()}`} 
+                                iconRef={`#${tech.toLowerCase()}`} 
                                 className="w-4 h-4" />
                             )}
                         {tech}
@@ -33,7 +33,7 @@ function Projects() {
     return (
         <section id="projects" className='mt-20 max-w-5xl'>
             <div className="flex flex-row items-center gap-4">
-                <Icon className="w-9 h-9" iconRef="/sprites.svg#projects" />
+                <Icon className="w-9 h-9" iconRef="#projects" />
                 <h1 className='text-3xl font-bold'>Projects</h1>
             </div>
 

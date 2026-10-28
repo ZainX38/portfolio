@@ -7,7 +7,7 @@ function Footer() {
 
     // Email + your existing socials, all in one list
     const links = [
-        { name: 'Email', link: `mailto:${contactEmail}`, icon: '/sprites.svg#mail' },
+        { name: 'Email', link: `mailto:${contactEmail}`, icon: '#mail' },
         ...socialLinks,
     ]
 

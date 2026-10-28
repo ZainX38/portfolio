@@ -6,10 +6,12 @@ import OpenSource from './components/sections/OpenSource.jsx'
 import TechStack from './components/sections/TechStack.jsx'
 import Navbar from "./components/layout/Navbar.jsx"
 import Footer from './components/layout/Footer.jsx'
+import SpriteSheet from './components/layout/SpriteSheet.jsx'
 
 function App() {
   return (
     <>
+      <SpriteSheet />
       <Navbar />    
       <main className="
       bg-linear-to-b from-black via-sky-700 to-gray-800 

@@ -5,7 +5,7 @@ function AboutMe() {
     return (
         <section id="aboutme" data-section className="text-white mt-20">
             <div className="flex flex-row items-center gap-4 mb-6">
-                <Icon iconRef="/sprites.svg#about" className="w-8 h-8" />
+                <Icon iconRef="#about" className="w-8 h-8" />
                 <h1 className="text-3xl font-bold">About Me</h1>
             </div>
 

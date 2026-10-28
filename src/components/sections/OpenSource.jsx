@@ -5,7 +5,7 @@ function OpenSource() {
     return (
         <section id="open-source" data-section className='mt-20 max-w-5xl'>
             <div className="flex flex-row items-center gap-4">
-                <Icon className="w-9 h-9" iconRef="/sprites.svg#github" />
+                <Icon className="w-9 h-9" iconRef="#github" />
                 <h1 className='text-3xl font-bold'>Open Source</h1>
             </div>
 
